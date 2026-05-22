@@ -56,8 +56,8 @@
                 </Grid>
             </Border>
 
-            <!-- 仪表盘组 (UniformGrid: 宽屏均匀拉伸铺满, 窄屏自动增加行数) -->
-            <UniformGrid Columns="6" RowSpacing="10" ColumnSpacing="10" MinHeight="240">
+            <!-- 仪表盘组 (8个: 4列×2行) -->
+            <UniformGrid Columns="4" RowSpacing="10" ColumnSpacing="10" MinHeight="240">
                 <!-- 风速仪表盘 -->
                 <Panel>
                     <Border Background="#FFFFFF" BorderBrush="#E8E8E8" BorderThickness="1" CornerRadius="8" MaxWidth="380"
@@ -152,6 +152,36 @@
                         </StackPanel>
                     </Border>
                 </Panel>
+                <!-- 侧滑角仪表盘 -->
+                <Panel>
+                    <Border Background="#FFFFFF" BorderBrush="#E8E8E8" BorderThickness="1" CornerRadius="8" MaxWidth="380"
+                            HorizontalAlignment="Center" VerticalAlignment="Top">
+                        <StackPanel>
+                            <Border Background="#F0F5FF" Padding="14,10" BorderBrush="#D6E4FF" BorderThickness="0,0,0,1">
+                                <StackPanel Orientation="Horizontal" Spacing="10">
+                                    <fa:PackIconFontAwesome Kind="{x:Static fa:PackIconFontAwesomeKind.CompassSolid}" Width="16" Height="16" Foreground="#0052D9" VerticalAlignment="Center"/>
+                                    <TextBlock Text="侧滑角" FontSize="15" FontWeight="Bold" Foreground="#0052D9"/>
+                                </StackPanel>
+                            </Border>
+                            <controls:ModernGauge Value="{Binding YawActual}" Min="-20" Max="20" Unit="°"/>
+                        </StackPanel>
+                    </Border>
+                </Panel>
+                <!-- 桨距角平均值仪表盘 -->
+                <Panel>
+                    <Border Background="#FFFFFF" BorderBrush="#E8E8E8" BorderThickness="1" CornerRadius="8" MaxWidth="380"
+                            HorizontalAlignment="Center" VerticalAlignment="Top">
+                        <StackPanel>
+                            <Border Background="#F0F5FF" Padding="14,10" BorderBrush="#D6E4FF" BorderThickness="0,0,0,1">
+                                <StackPanel Orientation="Horizontal" Spacing="10">
+                                    <fa:PackIconFontAwesome Kind="{x:Static fa:PackIconFontAwesomeKind.FanSolid}" Width="16" Height="16" Foreground="#0052D9" VerticalAlignment="Center"/>
+                                    <TextBlock Text="桨距角" FontSize="15" FontWeight="Bold" Foreground="#0052D9"/>
+                                </StackPanel>
+                            </Border>
+                            <controls:ModernGauge Value="{Binding BladePitchAvg}" Min="0" Max="50" Unit="°"/>
+                        </StackPanel>
+                    </Border>
+                </Panel>
             </UniformGrid>
 
             <!-- 辅助指标卡片 (UniformGrid: 宽屏均匀拉伸铺满) -->
@@ -203,8 +233,8 @@
                 </Border>
             </UniformGrid>
 
-            <!-- 分系统状态面板 (UniformGrid: 5 列 — 动力/冷却/台架/龙门架/RAT) -->
-            <UniformGrid Columns="5" ColumnSpacing="10">
+            <!-- 分系统状态面板 (UniformGrid: 3 列 — 动力/冷却/台架, RAT/龙门架/桨距角) -->
+            <UniformGrid Columns="3" ColumnSpacing="10">
                 <!-- 动力系统 -->
                 <Border Background="#FFFFFF" BorderBrush="#E8E8E8" BorderThickness="1" CornerRadius="8">
                     <StackPanel>
