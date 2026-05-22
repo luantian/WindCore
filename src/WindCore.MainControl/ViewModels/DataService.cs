@@ -69,6 +69,14 @@ public partial class DataService : ObservableObject
     // 报警
     public ObservableCollection<AlarmRecordViewModel> Alarms { get; } = new();
 
+    // 系统级状态
+    [ObservableProperty] private string _plcCommStatus = "未连接";
+    [ObservableProperty] private string _daqCommStatus = "未连接";
+    [ObservableProperty] private string _dbCommStatus = "未连接";
+    [ObservableProperty] private string _interlockStatus = "正常";
+    [ObservableProperty] private string _experimentStatus = "空闲";
+    [ObservableProperty] private string _currentExperimentName = "";
+
     // 历史数据缓冲区（用于波形图，保留最近 5000 点 ≈ 500 秒）
     private const int MaxHistory = 5000;
     private readonly List<double> _windSpeedHistory = new(MaxHistory);

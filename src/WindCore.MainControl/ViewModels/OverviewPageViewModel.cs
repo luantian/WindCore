@@ -68,6 +68,28 @@ public partial class OverviewPageViewModel : ObservableObject
     // 报警列表
     public ObservableCollection<AlarmRecordViewModel> Alarms => _dataService.Alarms;
 
+    // 系统级状态
+    public string PlcCommStatus => _dataService.PlcCommStatus;
+    public string DaqCommStatus => _dataService.DaqCommStatus;
+    public string DbCommStatus => _dataService.DbCommStatus;
+    public string InterlockStatus => _dataService.InterlockStatus;
+    public string ExperimentStatus => _dataService.ExperimentStatus;
+    public string CurrentExperimentName => _dataService.CurrentExperimentName;
+
+    // 龙门架
+    public double GantryX => _dataService.GantryX;
+    public double GantryY => _dataService.GantryY;
+    public double GantryZ => _dataService.GantryZ;
+    public double GantrySpeedX => _dataService.GantrySpeedX;
+    public double GantrySpeedY => _dataService.GantrySpeedY;
+    public double GantrySpeedZ => _dataService.GantrySpeedZ;
+
+    // 桨距角
+    public double BladePitch1 => _dataService.BladePitch1;
+    public double BladePitch2 => _dataService.BladePitch2;
+    public double BladePitch3 => _dataService.BladePitch3;
+    public double BladePitchAvg => _dataService.BladePitchAvg;
+
     /// <summary>
     /// 报警等级显示文本
     /// </summary>
@@ -160,6 +182,22 @@ public partial class OverviewPageViewModel : ObservableObject
         OnPropertyChanged(nameof(RatMode));
         OnPropertyChanged(nameof(SensorStatus));
         OnPropertyChanged(nameof(Alarms));
+        OnPropertyChanged(nameof(PlcCommStatus));
+        OnPropertyChanged(nameof(DaqCommStatus));
+        OnPropertyChanged(nameof(DbCommStatus));
+        OnPropertyChanged(nameof(InterlockStatus));
+        OnPropertyChanged(nameof(ExperimentStatus));
+        OnPropertyChanged(nameof(CurrentExperimentName));
+        OnPropertyChanged(nameof(GantryX));
+        OnPropertyChanged(nameof(GantryY));
+        OnPropertyChanged(nameof(GantryZ));
+        OnPropertyChanged(nameof(GantrySpeedX));
+        OnPropertyChanged(nameof(GantrySpeedY));
+        OnPropertyChanged(nameof(GantrySpeedZ));
+        OnPropertyChanged(nameof(BladePitch1));
+        OnPropertyChanged(nameof(BladePitch2));
+        OnPropertyChanged(nameof(BladePitch3));
+        OnPropertyChanged(nameof(BladePitchAvg));
 
         // 同步子 ViewModel 的 PID 更新
         PowerDrive.UpdatePID(PowerDrive.WindSpeed);
