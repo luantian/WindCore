@@ -82,6 +82,14 @@ public partial class OverviewPageViewModel : ObservableObject
     public string ExperimentStatus => _dataService.ExperimentStatus;
     public string CurrentExperimentName => _dataService.CurrentExperimentName;
 
+    // 子系统通讯状态
+    public string MotorCommStatus => _dataService.MotorCommStatus;
+    public string CoolingCommStatus => _dataService.CoolingCommStatus;
+    public string StandCommStatus => _dataService.StandCommStatus;
+    public string RatCommStatus => _dataService.RatCommStatus;
+    public string GantryCommStatus => _dataService.GantryCommStatus;
+    public string BladePitchCommStatus => _dataService.BladePitchCommStatus;
+
     // 龙门架
     public double GantryX => _dataService.GantryX;
     public double GantryY => _dataService.GantryY;
@@ -215,6 +223,12 @@ public partial class OverviewPageViewModel : ObservableObject
         OnPropertyChanged(nameof(InterlockStatus));
         OnPropertyChanged(nameof(ExperimentStatus));
         OnPropertyChanged(nameof(CurrentExperimentName));
+        OnPropertyChanged(nameof(MotorCommStatus));
+        OnPropertyChanged(nameof(CoolingCommStatus));
+        OnPropertyChanged(nameof(StandCommStatus));
+        OnPropertyChanged(nameof(RatCommStatus));
+        OnPropertyChanged(nameof(GantryCommStatus));
+        OnPropertyChanged(nameof(BladePitchCommStatus));
         OnPropertyChanged(nameof(GantryX));
         OnPropertyChanged(nameof(GantryY));
         OnPropertyChanged(nameof(GantryZ));

@@ -61,3 +61,27 @@ public class AlarmStatusTextColorConverter : IValueConverter
         throw new NotImplementedException();
     }
 }
+
+public class CommStatusColorConverter : IValueConverter
+{
+    public static CommStatusColorConverter Instance { get; } = new();
+
+    public object Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
+    {
+        if (value is string s)
+        {
+            return s switch
+            {
+                "已连接" or "正常" => new SolidColorBrush(Color.Parse("#2BA471")),
+                "通讯中" => new SolidColorBrush(Color.Parse("#ED7B2F")),
+                _ => new SolidColorBrush(Color.Parse("#E34D59")),
+            };
+        }
+        return new SolidColorBrush(Color.Parse("#E34D59"));
+    }
+
+    public object ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
+    {
+        throw new NotImplementedException();
+    }
+}

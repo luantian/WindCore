@@ -209,10 +209,16 @@
                 <Border Background="#FFFFFF" BorderBrush="#E8E8E8" BorderThickness="1" CornerRadius="8">
                     <StackPanel>
                         <Border Background="#F0F5FF" Padding="14,10" BorderBrush="#D6E4FF" BorderThickness="0,0,0,1">
-                            <StackPanel Orientation="Horizontal" Spacing="10">
-                                <fa:PackIconFontAwesome Kind="{x:Static fa:PackIconFontAwesomeKind.BoltSolid}" Width="16" Height="16" Foreground="#0052D9" VerticalAlignment="Center"/>
-                                <TextBlock Text="动力系统" FontSize="15" FontWeight="Bold" Foreground="#0052D9"/>
-                            </StackPanel>
+                            <Grid ColumnDefinitions="*,Auto">
+                                <StackPanel Orientation="Horizontal" Spacing="10">
+                                    <fa:PackIconFontAwesome Kind="{x:Static fa:PackIconFontAwesomeKind.BoltSolid}" Width="16" Height="16" Foreground="#0052D9" VerticalAlignment="Center"/>
+                                    <TextBlock Text="动力系统" FontSize="15" FontWeight="Bold" Foreground="#0052D9"/>
+                                </StackPanel>
+                                <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="6">
+                                    <Ellipse Width="8" Height="8" Fill="{Binding MotorCommStatus, Converter={x:Static controls:CommStatusColorConverter.Instance}}"/>
+                                    <TextBlock Text="{Binding MotorCommStatus}" FontSize="12" Foreground="#86909C" VerticalAlignment="Center"/>
+                                </StackPanel>
+                            </Grid>
                         </Border>
                         <StackPanel Margin="14,12" Spacing="10">
                             <Grid ColumnDefinitions="Auto,*">
@@ -249,10 +255,16 @@
                 <Border Background="#FFFFFF" BorderBrush="#E8E8E8" BorderThickness="1" CornerRadius="8">
                     <StackPanel>
                         <Border Background="#F0F5FF" Padding="14,10" BorderBrush="#D6E4FF" BorderThickness="0,0,0,1">
-                            <StackPanel Orientation="Horizontal" Spacing="10">
-                                <fa:PackIconFontAwesome Kind="{x:Static fa:PackIconFontAwesomeKind.SnowflakeSolid}" Width="16" Height="16" Foreground="#0052D9" VerticalAlignment="Center"/>
-                                <TextBlock Text="冷却系统" FontSize="15" FontWeight="Bold" Foreground="#0052D9"/>
-                            </StackPanel>
+                            <Grid ColumnDefinitions="*,Auto">
+                                <StackPanel Orientation="Horizontal" Spacing="10">
+                                    <fa:PackIconFontAwesome Kind="{x:Static fa:PackIconFontAwesomeKind.SnowflakeSolid}" Width="16" Height="16" Foreground="#0052D9" VerticalAlignment="Center"/>
+                                    <TextBlock Text="冷却系统" FontSize="15" FontWeight="Bold" Foreground="#0052D9"/>
+                                </StackPanel>
+                                <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="6">
+                                    <Ellipse Width="8" Height="8" Fill="{Binding CoolingCommStatus, Converter={x:Static controls:CommStatusColorConverter.Instance}}"/>
+                                    <TextBlock Text="{Binding CoolingCommStatus}" FontSize="12" Foreground="#86909C" VerticalAlignment="Center"/>
+                                </StackPanel>
+                            </Grid>
                         </Border>
                         <StackPanel Margin="14,12" Spacing="10">
                             <Grid ColumnDefinitions="Auto,*">
@@ -289,10 +301,16 @@
                 <Border Background="#FFFFFF" BorderBrush="#E8E8E8" BorderThickness="1" CornerRadius="8">
                     <StackPanel>
                         <Border Background="#F0F5FF" Padding="14,10" BorderBrush="#D6E4FF" BorderThickness="0,0,0,1">
-                            <StackPanel Orientation="Horizontal" Spacing="10">
-                                <fa:PackIconFontAwesome Kind="{x:Static fa:PackIconFontAwesomeKind.GearsSolid}" Width="16" Height="16" Foreground="#0052D9" VerticalAlignment="Center"/>
-                                <TextBlock Text="台架系统" FontSize="15" FontWeight="Bold" Foreground="#0052D9"/>
-                            </StackPanel>
+                            <Grid ColumnDefinitions="*,Auto">
+                                <StackPanel Orientation="Horizontal" Spacing="10">
+                                    <fa:PackIconFontAwesome Kind="{x:Static fa:PackIconFontAwesomeKind.GearsSolid}" Width="16" Height="16" Foreground="#0052D9" VerticalAlignment="Center"/>
+                                    <TextBlock Text="台架系统" FontSize="15" FontWeight="Bold" Foreground="#0052D9"/>
+                                </StackPanel>
+                                <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="6">
+                                    <Ellipse Width="8" Height="8" Fill="{Binding StandCommStatus, Converter={x:Static controls:CommStatusColorConverter.Instance}}"/>
+                                    <TextBlock Text="{Binding StandCommStatus}" FontSize="12" Foreground="#86909C" VerticalAlignment="Center"/>
+                                </StackPanel>
+                            </Grid>
                         </Border>
                         <StackPanel Margin="14,12" Spacing="10">
                             <Grid ColumnDefinitions="Auto,*">
@@ -336,10 +354,16 @@
                 <Border Background="#FFFFFF" BorderBrush="#E8E8E8" BorderThickness="1" CornerRadius="8">
                     <StackPanel>
                         <Border Background="#F0F5FF" Padding="14,10" BorderBrush="#D6E4FF" BorderThickness="0,0,0,1">
-                            <StackPanel Orientation="Horizontal" Spacing="10">
-                                <fa:PackIconFontAwesome Kind="{x:Static fa:PackIconFontAwesomeKind.WeightHangingSolid}" Width="16" Height="16" Foreground="#0052D9" VerticalAlignment="Center"/>
-                                <TextBlock Text="RAT负载系统" FontSize="15" FontWeight="Bold" Foreground="#0052D9"/>
-                            </StackPanel>
+                            <Grid ColumnDefinitions="*,Auto">
+                                <StackPanel Orientation="Horizontal" Spacing="10">
+                                    <fa:PackIconFontAwesome Kind="{x:Static fa:PackIconFontAwesomeKind.WeightHangingSolid}" Width="16" Height="16" Foreground="#0052D9" VerticalAlignment="Center"/>
+                                    <TextBlock Text="RAT负载系统" FontSize="15" FontWeight="Bold" Foreground="#0052D9"/>
+                                </StackPanel>
+                                <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="6">
+                                    <Ellipse Width="8" Height="8" Fill="{Binding RatCommStatus, Converter={x:Static controls:CommStatusColorConverter.Instance}}"/>
+                                    <TextBlock Text="{Binding RatCommStatus}" FontSize="12" Foreground="#86909C" VerticalAlignment="Center"/>
+                                </StackPanel>
+                            </Grid>
                         </Border>
                         <StackPanel Margin="14,12" Spacing="10">
                             <!-- 模式切换 -->
@@ -401,10 +425,16 @@
                 <Border Background="#FFFFFF" BorderBrush="#E8E8E8" BorderThickness="1" CornerRadius="8">
                     <StackPanel>
                         <Border Background="#F0F5FF" Padding="14,10" BorderBrush="#D6E4FF" BorderThickness="0,0,0,1">
-                            <StackPanel Orientation="Horizontal" Spacing="10">
-                                <fa:PackIconFontAwesome Kind="{x:Static fa:PackIconFontAwesomeKind.LocationCrosshairsSolid}" Width="16" Height="16" Foreground="#0052D9" VerticalAlignment="Center"/>
-                                <TextBlock Text="龙门架" FontSize="15" FontWeight="Bold" Foreground="#0052D9"/>
-                            </StackPanel>
+                            <Grid ColumnDefinitions="*,Auto">
+                                <StackPanel Orientation="Horizontal" Spacing="10">
+                                    <fa:PackIconFontAwesome Kind="{x:Static fa:PackIconFontAwesomeKind.LocationCrosshairsSolid}" Width="16" Height="16" Foreground="#0052D9" VerticalAlignment="Center"/>
+                                    <TextBlock Text="龙门架" FontSize="15" FontWeight="Bold" Foreground="#0052D9"/>
+                                </StackPanel>
+                                <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="6">
+                                    <Ellipse Width="8" Height="8" Fill="{Binding GantryCommStatus, Converter={x:Static controls:CommStatusColorConverter.Instance}}"/>
+                                    <TextBlock Text="{Binding GantryCommStatus}" FontSize="12" Foreground="#86909C" VerticalAlignment="Center"/>
+                                </StackPanel>
+                            </Grid>
                         </Border>
                         <StackPanel Margin="14,12" Spacing="10">
                             <!-- 实际位置 -->
@@ -472,10 +502,16 @@
                 <Border Background="#FFFFFF" BorderBrush="#E8E8E8" BorderThickness="1" CornerRadius="8">
                     <StackPanel>
                         <Border Background="#F0F5FF" Padding="14,10" BorderBrush="#D6E4FF" BorderThickness="0,0,0,1">
-                            <StackPanel Orientation="Horizontal" Spacing="10">
-                                <fa:PackIconFontAwesome Kind="{x:Static fa:PackIconFontAwesomeKind.FanSolid}" Width="16" Height="16" Foreground="#0052D9" VerticalAlignment="Center"/>
-                                <TextBlock Text="桨距角" FontSize="15" FontWeight="Bold" Foreground="#0052D9"/>
-                            </StackPanel>
+                            <Grid ColumnDefinitions="*,Auto">
+                                <StackPanel Orientation="Horizontal" Spacing="10">
+                                    <fa:PackIconFontAwesome Kind="{x:Static fa:PackIconFontAwesomeKind.FanSolid}" Width="16" Height="16" Foreground="#0052D9" VerticalAlignment="Center"/>
+                                    <TextBlock Text="桨距角" FontSize="15" FontWeight="Bold" Foreground="#0052D9"/>
+                                </StackPanel>
+                                <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="6">
+                                    <Ellipse Width="8" Height="8" Fill="{Binding BladePitchCommStatus, Converter={x:Static controls:CommStatusColorConverter.Instance}}"/>
+                                    <TextBlock Text="{Binding BladePitchCommStatus}" FontSize="12" Foreground="#86909C" VerticalAlignment="Center"/>
+                                </StackPanel>
+                            </Grid>
                         </Border>
                         <StackPanel Margin="14,12" Spacing="10">
                             <!-- 实际角度 -->

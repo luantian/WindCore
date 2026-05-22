@@ -69,6 +69,14 @@ public partial class DataService : ObservableObject
     // 报警
     public ObservableCollection<AlarmRecordViewModel> Alarms { get; } = new();
 
+    // 子系统通讯状态
+    [ObservableProperty] private string _motorCommStatus = "未连接";
+    [ObservableProperty] private string _coolingCommStatus = "未连接";
+    [ObservableProperty] private string _standCommStatus = "未连接";
+    [ObservableProperty] private string _ratCommStatus = "未连接";
+    [ObservableProperty] private string _gantryCommStatus = "未连接";
+    [ObservableProperty] private string _bladePitchCommStatus = "未连接";
+
     // 系统级状态
     [ObservableProperty] private string _plcCommStatus = "未连接";
     [ObservableProperty] private string _daqCommStatus = "未连接";
