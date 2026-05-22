@@ -8,7 +8,9 @@ public partial class BladePitchPageViewModel : ObservableObject
 {
     private readonly DataService _dataService;
 
-    [ObservableProperty] private double _targetPitch = 15;
+    [ObservableProperty] private double _targetPitch1 = 15;
+    [ObservableProperty] private double _targetPitch2 = 15;
+    [ObservableProperty] private double _targetPitch3 = 15;
 
     public double BladePitch1 => _dataService.BladePitch1;
     public double BladePitch2 => _dataService.BladePitch2;
@@ -35,7 +37,15 @@ public partial class BladePitchPageViewModel : ObservableObject
     [RelayCommand]
     private void SetTargetPitch()
     {
-        // 下发目标角度至桨距角测量系统
+        // 下发目标角度至桨距角测量系统（3桨独立）
         // TODO: 通过 TCP 发送目标角度
+    }
+
+    [RelayCommand]
+    private void SetAllSame()
+    {
+        // 三桨设为同一角度
+        TargetPitch2 = TargetPitch1;
+        TargetPitch3 = TargetPitch1;
     }
 }
