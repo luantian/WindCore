@@ -412,17 +412,20 @@
                             <Grid ColumnDefinitions="Auto,*,Auto">
                                 <TextBlock Text="X:" FontSize="13" Foreground="#86909C"/>
                                 <TextBlock Text="{Binding GantryX, StringFormat={}{0:F1} mm}" Grid.Column="1" HorizontalAlignment="Center" FontSize="18" FontFamily="Consolas" Foreground="#0052D9"/>
-                                <TextBlock Text="{Binding GantrySpeedX, StringFormat={}{0:F1} mm/s}" Grid.Column="2" HorizontalAlignment="Right" FontSize="12" FontFamily="Consolas" Foreground="#4E5969"/>
+                                <TextBlock Text="Vx:" Grid.Column="2" FontSize="12" Foreground="#86909C" Margin="8,0,0,0"/>
+                                <TextBlock Text="{Binding GantrySpeedX, StringFormat={}{0:F1} mm/s}" Grid.Column="2" HorizontalAlignment="Right" FontSize="14" FontFamily="Consolas" Foreground="#4E5969" Margin="24,0,0,0"/>
                             </Grid>
                             <Grid ColumnDefinitions="Auto,*,Auto">
                                 <TextBlock Text="Y:" FontSize="13" Foreground="#86909C"/>
                                 <TextBlock Text="{Binding GantryY, StringFormat={}{0:F1} mm}" Grid.Column="1" HorizontalAlignment="Center" FontSize="18" FontFamily="Consolas" Foreground="#2BA471"/>
-                                <TextBlock Text="{Binding GantrySpeedY, StringFormat={}{0:F1} mm/s}" Grid.Column="2" HorizontalAlignment="Right" FontSize="12" FontFamily="Consolas" Foreground="#4E5969"/>
+                                <TextBlock Text="Vy:" Grid.Column="2" FontSize="12" Foreground="#86909C" Margin="8,0,0,0"/>
+                                <TextBlock Text="{Binding GantrySpeedY, StringFormat={}{0:F1} mm/s}" Grid.Column="2" HorizontalAlignment="Right" FontSize="14" FontFamily="Consolas" Foreground="#4E5969" Margin="24,0,0,0"/>
                             </Grid>
                             <Grid ColumnDefinitions="Auto,*,Auto">
                                 <TextBlock Text="Z:" FontSize="13" Foreground="#86909C"/>
                                 <TextBlock Text="{Binding GantryZ, StringFormat={}{0:F1} mm}" Grid.Column="1" HorizontalAlignment="Center" FontSize="18" FontFamily="Consolas" Foreground="#ED7B2F"/>
-                                <TextBlock Text="{Binding GantrySpeedZ, StringFormat={}{0:F1} mm/s}" Grid.Column="2" HorizontalAlignment="Right" FontSize="12" FontFamily="Consolas" Foreground="#4E5969"/>
+                                <TextBlock Text="Vz:" Grid.Column="2" FontSize="12" Foreground="#86909C" Margin="8,0,0,0"/>
+                                <TextBlock Text="{Binding GantrySpeedZ, StringFormat={}{0:F1} mm/s}" Grid.Column="2" HorizontalAlignment="Right" FontSize="14" FontFamily="Consolas" Foreground="#4E5969" Margin="24,0,0,0"/>
                             </Grid>
                             <Separator Margin="0,4" Opacity="0.3"/>
                             <!-- 目标位置控制 -->
@@ -442,6 +445,7 @@
                                 </StackPanel>
                             </Grid>
                             <!-- 速度设置 -->
+                            <TextBlock Text="移动速度 (mm/s)" FontSize="13" Foreground="#86909C" FontWeight="SemiBold"/>
                             <Grid ColumnDefinitions="*,*,*" ColumnSpacing="6">
                                 <StackPanel>
                                     <TextBlock Text="Vx" FontSize="12" Foreground="#4E5969" HorizontalAlignment="Center"/>
@@ -496,7 +500,7 @@
                             <!-- 目标角度控制 -->
                             <StackPanel Spacing="8">
                                 <TextBlock Text="目标角度 (°)" FontSize="13" Foreground="#86909C" FontWeight="SemiBold"/>
-                                <Grid ColumnDefinitions="*,*,*,Auto">
+                                <Grid ColumnDefinitions="*,*,*">
                                     <StackPanel>
                                         <TextBlock Text="桨叶 1" FontSize="12" Foreground="#4E5969" HorizontalAlignment="Center"/>
                                         <TextBox Text="{Binding BladePitch.TargetPitch1}" FontSize="14" Padding="6,4" TextAlignment="Center" FontFamily="Consolas"/>
@@ -509,8 +513,8 @@
                                         <TextBlock Text="桨叶 3" FontSize="12" Foreground="#4E5969" HorizontalAlignment="Center"/>
                                         <TextBox Text="{Binding BladePitch.TargetPitch3}" FontSize="14" Padding="6,4" TextAlignment="Center" FontFamily="Consolas"/>
                                     </StackPanel>
-                                    <Button Grid.Column="3" Content="设定" Command="{Binding SetBladePitchCommand}" Padding="14,6" FontSize="13" FontWeight="Bold" Margin="8,20,0,0" VerticalAlignment="Center"/>
                                 </Grid>
+                                <Button Content="设定" Command="{Binding SetBladePitchCommand}" Padding="14,6" FontSize="13" FontWeight="Bold" HorizontalAlignment="Stretch"/>
                             </StackPanel>
                         </StackPanel>
                     </StackPanel>
