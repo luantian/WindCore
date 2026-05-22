@@ -12,6 +12,9 @@ public partial class OverviewPageViewModel : ObservableObject
     public PowerDrivePageViewModel PowerDrive { get; }
     public CoolingSystemPageViewModel Cooling { get; }
     public GantryControlPageViewModel GantryCtrl { get; }
+    public GantryPageViewModel Gantry { get; }
+    public BladePitchPageViewModel BladePitch { get; }
+    public RatPageViewModel Rat { get; }
 
     [ObservableProperty] private bool _motorStarted;
     [ObservableProperty] private bool _pumpStarted;
@@ -22,6 +25,9 @@ public partial class OverviewPageViewModel : ObservableObject
         PowerDrive = new PowerDrivePageViewModel(dataService);
         Cooling = new CoolingSystemPageViewModel(dataService);
         GantryCtrl = new GantryControlPageViewModel(dataService);
+        Gantry = new GantryPageViewModel(dataService);
+        BladePitch = new BladePitchPageViewModel(dataService);
+        Rat = new RatPageViewModel(dataService);
     }
 
     // 仪表盘数据
@@ -150,6 +156,27 @@ public partial class OverviewPageViewModel : ObservableObject
 
     [RelayCommand]
     private void SetYawAngle() => GantryCtrl.SetYawAngleCommand.Execute(null);
+
+    [RelayCommand]
+    private void GantryMoveToPosition() => Gantry.MoveToPositionCommand.Execute(null);
+
+    [RelayCommand]
+    private void GantryMoveHome() => Gantry.MoveHomeCommand.Execute(null);
+
+    [RelayCommand]
+    private void SetBladePitch() => BladePitch.SetTargetPitchCommand.Execute(null);
+
+    [RelayCommand]
+    private void ApplyRatMode() => Rat.ApplyRatModeCommand.Execute(null);
+
+    [RelayCommand]
+    private void ApplyRatTargetThrust() => Rat.ApplyTargetThrustCommand.Execute(null);
+
+    [RelayCommand]
+    private void ApplyRatTargetRpm() => Rat.ApplyTargetRpmCommand.Execute(null);
+
+    [RelayCommand]
+    private void ApplyRatTargetTorque() => Rat.ApplyTargetTorqueCommand.Execute(null);
 
     // 通知所有属性变化（供定时器调用）
     public void Refresh()
