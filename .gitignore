@@ -1,0 +1,37 @@
+## .NET
+bin/
+obj/
+*.userprefs
+*.user
+*.suo
+*.ncb
+*.sdf
+*.opensdf
+
+## IDE
+.vs/
+.vscode/
+.idea/
+*.swp
+*.swo
+
+## Build
+*.dll
+*.pdb
+*.exe
+*.manifest
+
+## NuGet
+packages/
+*.nupkg
+*.snupkg
+
+## OS
+.DS_Store
+Thumbs.db
+
+## Debug
+login_debug.log
+
+## Claude
+.claude/
