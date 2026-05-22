@@ -11,7 +11,7 @@
 
             <!-- 顶部状态栏 -->
             <Border Background="#FFFFFF" BorderBrush="#E8E8E8" BorderThickness="1" CornerRadius="8" Padding="18,12">
-                <Grid ColumnDefinitions="*,Auto,*,Auto,*,Auto,*,Auto,*,Auto">
+                <Grid ColumnDefinitions="*,Auto,*,Auto,*,Auto,*,Auto,*">
                     <!-- 试验状态 -->
                     <StackPanel Orientation="Horizontal" Spacing="10">
                         <fa:PackIconFontAwesome Kind="{x:Static fa:PackIconFontAwesomeKind.FlaskSolid}" Width="18" Height="18" Foreground="#0052D9" VerticalAlignment="Center"/>
@@ -47,11 +47,6 @@
                         <fa:PackIconFontAwesome Kind="{x:Static fa:PackIconFontAwesomeKind.ShieldHalvedSolid}" Width="16" Height="16" Foreground="#2BA471" VerticalAlignment="Center"/>
                         <TextBlock Text="联锁:" FontSize="15" Foreground="#86909C" VerticalAlignment="Center"/>
                         <TextBlock Text="{Binding InterlockStatus}" FontSize="15" FontWeight="SemiBold" VerticalAlignment="Center"/>
-                    </StackPanel>
-                    <!-- 试验操作按钮 -->
-                    <StackPanel Grid.Column="9" Orientation="Horizontal" Spacing="8" Margin="14,0,0,0">
-                        <Button Classes="success" Content="开始试验" Padding="16,8" FontSize="14" FontWeight="Bold"/>
-                        <Button Classes="danger" Content="停止试验" Padding="16,8" FontSize="14" FontWeight="Bold"/>
                     </StackPanel>
                 </Grid>
             </Border>
