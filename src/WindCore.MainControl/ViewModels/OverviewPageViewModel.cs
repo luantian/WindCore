@@ -90,7 +90,7 @@ public partial class OverviewPageViewModel : ObservableObject
     public string GantryCommStatus => _dataService.GantryCommStatus;
     public string BladePitchCommStatus => _dataService.BladePitchCommStatus;
 
-    // 子系统投入状态
+    // 子系统运行状态
     public bool MotorEnabled => _dataService.MotorEnabled;
     public bool CoolingEnabled => _dataService.CoolingEnabled;
     public bool StandEnabled => _dataService.StandEnabled;
@@ -143,7 +143,7 @@ public partial class OverviewPageViewModel : ObservableObject
     }
 
     // ===== 高频操作命令 =====
-    // 子系统投入/退出切换
+    // 子系统启动/停止切换
     [RelayCommand]
     private void ToggleMotorEnabled() => _dataService.MotorEnabled = !_dataService.MotorEnabled;
 

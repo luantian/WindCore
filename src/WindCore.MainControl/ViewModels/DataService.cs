@@ -77,7 +77,7 @@ public partial class DataService : ObservableObject
     [ObservableProperty] private string _gantryCommStatus = "未连接";
     [ObservableProperty] private string _bladePitchCommStatus = "未连接";
 
-    // 子系统投入状态
+    // 子系统运行状态
     [ObservableProperty] private bool _motorEnabled;
     [ObservableProperty] private bool _coolingEnabled;
     [ObservableProperty] private bool _standEnabled;

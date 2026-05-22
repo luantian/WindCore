@@ -49,8 +49,8 @@ public class SubsystemToggleTextConverter : IValueConverter
 
     public object Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
     {
-        if (value is bool b) return b ? "投入" : "退出";
-        return "退出";
+        if (value is bool b) return b ? "启动" : "停止";
+        return "停止";
     }
 
     public object ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
