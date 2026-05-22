@@ -12,8 +12,8 @@
             <UniformGrid Columns="4" RowSpacing="10" ColumnSpacing="10" MinHeight="240">
                 <!-- 风速仪表盘 -->
                 <Panel>
-                    <Border Background="#FFFFFF" BorderBrush="#E8E8E8" BorderThickness="1" CornerRadius="8" MaxWidth="380"
-                            HorizontalAlignment="Center" VerticalAlignment="Top">
+                    <Border Background="#FFFFFF" BorderBrush="#E8E8E8" BorderThickness="1" CornerRadius="8"
+                            HorizontalAlignment="Center" VerticalAlignment="Top" Padding="16,14">
                         <StackPanel>
                             <Border Background="#F0F5FF" Padding="14,10" BorderBrush="#D6E4FF" BorderThickness="0,0,0,1">
                                 <StackPanel Orientation="Horizontal" Spacing="10">
@@ -28,8 +28,8 @@
                 </Panel>
                 <!-- 电机转速仪表盘 -->
                 <Panel>
-                    <Border Background="#FFFFFF" BorderBrush="#E8E8E8" BorderThickness="1" CornerRadius="8" MaxWidth="380"
-                            HorizontalAlignment="Center" VerticalAlignment="Top">
+                    <Border Background="#FFFFFF" BorderBrush="#E8E8E8" BorderThickness="1" CornerRadius="8"
+                            HorizontalAlignment="Center" VerticalAlignment="Top" Padding="16,14">
                         <StackPanel>
                             <Border Background="#F0F5FF" Padding="14,10" BorderBrush="#D6E4FF" BorderThickness="0,0,0,1">
                                 <StackPanel Orientation="Horizontal" Spacing="10">
@@ -44,8 +44,8 @@
                 </Panel>
                 <!-- 温度仪表盘 -->
                 <Panel>
-                    <Border Background="#FFFFFF" BorderBrush="#E8E8E8" BorderThickness="1" CornerRadius="8" MaxWidth="380"
-                            HorizontalAlignment="Center" VerticalAlignment="Top">
+                    <Border Background="#FFFFFF" BorderBrush="#E8E8E8" BorderThickness="1" CornerRadius="8"
+                            HorizontalAlignment="Center" VerticalAlignment="Top" Padding="16,14">
                         <StackPanel>
                             <Border Background="#F0F5FF" Padding="14,10" BorderBrush="#D6E4FF" BorderThickness="0,0,0,1">
                                 <StackPanel Orientation="Horizontal" Spacing="10">
@@ -60,8 +60,8 @@
                 </Panel>
                 <!-- RAT推力仪表盘 -->
                 <Panel>
-                    <Border Background="#FFFFFF" BorderBrush="#E8E8E8" BorderThickness="1" CornerRadius="8" MaxWidth="380"
-                            HorizontalAlignment="Center" VerticalAlignment="Top">
+                    <Border Background="#FFFFFF" BorderBrush="#E8E8E8" BorderThickness="1" CornerRadius="8"
+                            HorizontalAlignment="Center" VerticalAlignment="Top" Padding="16,14">
                         <StackPanel>
                             <Border Background="#F0F5FF" Padding="14,10" BorderBrush="#D6E4FF" BorderThickness="0,0,0,1">
                                 <StackPanel Orientation="Horizontal" Spacing="10">
@@ -75,8 +75,8 @@
                 </Panel>
                 <!-- RAT转速仪表盘 -->
                 <Panel>
-                    <Border Background="#FFFFFF" BorderBrush="#E8E8E8" BorderThickness="1" CornerRadius="8" MaxWidth="380"
-                            HorizontalAlignment="Center" VerticalAlignment="Top">
+                    <Border Background="#FFFFFF" BorderBrush="#E8E8E8" BorderThickness="1" CornerRadius="8"
+                            HorizontalAlignment="Center" VerticalAlignment="Top" Padding="16,14">
                         <StackPanel>
                             <Border Background="#F0F5FF" Padding="14,10" BorderBrush="#D6E4FF" BorderThickness="0,0,0,1">
                                 <StackPanel Orientation="Horizontal" Spacing="10">
@@ -91,8 +91,8 @@
                 </Panel>
                 <!-- 俯仰角仪表盘 -->
                 <Panel>
-                    <Border Background="#FFFFFF" BorderBrush="#E8E8E8" BorderThickness="1" CornerRadius="8" MaxWidth="380"
-                            HorizontalAlignment="Center" VerticalAlignment="Top">
+                    <Border Background="#FFFFFF" BorderBrush="#E8E8E8" BorderThickness="1" CornerRadius="8"
+                            HorizontalAlignment="Center" VerticalAlignment="Top" Padding="16,14">
                         <StackPanel>
                             <Border Background="#F0F5FF" Padding="14,10" BorderBrush="#D6E4FF" BorderThickness="0,0,0,1">
                                 <StackPanel Orientation="Horizontal" Spacing="10">
@@ -106,8 +106,8 @@
                 </Panel>
                 <!-- 侧滑角仪表盘 -->
                 <Panel>
-                    <Border Background="#FFFFFF" BorderBrush="#E8E8E8" BorderThickness="1" CornerRadius="8" MaxWidth="380"
-                            HorizontalAlignment="Center" VerticalAlignment="Top">
+                    <Border Background="#FFFFFF" BorderBrush="#E8E8E8" BorderThickness="1" CornerRadius="8"
+                            HorizontalAlignment="Center" VerticalAlignment="Top" Padding="16,14">
                         <StackPanel>
                             <Border Background="#F0F5FF" Padding="14,10" BorderBrush="#D6E4FF" BorderThickness="0,0,0,1">
                                 <StackPanel Orientation="Horizontal" Spacing="10">
@@ -121,8 +121,8 @@
                 </Panel>
                 <!-- 桨距角平均值仪表盘 -->
                 <Panel>
-                    <Border Background="#FFFFFF" BorderBrush="#E8E8E8" BorderThickness="1" CornerRadius="8" MaxWidth="380"
-                            HorizontalAlignment="Center" VerticalAlignment="Top">
+                    <Border Background="#FFFFFF" BorderBrush="#E8E8E8" BorderThickness="1" CornerRadius="8"
+                            HorizontalAlignment="Center" VerticalAlignment="Top" Padding="16,14">
                         <StackPanel>
                             <Border Background="#F0F5FF" Padding="14,10" BorderBrush="#D6E4FF" BorderThickness="0,0,0,1">
                                 <StackPanel Orientation="Horizontal" Spacing="10">
@@ -136,8 +136,8 @@
                 </Panel>
             </UniformGrid>
 
-            <!-- 辅助指标卡片 (UniformGrid: 宽屏均匀拉伸铺满) -->
-            <UniformGrid Columns="5" ColumnSpacing="10">
+            <!-- 辅助指标卡片 (4列：电机频率/冷却液流量/RAT扭矩/RAT功率) -->
+            <UniformGrid Columns="4" ColumnSpacing="10">
                 <Border Background="#FFFFFF" BorderBrush="#D6E4FF" BorderThickness="1" CornerRadius="8" Padding="16,14">
                     <StackPanel>
                         <StackPanel Orientation="Horizontal" Spacing="6">
@@ -172,15 +172,6 @@
                             <TextBlock Text="RAT功率" FontSize="14" Foreground="#86909C"/>
                         </StackPanel>
                         <TextBlock Text="{Binding RatPower, StringFormat={}{0:F1} kW}" FontSize="24" FontWeight="Bold" Foreground="#ED7B2F" FontFamily="Consolas" Margin="0,6,0,0"/>
-                    </StackPanel>
-                </Border>
-                <Border Background="#FFFFFF" BorderBrush="#D6E4FF" BorderThickness="1" CornerRadius="8" Padding="16,14">
-                    <StackPanel>
-                        <StackPanel Orientation="Horizontal" Spacing="6">
-                            <Ellipse Width="10" Height="10" Fill="#0052D9"/>
-                            <TextBlock Text="侧滑角" FontSize="14" Foreground="#86909C"/>
-                        </StackPanel>
-                        <TextBlock Text="{Binding YawActual, StringFormat={}{0:F1}°}" FontSize="24" FontWeight="Bold" Foreground="#0052D9" FontFamily="Consolas" Margin="0,6,0,0"/>
                     </StackPanel>
                 </Border>
             </UniformGrid>
