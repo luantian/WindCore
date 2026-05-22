@@ -1,0 +1,848 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:viewmodels="using:WindCore.MainControl.ViewModels"
+             xmlns:fa="using:IconPacks.Avalonia.FontAwesome"
+             x:Class="WindCore.MainControl.Views.SettingsPage"
+             x:DataType="viewmodels:SettingsPanelViewModel">
+    <Grid>
+        <TabControl TabStripPlacement="Top">
+
+            <!-- Tab 1: 通讯设置 -->
+            <TabItem Header="通讯设置">
+                <ScrollViewer VerticalScrollBarVisibility="Auto" Padding="12">
+                    <Border Background="#FFFFFF" BorderBrush="#E8E8E8" BorderThickness="1" CornerRadius="8" Margin="12">
+                        <StackPanel>
+                            <Border Background="#F0F5FF" Padding="14,10" BorderBrush="#D6E4FF" BorderThickness="0,0,0,1">
+                                <StackPanel Orientation="Horizontal" Spacing="8">
+                                    <fa:PackIconFontAwesome Kind="{x:Static fa:PackIconFontAwesomeKind.NetworkWiredSolid}" Width="16" Height="16" Foreground="#0052D9" VerticalAlignment="Center"/>
+                                    <TextBlock Text="Modbus 通讯配置" FontSize="15" FontWeight="SemiBold" Foreground="#0052D9" VerticalAlignment="Center"/>
+                                </StackPanel>
+                            </Border>
+                            <StackPanel Margin="14,12" Spacing="12">
+                                <StackPanel Spacing="10">
+                                    <StackPanel Spacing="4">
+                                        <TextBlock Text="通讯协议" FontSize="12" Foreground="#4E5969"/>
+                                        <ComboBox ItemsSource="{Binding ProtocolOptions}" SelectedItem="{Binding ModbusProtocol}" FontSize="13" Padding="6,4"/>
+                                    </StackPanel>
+                                    <StackPanel Spacing="4">
+                                        <TextBlock Text="通讯周期 (ms)" FontSize="12" Foreground="#4E5969"/>
+                                        <TextBox Text="{Binding CommPeriodMs}" FontSize="13" Padding="6,4" TextAlignment="Center"/>
+                                    </StackPanel>
+                                    <Grid ColumnDefinitions="*,*" ColumnSpacing="12" RowSpacing="10" RowDefinitions="Auto,Auto">
+                                        <StackPanel Grid.Row="0" Grid.Column="0" Spacing="4">
+                                            <TextBlock Text="PLC IP 地址" FontSize="12" Foreground="#4E5969"/>
+                                            <TextBox Text="{Binding PlcIp}" FontSize="13" Padding="6,4"/>
+                                        </StackPanel>
+                                        <StackPanel Grid.Row="0" Grid.Column="1" Spacing="4">
+                                            <TextBlock Text="PLC 端口" FontSize="12" Foreground="#4E5969"/>
+                                            <TextBox Text="{Binding PlcPort}" FontSize="13" Padding="6,4" TextAlignment="Center"/>
+                                        </StackPanel>
+                                        <StackPanel Grid.Row="1" Grid.Column="0" Spacing="4">
+                                            <TextBlock Text="采集器 IP 地址" FontSize="12" Foreground="#4E5969"/>
+                                            <TextBox Text="{Binding CollectorIp}" FontSize="13" Padding="6,4"/>
+                                        </StackPanel>
+                                        <StackPanel Grid.Row="1" Grid.Column="1" Spacing="4">
+                                            <TextBlock Text="采集器端口" FontSize="12" Foreground="#4E5969"/>
+                                            <TextBox Text="{Binding CollectorPort}" FontSize="13" Padding="6,4" TextAlignment="Center"/>
+                                        </StackPanel>
+                                    </Grid>
+                                </StackPanel>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                </ScrollViewer>
+            </TabItem>
+
+            <!-- Tab 2: 动力系统 -->
+            <TabItem Header="动力系统">
+                <ScrollViewer VerticalScrollBarVisibility="Auto" Padding="12">
+                    <StackPanel Spacing="12" Margin="12">
+                        <!-- 风速目标 -->
+                        <Border Background="#FFFFFF" BorderBrush="#E8E8E8" BorderThickness="1" CornerRadius="8">
+                            <StackPanel>
+                                <Border Background="#F0F5FF" Padding="14,10" BorderBrush="#D6E4FF" BorderThickness="0,0,0,1">
+                                    <StackPanel Orientation="Horizontal" Spacing="8">
+                                        <fa:PackIconFontAwesome Kind="{x:Static fa:PackIconFontAwesomeKind.WindSolid}" Width="16" Height="16" Foreground="#0052D9" VerticalAlignment="Center"/>
+                                        <TextBlock Text="风速控制" FontSize="15" FontWeight="SemiBold" Foreground="#0052D9" VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                </Border>
+                                <StackPanel Margin="14,12" Spacing="10">
+                                    <Grid ColumnDefinitions="*,*" ColumnSpacing="12" RowDefinitions="Auto,Auto,Auto">
+                                        <StackPanel Grid.Row="0" Grid.Column="0" Spacing="4">
+                                            <TextBlock Text="目标风速 (m/s)" FontSize="12" Foreground="#4E5969"/>
+                                            <TextBox Text="{Binding TargetWindSpeed}" FontSize="13" Padding="6,4" TextAlignment="Center"/>
+                                        </StackPanel>
+                                        <StackPanel Grid.Row="0" Grid.Column="1" Spacing="4">
+                                            <TextBlock Text="目标转速 (r/min)" FontSize="12" Foreground="#4E5969"/>
+                                            <TextBox Text="{Binding TargetMotorRpm}" FontSize="13" Padding="6,4" TextAlignment="Center"/>
+                                        </StackPanel>
+                                        <StackPanel Grid.Row="1" Grid.Column="0" Spacing="4">
+                                            <TextBlock Text="风速下限 (m/s)" FontSize="12" Foreground="#4E5969"/>
+                                            <TextBox Text="{Binding WindSpeedRangeMin}" FontSize="13" Padding="6,4" TextAlignment="Center"/>
+                                        </StackPanel>
+                                        <StackPanel Grid.Row="1" Grid.Column="1" Spacing="4">
+                                            <TextBlock Text="风速上限 (m/s)" FontSize="12" Foreground="#4E5969"/>
+                                            <TextBox Text="{Binding WindSpeedRangeMax}" FontSize="13" Padding="6,4" TextAlignment="Center"/>
+                                        </StackPanel>
+                                        <StackPanel Grid.Row="2" Grid.Column="0" Spacing="4">
+                                            <TextBlock Text="风速调节精度 (m/s)" FontSize="12" Foreground="#4E5969"/>
+                                            <TextBox Text="{Binding WindSpeedPrecision}" FontSize="13" Padding="6,4" TextAlignment="Center"/>
+                                        </StackPanel>
+                                    </Grid>
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+
+                        <!-- PID 参数 -->
+                        <Border Background="#FFFFFF" BorderBrush="#E8E8E8" BorderThickness="1" CornerRadius="8">
+                            <StackPanel>
+                                <Border Background="#F0F5FF" Padding="14,10" BorderBrush="#D6E4FF" BorderThickness="0,0,0,1">
+                                    <StackPanel Orientation="Horizontal" Spacing="8">
+                                        <fa:PackIconFontAwesome Kind="{x:Static fa:PackIconFontAwesomeKind.SlidersSolid}" Width="16" Height="16" Foreground="#0052D9" VerticalAlignment="Center"/>
+                                        <TextBlock Text="PID 参数" FontSize="15" FontWeight="SemiBold" Foreground="#0052D9" VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                </Border>
+                                <StackPanel Margin="14,12" Spacing="10">
+                                    <Grid ColumnDefinitions="*,*,*" ColumnSpacing="12">
+                                        <StackPanel Spacing="4">
+                                            <TextBlock Text="Kp (比例)" FontSize="12" Foreground="#4E5969"/>
+                                            <TextBox Text="{Binding PidKp}" FontSize="13" Padding="6,4" TextAlignment="Center"/>
+                                        </StackPanel>
+                                        <StackPanel Spacing="4">
+                                            <TextBlock Text="Ki (积分)" FontSize="12" Foreground="#4E5969"/>
+                                            <TextBox Text="{Binding PidKi}" FontSize="13" Padding="6,4" TextAlignment="Center"/>
+                                        </StackPanel>
+                                        <StackPanel Spacing="4">
+                                            <TextBlock Text="Kd (微分)" FontSize="12" Foreground="#4E5969"/>
+                                            <TextBox Text="{Binding PidKd}" FontSize="13" Padding="6,4" TextAlignment="Center"/>
+                                        </StackPanel>
+                                    </Grid>
+                                    <Grid ColumnDefinitions="*,*,*" ColumnSpacing="12">
+                                        <StackPanel Spacing="4">
+                                            <TextBlock Text="滤波系数 α" FontSize="12" Foreground="#4E5969"/>
+                                            <TextBox Text="{Binding PidFilterAlpha}" FontSize="13" Padding="6,4" TextAlignment="Center"/>
+                                        </StackPanel>
+                                        <StackPanel Spacing="4">
+                                            <TextBlock Text="积分饱和上限" FontSize="12" Foreground="#4E5969"/>
+                                            <TextBox Text="{Binding PidIntegralMax}" FontSize="13" Padding="6,4" TextAlignment="Center"/>
+                                        </StackPanel>
+                                        <StackPanel Spacing="4">
+                                            <TextBlock Text="输出范围 (最小~最大)" FontSize="12" Foreground="#4E5969"/>
+                                            <Grid ColumnDefinitions="*,*" ColumnSpacing="6">
+                                                <TextBox Text="{Binding PidOutputMin}" FontSize="13" Padding="6,4" TextAlignment="Center"/>
+                                                <TextBox Text="{Binding PidOutputMax}" Grid.Column="1" FontSize="13" Padding="6,4" TextAlignment="Center"/>
+                                            </Grid>
+                                        </StackPanel>
+                                    </Grid>
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+
+            <!-- Tab 3: 冷却系统 -->
+            <TabItem Header="冷却系统">
+                <ScrollViewer VerticalScrollBarVisibility="Auto" Padding="12">
+                    <Border Background="#FFFFFF" BorderBrush="#E8E8E8" BorderThickness="1" CornerRadius="8" Margin="12">
+                        <StackPanel>
+                            <Border Background="#F0F5FF" Padding="14,10" BorderBrush="#D6E4FF" BorderThickness="0,0,0,1">
+                                <StackPanel Orientation="Horizontal" Spacing="8">
+                                    <fa:PackIconFontAwesome Kind="{x:Static fa:PackIconFontAwesomeKind.SnowflakeSolid}" Width="16" Height="16" Foreground="#0052D9" VerticalAlignment="Center"/>
+                                    <TextBlock Text="冷却温度控制" FontSize="15" FontWeight="SemiBold" Foreground="#0052D9" VerticalAlignment="Center"/>
+                                </StackPanel>
+                            </Border>
+                            <StackPanel Margin="14,12" Spacing="12">
+                                <StackPanel Spacing="4">
+                                    <TextBlock Text="阀门开度 (%)" FontSize="12" Foreground="#4E5969"/>
+                                    <TextBox Text="{Binding ValveOpening}" FontSize="13" Padding="6,4" TextAlignment="Center"/>
+                                </StackPanel>
+                                <StackPanel Spacing="4">
+                                    <TextBlock Text="目标水温 (°C)" FontSize="12" Foreground="#4E5969"/>
+                                    <TextBox Text="{Binding TargetCoolingTemp}" FontSize="13" Padding="6,4" TextAlignment="Center"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                </ScrollViewer>
+            </TabItem>
+
+            <!-- Tab 4: 台架系统 -->
+            <TabItem Header="台架系统">
+                <ScrollViewer VerticalScrollBarVisibility="Auto" Padding="12">
+                    <Border Background="#FFFFFF" BorderBrush="#E8E8E8" BorderThickness="1" CornerRadius="8" Margin="12">
+                        <StackPanel>
+                            <Border Background="#F0F5FF" Padding="14,10" BorderBrush="#D6E4FF" BorderThickness="0,0,0,1">
+                                <StackPanel Orientation="Horizontal" Spacing="8">
+                                    <fa:PackIconFontAwesome Kind="{x:Static fa:PackIconFontAwesomeKind.GearsSolid}" Width="16" Height="16" Foreground="#0052D9" VerticalAlignment="Center"/>
+                                    <TextBlock Text="角度范围与精度" FontSize="15" FontWeight="SemiBold" Foreground="#0052D9" VerticalAlignment="Center"/>
+                                </StackPanel>
+                            </Border>
+                            <StackPanel Margin="14,12" Spacing="10">
+                                <TextBlock Text="俯仰角 (°)" FontSize="13" FontWeight="SemiBold" Foreground="#1D2129"/>
+                                <Grid ColumnDefinitions="*,*,*" ColumnSpacing="12">
+                                    <StackPanel Spacing="4">
+                                        <TextBlock Text="下限" FontSize="12" Foreground="#4E5969"/>
+                                        <TextBox Text="{Binding PitchAngleMin}" FontSize="13" Padding="6,4" TextAlignment="Center"/>
+                                    </StackPanel>
+                                    <StackPanel Spacing="4">
+                                        <TextBlock Text="上限" FontSize="12" Foreground="#4E5969"/>
+                                        <TextBox Text="{Binding PitchAngleMax}" FontSize="13" Padding="6,4" TextAlignment="Center"/>
+                                    </StackPanel>
+                                    <StackPanel Spacing="4">
+                                        <TextBlock Text="精度" FontSize="12" Foreground="#4E5969"/>
+                                        <TextBox Text="{Binding PitchPrecision}" FontSize="13" Padding="6,4" TextAlignment="Center"/>
+                                    </StackPanel>
+                                </Grid>
+                                <TextBlock Text="侧滑角 (°)" FontSize="13" FontWeight="SemiBold" Foreground="#1D2129" Margin="0,4,0,0"/>
+                                <Grid ColumnDefinitions="*,*,*" ColumnSpacing="12">
+                                    <StackPanel Spacing="4">
+                                        <TextBlock Text="下限" FontSize="12" Foreground="#4E5969"/>
+                                        <TextBox Text="{Binding YawAngleMin}" FontSize="13" Padding="6,4" TextAlignment="Center"/>
+                                    </StackPanel>
+                                    <StackPanel Spacing="4">
+                                        <TextBlock Text="上限" FontSize="12" Foreground="#4E5969"/>
+                                        <TextBox Text="{Binding YawAngleMax}" FontSize="13" Padding="6,4" TextAlignment="Center"/>
+                                    </StackPanel>
+                                    <StackPanel Spacing="4">
+                                        <TextBlock Text="精度" FontSize="12" Foreground="#4E5969"/>
+                                        <TextBox Text="{Binding YawPrecision}" FontSize="13" Padding="6,4" TextAlignment="Center"/>
+                                    </StackPanel>
+                                </Grid>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                </ScrollViewer>
+            </TabItem>
+
+            <!-- Tab 5: 龙门架 -->
+            <TabItem Header="龙门架">
+                <ScrollViewer VerticalScrollBarVisibility="Auto" Padding="12">
+                    <Border Background="#FFFFFF" BorderBrush="#E8E8E8" BorderThickness="1" CornerRadius="8" Margin="12">
+                        <StackPanel>
+                            <Border Background="#F0F5FF" Padding="14,10" BorderBrush="#D6E4FF" BorderThickness="0,0,0,1">
+                                <StackPanel Orientation="Horizontal" Spacing="8">
+                                    <fa:PackIconFontAwesome Kind="{x:Static fa:PackIconFontAwesomeKind.LocationDotSolid}" Width="16" Height="16" Foreground="#0052D9" VerticalAlignment="Center"/>
+                                    <TextBlock Text="XYZ 行程与加速度" FontSize="15" FontWeight="SemiBold" Foreground="#0052D9" VerticalAlignment="Center"/>
+                                </StackPanel>
+                            </Border>
+                            <StackPanel Margin="14,12" Spacing="12">
+                                <Grid ColumnDefinitions="*,*,*" ColumnSpacing="12">
+                                    <StackPanel Spacing="4">
+                                        <TextBlock Text="X 行程 (m)" FontSize="12" Foreground="#4E5969"/>
+                                        <TextBox Text="{Binding GantryXLimit}" FontSize="13" Padding="6,4" TextAlignment="Center"/>
+                                    </StackPanel>
+                                    <StackPanel Spacing="4">
+                                        <TextBlock Text="Y 行程 (m)" FontSize="12" Foreground="#4E5969"/>
+                                        <TextBox Text="{Binding GantryYLimit}" FontSize="13" Padding="6,4" TextAlignment="Center"/>
+                                    </StackPanel>
+                                    <StackPanel Spacing="4">
+                                        <TextBlock Text="Z 行程 (m)" FontSize="12" Foreground="#4E5969"/>
+                                        <TextBox Text="{Binding GantryZLimit}" FontSize="13" Padding="6,4" TextAlignment="Center"/>
+                                    </StackPanel>
+                                </Grid>
+                                <StackPanel Spacing="4">
+                                    <TextBlock Text="最大加速度 (m/s²)" FontSize="12" Foreground="#4E5969"/>
+                                    <TextBox Text="{Binding GantryAccelMax}" FontSize="13" Padding="6,4" TextAlignment="Center"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                </ScrollViewer>
+            </TabItem>
+
+            <!-- Tab 6: RAT负载系统 -->
+            <TabItem Header="RAT负载系统">
+                <ScrollViewer VerticalScrollBarVisibility="Auto" Padding="12">
+                    <Border Background="#FFFFFF" BorderBrush="#E8E8E8" BorderThickness="1" CornerRadius="8" Margin="12">
+                        <StackPanel>
+                            <Border Background="#F0F5FF" Padding="14,10" BorderBrush="#D6E4FF" BorderThickness="0,0,0,1">
+                                <StackPanel Orientation="Horizontal" Spacing="8">
+                                    <fa:PackIconFontAwesome Kind="{x:Static fa:PackIconFontAwesomeKind.WeightHangingSolid}" Width="16" Height="16" Foreground="#0052D9" VerticalAlignment="Center"/>
+                                    <TextBlock Text="RAT 测量范围" FontSize="15" FontWeight="SemiBold" Foreground="#0052D9" VerticalAlignment="Center"/>
+                                </StackPanel>
+                            </Border>
+                            <StackPanel Margin="14,12" Spacing="12">
+                                <Grid ColumnDefinitions="*,*" ColumnSpacing="12" RowSpacing="10" RowDefinitions="Auto,Auto">
+                                    <StackPanel Spacing="4">
+                                        <TextBlock Text="推力范围 (N)" FontSize="12" Foreground="#4E5969"/>
+                                        <Grid ColumnDefinitions="*,*" ColumnSpacing="6">
+                                            <TextBox Text="{Binding RatThrustMin}" FontSize="13" Padding="6,4" TextAlignment="Center"/>
+                                            <TextBox Text="{Binding RatThrustMax}" Grid.Column="1" FontSize="13" Padding="6,4" TextAlignment="Center"/>
+                                        </Grid>
+                                    </StackPanel>
+                                    <StackPanel Spacing="4">
+                                        <TextBlock Text="扭矩范围 (N·m)" FontSize="12" Foreground="#4E5969"/>
+                                        <Grid ColumnDefinitions="*,*" ColumnSpacing="6">
+                                            <TextBox Text="{Binding RatTorqueMin}" FontSize="13" Padding="6,4" TextAlignment="Center"/>
+                                            <TextBox Text="{Binding RatTorqueMax}" Grid.Column="1" FontSize="13" Padding="6,4" TextAlignment="Center"/>
+                                        </Grid>
+                                    </StackPanel>
+                                    <StackPanel Spacing="4">
+                                        <TextBlock Text="转速范围 (r/min)" FontSize="12" Foreground="#4E5969"/>
+                                        <Grid ColumnDefinitions="*,*" ColumnSpacing="6">
+                                            <TextBox Text="{Binding RatRpmMin}" FontSize="13" Padding="6,4" TextAlignment="Center"/>
+                                            <TextBox Text="{Binding RatRpmMax}" Grid.Column="1" FontSize="13" Padding="6,4" TextAlignment="Center"/>
+                                        </Grid>
+                                    </StackPanel>
+                                </Grid>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                </ScrollViewer>
+            </TabItem>
+
+            <!-- Tab 7: 桨距角 -->
+            <TabItem Header="桨距角">
+                <ScrollViewer VerticalScrollBarVisibility="Auto" Padding="12">
+                    <Border Background="#FFFFFF" BorderBrush="#E8E8E8" BorderThickness="1" CornerRadius="8" Margin="12">
+                        <StackPanel>
+                            <Border Background="#F0F5FF" Padding="14,10" BorderBrush="#D6E4FF" BorderThickness="0,0,0,1">
+                                <StackPanel Orientation="Horizontal" Spacing="8">
+                                    <fa:PackIconFontAwesome Kind="{x:Static fa:PackIconFontAwesomeKind.FanSolid}" Width="16" Height="16" Foreground="#0052D9" VerticalAlignment="Center"/>
+                                    <TextBlock Text="桨距角测量范围" FontSize="15" FontWeight="SemiBold" Foreground="#0052D9" VerticalAlignment="Center"/>
+                                </StackPanel>
+                            </Border>
+                            <StackPanel Margin="14,12" Spacing="10">
+                                <StackPanel Spacing="4">
+                                    <TextBlock Text="调桨角度范围 (°) — 0° 到 50°" FontSize="12" Foreground="#4E5969"/>
+                                    <Grid ColumnDefinitions="*,*" ColumnSpacing="6">
+                                        <TextBox Text="{Binding BladePitchMin}" FontSize="13" Padding="6,4" TextAlignment="Center"/>
+                                        <TextBox Text="{Binding BladePitchMax}" Grid.Column="1" FontSize="13" Padding="6,4" TextAlignment="Center"/>
+                                    </Grid>
+                                </StackPanel>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                </ScrollViewer>
+            </TabItem>
+
+            <!-- Tab 8: 数据存储 -->
+            <TabItem Header="数据存储">
+                <ScrollViewer VerticalScrollBarVisibility="Auto" Padding="12">
+                    <Border Background="#FFFFFF" BorderBrush="#E8E8E8" BorderThickness="1" CornerRadius="8" Margin="12">
+                        <StackPanel>
+                            <Border Background="#F0F5FF" Padding="14,10" BorderBrush="#D6E4FF" BorderThickness="0,0,0,1">
+                                <StackPanel Orientation="Horizontal" Spacing="8">
+                                    <fa:PackIconFontAwesome Kind="{x:Static fa:PackIconFontAwesomeKind.DatabaseSolid}" Width="16" Height="16" Foreground="#0052D9" VerticalAlignment="Center"/>
+                                    <TextBlock Text="数据存储配置" FontSize="15" FontWeight="SemiBold" Foreground="#0052D9" VerticalAlignment="Center"/>
+                                </StackPanel>
+                            </Border>
+                            <StackPanel Margin="14,12" Spacing="10">
+                                <StackPanel Spacing="4">
+                                    <TextBlock Text="CSV 存储路径" FontSize="12" Foreground="#4E5969"/>
+                                    <TextBox Text="{Binding DataPath}" FontSize="13" Padding="6,4"/>
+                                </StackPanel>
+                                <Grid ColumnDefinitions="*,*" ColumnSpacing="12" RowSpacing="10" RowDefinitions="Auto,Auto">
+                                    <StackPanel Spacing="4">
+                                        <TextBlock Text="采样率 (Hz)" FontSize="12" Foreground="#4E5969"/>
+                                        <TextBox Text="{Binding SampleRate}" FontSize="13" Padding="6,4" TextAlignment="Center"/>
+                                    </StackPanel>
+                                    <StackPanel Spacing="4">
+                                        <TextBlock Text="文件名前缀" FontSize="12" Foreground="#4E5969"/>
+                                        <TextBox Text="{Binding CsvFileName}" FontSize="13" Padding="6,4"/>
+                                    </StackPanel>
+                                    <StackPanel Spacing="4">
+                                        <TextBlock Text="自动备份间隔 (h)" FontSize="12" Foreground="#4E5969"/>
+                                        <TextBox Text="{Binding BackupInterval}" FontSize="13" Padding="6,4" TextAlignment="Center"/>
+                                    </StackPanel>
+                                </Grid>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                </ScrollViewer>
+            </TabItem>
+
+            <!-- Tab 9: 告警配置 -->
+            <TabItem Header="告警配置">
+                <ScrollViewer VerticalScrollBarVisibility="Auto" Padding="12">
+                    <StackPanel Spacing="12" Margin="12">
+                        <Border Background="#FFFFFF" BorderBrush="#E8E8E8" BorderThickness="1" CornerRadius="8">
+                            <StackPanel>
+                                <Border Background="#F0F5FF" Padding="14,10" BorderBrush="#D6E4FF" BorderThickness="0,0,0,1">
+                                    <StackPanel Orientation="Horizontal" Spacing="8">
+                                        <fa:PackIconFontAwesome Kind="{x:Static fa:PackIconFontAwesomeKind.BellSolid}" Width="16" Height="16" Foreground="#0052D9" VerticalAlignment="Center"/>
+                                        <TextBlock Text="告警模式" FontSize="15" FontWeight="SemiBold" Foreground="#0052D9" VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                </Border>
+                                <StackPanel Margin="14,12" Spacing="10">
+                                    <CheckBox Content="启用声光报警" IsChecked="{Binding AlarmSoundEnabled}" FontSize="13"/>
+                                    <CheckBox Content="启用灯光报警" IsChecked="{Binding AlarmLightEnabled}" FontSize="13"/>
+                                    <CheckBox Content="启用屏幕告警" IsChecked="{Binding AlarmScreenEnabled}" FontSize="13"/>
+                                    <CheckBox Content="启用推送通知" IsChecked="{Binding AlarmPushEnabled}" FontSize="13"/>
+                                    <CheckBox Content="启用日志记录" IsChecked="{Binding AlarmLogEnabled}" FontSize="13"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+
+            <!-- Tab 10: 安全阈值 -->
+            <TabItem Header="安全阈值">
+                <ScrollViewer VerticalScrollBarVisibility="Auto" Padding="12">
+                    <StackPanel Spacing="12" Margin="12">
+                        <Border Background="#FFFFFF" BorderBrush="#E8E8E8" BorderThickness="1" CornerRadius="8">
+                            <StackPanel>
+                                <Border Background="#FFF6F7" Padding="14,10" BorderBrush="#FFE0E3" BorderThickness="0,0,0,1">
+                                    <StackPanel Orientation="Horizontal" Spacing="8">
+                                        <fa:PackIconFontAwesome Kind="{x:Static fa:PackIconFontAwesomeKind.TriangleExclamationSolid}" Width="16" Height="16" Foreground="#E34D59" VerticalAlignment="Center"/>
+                                        <TextBlock Text="安全连锁阈值" FontSize="15" FontWeight="SemiBold" Foreground="#E34D59" VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                </Border>
+                                <StackPanel Margin="14,12" Spacing="14">
+                                    <StackPanel Spacing="8">
+                                        <TextBlock Text="动力系统" FontSize="13" FontWeight="SemiBold" Foreground="#1D2129"/>
+                                        <Grid ColumnDefinitions="*,*,*" ColumnSpacing="12">
+                                            <StackPanel Spacing="4">
+                                                <TextBlock Text="轴温上限 (°C)" FontSize="12" Foreground="#4E5969"/>
+                                                <TextBox Text="{Binding ShaftTempLimit}" FontSize="13" Padding="6,4" TextAlignment="Center"/>
+                                            </StackPanel>
+                                            <StackPanel Spacing="4">
+                                                <TextBlock Text="绕组温度 (°C)" FontSize="12" Foreground="#4E5969"/>
+                                                <TextBox Text="{Binding WindingTempLimit}" FontSize="13" Padding="6,4" TextAlignment="Center"/>
+                                            </StackPanel>
+                                            <StackPanel Spacing="4">
+                                                <TextBlock Text="轴振上限" FontSize="12" Foreground="#4E5969"/>
+                                                <TextBox Text="{Binding ShaftVibrationLimit}" FontSize="13" Padding="6,4" TextAlignment="Center"/>
+                                            </StackPanel>
+                                        </Grid>
+                                    </StackPanel>
+
+                                    <StackPanel Spacing="8">
+                                        <TextBlock Text="冷却系统" FontSize="13" FontWeight="SemiBold" Foreground="#1D2129"/>
+                                        <Grid ColumnDefinitions="*,*,*,*" ColumnSpacing="12">
+                                            <StackPanel Spacing="4">
+                                                <TextBlock Text="液位下限 (%)" FontSize="12" Foreground="#4E5969"/>
+                                                <TextBox Text="{Binding TankLevelMin}" FontSize="13" Padding="6,4" TextAlignment="Center"/>
+                                            </StackPanel>
+                                            <StackPanel Spacing="4">
+                                                <TextBlock Text="管路温度下限 (°C)" FontSize="12" Foreground="#4E5969"/>
+                                                <TextBox Text="{Binding PipeTempMin}" FontSize="13" Padding="6,4" TextAlignment="Center"/>
+                                            </StackPanel>
+                                            <StackPanel Spacing="4">
+                                                <TextBlock Text="管路压力 (MPa)" FontSize="12" Foreground="#4E5969"/>
+                                                <TextBox Text="{Binding PipePressureMax}" FontSize="13" Padding="6,4" TextAlignment="Center"/>
+                                            </StackPanel>
+                                            <StackPanel Spacing="4">
+                                                <TextBlock Text="供水温度 (°C)" FontSize="12" Foreground="#4E5969"/>
+                                                <TextBox Text="{Binding CoolingTempMax}" FontSize="13" Padding="6,4" TextAlignment="Center"/>
+                                            </StackPanel>
+                                        </Grid>
+                                    </StackPanel>
+
+                                    <StackPanel Spacing="8">
+                                        <TextBlock Text="系统参数" FontSize="13" FontWeight="SemiBold" Foreground="#1D2129"/>
+                                        <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
+                                            <StackPanel Spacing="4">
+                                                <TextBlock Text="CPU 占用上限 (%)" FontSize="12" Foreground="#4E5969"/>
+                                                <TextBox Text="{Binding CpuUsageLimit}" FontSize="13" Padding="6,4" TextAlignment="Center"/>
+                                            </StackPanel>
+                                            <StackPanel Spacing="4">
+                                                <TextBlock Text="联锁检测周期 (ms)" FontSize="12" Foreground="#4E5969"/>
+                                                <TextBox Text="{Binding InterlockCheckMs}" FontSize="13" Padding="6,4" TextAlignment="Center"/>
+                                            </StackPanel>
+                                        </Grid>
+                                    </StackPanel>
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+
+            <!-- Tab 11: Excel 批量配置 -->
+            <TabItem Header="Excel 配置">
+                <ScrollViewer VerticalScrollBarVisibility="Auto" Padding="12">
+                    <StackPanel Spacing="12" Margin="12">
+                        <Border Background="#FFFFFF" BorderBrush="#E8E8E8" BorderThickness="1" CornerRadius="8">
+                            <StackPanel>
+                                <Border Background="#F0F5FF" Padding="14,10" BorderBrush="#D6E4FF" BorderThickness="0,0,0,1">
+                                    <StackPanel Orientation="Horizontal" Spacing="8">
+                                        <fa:PackIconFontAwesome Kind="{x:Static fa:PackIconFontAwesomeKind.FileSolid}" Width="16" Height="16" Foreground="#0052D9" VerticalAlignment="Center"/>
+                                        <TextBlock Text="Excel 批量配置" FontSize="15" FontWeight="SemiBold" Foreground="#0052D9" VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                </Border>
+                                <StackPanel Margin="14,12" Spacing="10">
+                                    <StackPanel Spacing="4">
+                                        <TextBlock Text="Excel 配置文件路径" FontSize="12" Foreground="#4E5969"/>
+                                        <TextBox Text="{Binding ExcelConfigPath}" FontSize="13" Padding="6,4" Watermark="选择 Excel 配置文件..."/>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Spacing="8" Margin="0,6,0,0">
+                                        <Button Classes="primary" Content="加载配置" Command="{Binding LoadExcelConfigCommand}" Padding="18,8" FontSize="13"/>
+                                        <Button Classes="default" Content="写入设备" Command="{Binding WriteConfigToDeviceCommand}" Padding="18,8" FontSize="13"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+                        <Border Background="#FFFFFF" BorderBrush="#E8E8E8" BorderThickness="1" CornerRadius="8">
+                            <StackPanel>
+                                <Border Background="#F0F5FF" Padding="14,10" BorderBrush="#D6E4FF" BorderThickness="0,0,0,1">
+                                    <StackPanel Orientation="Horizontal" Spacing="8">
+                                        <fa:PackIconFontAwesome Kind="{x:Static fa:PackIconFontAwesomeKind.FlaskSolid}" Width="16" Height="16" Foreground="#0052D9" VerticalAlignment="Center"/>
+                                        <TextBlock Text="试验类型模板" FontSize="15" FontWeight="SemiBold" Foreground="#0052D9" VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                </Border>
+                                <StackPanel Margin="14,12" Spacing="10">
+                                    <StackPanel Spacing="4">
+                                        <TextBlock Text="预置试验类型 (下拉菜单, 支持增删改)" FontSize="12" Foreground="#4E5969"/>
+                                        <ComboBox ItemsSource="{Binding ExperimentTypes}" SelectedItem="{Binding SelectedExperimentType}" FontSize="13" Padding="6,4"/>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Spacing="8">
+                                        <Button Classes="default" Content="新增试验类型" Command="{Binding AddExperimentTypeCommand}" Padding="18,8" FontSize="13"/>
+                                        <Button Classes="default" Content="删除" Command="{Binding RemoveExperimentTypeCommand}" Padding="18,8" FontSize="13"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+                        <Border Background="#FFFFFF" BorderBrush="#E8E8E8" BorderThickness="1" CornerRadius="8">
+                            <StackPanel>
+                                <Border Background="#F0F5FF" Padding="14,10" BorderBrush="#D6E4FF" BorderThickness="0,0,0,1">
+                                    <StackPanel Orientation="Horizontal" Spacing="8">
+                                        <fa:PackIconFontAwesome Kind="{x:Static fa:PackIconFontAwesomeKind.WaveSquareSolid}" Width="16" Height="16" Foreground="#0052D9" VerticalAlignment="Center"/>
+                                        <TextBlock Text="抗干扰滤波参数" FontSize="15" FontWeight="SemiBold" Foreground="#0052D9" VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                </Border>
+                                <StackPanel Margin="14,12" Spacing="10">
+                                    <Grid ColumnDefinitions="*,*,*" ColumnSpacing="12">
+                                        <StackPanel Spacing="4">
+                                            <TextBlock Text="低通滤波截止频率 (Hz)" FontSize="12" Foreground="#4E5969"/>
+                                            <TextBox Text="{Binding LowPassCutoff}" FontSize="13" Padding="6,4" TextAlignment="Center"/>
+                                        </StackPanel>
+                                        <StackPanel Spacing="4">
+                                            <TextBlock Text="平均滤波窗口" FontSize="12" Foreground="#4E5969"/>
+                                            <TextBox Text="{Binding AvgFilterWindow}" FontSize="13" Padding="6,4" TextAlignment="Center"/>
+                                        </StackPanel>
+                                        <StackPanel Spacing="4">
+                                            <TextBlock Text="中值滤波窗口" FontSize="12" Foreground="#4E5969"/>
+                                            <TextBox Text="{Binding MedianFilterWindow}" FontSize="13" Padding="6,4" TextAlignment="Center"/>
+                                        </StackPanel>
+                                    </Grid>
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+
+            <!-- Tab 12: 权限管理 -->
+            <TabItem Header="权限管理">
+                <ScrollViewer VerticalScrollBarVisibility="Auto" Padding="12">
+                    <StackPanel Spacing="12" Margin="12">
+                        <Border Background="#FFFFFF" BorderBrush="#E8E8E8" BorderThickness="1" CornerRadius="8">
+                            <StackPanel>
+                                <Border Background="#F0F5FF" Padding="14,10" BorderBrush="#D6E4FF" BorderThickness="0,0,0,1">
+                                    <StackPanel Orientation="Horizontal" Spacing="8">
+                                        <fa:PackIconFontAwesome Kind="{x:Static fa:PackIconFontAwesomeKind.UsersGearSolid}" Width="16" Height="16" Foreground="#0052D9" VerticalAlignment="Center"/>
+                                        <TextBlock Text="客户端权限管理" FontSize="15" FontWeight="SemiBold" Foreground="#0052D9" VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                </Border>
+                                <StackPanel Margin="14,12" Spacing="10">
+                                    <StackPanel Spacing="4">
+                                        <TextBlock Text="RBAC 角色" FontSize="12" Foreground="#4E5969"/>
+                                        <ComboBox ItemsSource="{Binding RoleOptions}" SelectedItem="{Binding SelectedRole}" FontSize="13" Padding="6,4"/>
+                                    </StackPanel>
+                                    <StackPanel Spacing="6" Margin="0,4,0,0">
+                                        <TextBlock Text="权限列表" FontSize="12" FontWeight="SemiBold" Foreground="#1D2129"/>
+                                        <CheckBox Content="设备控制 (启停/参数设置)" IsChecked="{Binding PermDeviceControl}" FontSize="13"/>
+                                        <CheckBox Content="数据采集管理" IsChecked="{Binding PermDataAcquisition}" FontSize="13"/>
+                                        <CheckBox Content="数据存储与导出" IsChecked="{Binding PermDataStorage}" FontSize="13"/>
+                                        <CheckBox Content="告警配置" IsChecked="{Binding PermAlarmConfig}" FontSize="13"/>
+                                        <CheckBox Content="系统参数设置" IsChecked="{Binding PermSystemSettings}" FontSize="13"/>
+                                        <CheckBox Content="用户管理" IsChecked="{Binding PermUserManagement}" FontSize="13"/>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Spacing="8" Margin="0,6,0,0">
+                                        <Button Classes="primary" Content="保存权限" Command="{Binding SavePermissionsCommand}" Padding="18,8" FontSize="13"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+
+            <!-- Tab 13: 存储模式 -->
+            <TabItem Header="存储模式">
+                <ScrollViewer VerticalScrollBarVisibility="Auto" Padding="12">
+                    <StackPanel Spacing="12" Margin="12">
+                        <Border Background="#FFFFFF" BorderBrush="#E8E8E8" BorderThickness="1" CornerRadius="8">
+                            <StackPanel>
+                                <Border Background="#F0F5FF" Padding="14,10" BorderBrush="#D6E4FF" BorderThickness="0,0,0,1">
+                                    <StackPanel Orientation="Horizontal" Spacing="8">
+                                        <fa:PackIconFontAwesome Kind="{x:Static fa:PackIconFontAwesomeKind.HardDriveSolid}" Width="16" Height="16" Foreground="#0052D9" VerticalAlignment="Center"/>
+                                        <TextBlock Text="存储模式选择" FontSize="15" FontWeight="SemiBold" Foreground="#0052D9" VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                </Border>
+                                <StackPanel Margin="14,12" Spacing="10">
+                                    <StackPanel Spacing="4">
+                                        <TextBlock Text="存储方式" FontSize="12" Foreground="#4E5969"/>
+                                        <ComboBox ItemsSource="{Binding StorageModeOptions}" SelectedItem="{Binding StorageMode}" FontSize="13" Padding="6,4"/>
+                                    </StackPanel>
+                                    <TextBlock Text="本地 CSV：仅本地文件存储&#10;数据库联动：同步写入远程数据库&#10;数采联动：下发命令至数采软件程控保存" FontSize="11" Foreground="#86909C" Margin="0,4,0,0"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+
+                        <Border Background="#FFFFFF" BorderBrush="#E8E8E8" BorderThickness="1" CornerRadius="8">
+                            <StackPanel>
+                                <Border Background="#F0F5FF" Padding="14,10" BorderBrush="#D6E4FF" BorderThickness="0,0,0,1">
+                                    <StackPanel Orientation="Horizontal" Spacing="8">
+                                        <fa:PackIconFontAwesome Kind="{x:Static fa:PackIconFontAwesomeKind.ServerSolid}" Width="16" Height="16" Foreground="#0052D9" VerticalAlignment="Center"/>
+                                        <TextBlock Text="数据库连接配置" FontSize="15" FontWeight="SemiBold" Foreground="#0052D9" VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                </Border>
+                                <StackPanel Margin="14,12" Spacing="10">
+                                    <Grid ColumnDefinitions="*,*" ColumnSpacing="12" RowSpacing="10" RowDefinitions="Auto,Auto,Auto,Auto">
+                                        <StackPanel Spacing="4">
+                                            <TextBlock Text="数据库地址" FontSize="12" Foreground="#4E5969"/>
+                                            <TextBox Text="{Binding DbHost}" FontSize="13" Padding="6,4"/>
+                                        </StackPanel>
+                                        <StackPanel Spacing="4">
+                                            <TextBlock Text="端口" FontSize="12" Foreground="#4E5969"/>
+                                            <TextBox Text="{Binding DbPort}" FontSize="13" Padding="6,4" TextAlignment="Center"/>
+                                        </StackPanel>
+                                        <StackPanel Spacing="4">
+                                            <TextBlock Text="数据库名" FontSize="12" Foreground="#4E5969"/>
+                                            <TextBox Text="{Binding DbName}" FontSize="13" Padding="6,4"/>
+                                        </StackPanel>
+                                        <StackPanel Spacing="4">
+                                            <TextBlock Text="用户名" FontSize="12" Foreground="#4E5969"/>
+                                            <TextBox Text="{Binding DbUser}" FontSize="13" Padding="6,4"/>
+                                        </StackPanel>
+                                        <StackPanel Spacing="4">
+                                            <TextBlock Text="密码" FontSize="12" Foreground="#4E5969"/>
+                                            <TextBox Text="{Binding DbPassword}" FontSize="13" Padding="6,4" PasswordChar="*"/>
+                                        </StackPanel>
+                                    </Grid>
+                                    <Button Classes="primary" Content="测试连接" Command="{Binding TestDbConnectionCommand}" Padding="18,8" FontSize="13" HorizontalAlignment="Left"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+
+                        <Border Background="#FFFFFF" BorderBrush="#E8E8E8" BorderThickness="1" CornerRadius="8">
+                            <StackPanel>
+                                <Border Background="#F0F5FF" Padding="14,10" BorderBrush="#D6E4FF" BorderThickness="0,0,0,1">
+                                    <StackPanel Orientation="Horizontal" Spacing="8">
+                                        <fa:PackIconFontAwesome Kind="{x:Static fa:PackIconFontAwesomeKind.SatelliteDishSolid}" Width="16" Height="16" Foreground="#0052D9" VerticalAlignment="Center"/>
+                                        <TextBlock Text="数采联动配置" FontSize="15" FontWeight="SemiBold" Foreground="#0052D9" VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                </Border>
+                                <StackPanel Margin="14,12" Spacing="10">
+                                    <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
+                                        <StackPanel Spacing="4">
+                                            <TextBlock Text="数采服务器地址" FontSize="12" Foreground="#4E5969"/>
+                                            <TextBox Text="{Binding DaqHost}" FontSize="13" Padding="6,4"/>
+                                        </StackPanel>
+                                        <StackPanel Spacing="4">
+                                            <TextBlock Text="数采端口" FontSize="12" Foreground="#4E5969"/>
+                                            <TextBox Text="{Binding DaqPort}" FontSize="13" Padding="6,4" TextAlignment="Center"/>
+                                        </StackPanel>
+                                    </Grid>
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+
+            <!-- Tab 14: 日志配置 -->
+            <TabItem Header="日志配置">
+                <ScrollViewer VerticalScrollBarVisibility="Auto" Padding="12">
+                    <StackPanel Spacing="12" Margin="12">
+                        <Border Background="#FFFFFF" BorderBrush="#E8E8E8" BorderThickness="1" CornerRadius="8">
+                            <StackPanel>
+                                <Border Background="#F0F5FF" Padding="14,10" BorderBrush="#D6E4FF" BorderThickness="0,0,0,1">
+                                    <StackPanel Orientation="Horizontal" Spacing="8">
+                                        <fa:PackIconFontAwesome Kind="{x:Static fa:PackIconFontAwesomeKind.FileLinesRegular}" Width="16" Height="16" Foreground="#0052D9" VerticalAlignment="Center"/>
+                                        <TextBlock Text="操作日志" FontSize="15" FontWeight="SemiBold" Foreground="#0052D9" VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                </Border>
+                                <StackPanel Margin="14,12" Spacing="10">
+                                    <CheckBox Content="启用操作日志" IsChecked="{Binding OperationLogEnabled}" FontSize="13"/>
+                                    <StackPanel Spacing="4">
+                                        <TextBlock Text="日志存储路径" FontSize="12" Foreground="#4E5969"/>
+                                        <TextBox Text="{Binding OperationLogPath}" FontSize="13" Padding="6,4"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+
+                        <Border Background="#FFFFFF" BorderBrush="#E8E8E8" BorderThickness="1" CornerRadius="8">
+                            <StackPanel>
+                                <Border Background="#F0F5FF" Padding="14,10" BorderBrush="#D6E4FF" BorderThickness="0,0,0,1">
+                                    <StackPanel Orientation="Horizontal" Spacing="8">
+                                        <fa:PackIconFontAwesome Kind="{x:Static fa:PackIconFontAwesomeKind.ClockRotateLeftSolid}" Width="16" Height="16" Foreground="#0052D9" VerticalAlignment="Center"/>
+                                        <TextBlock Text="报警日志" FontSize="15" FontWeight="SemiBold" Foreground="#0052D9" VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                </Border>
+                                <StackPanel Margin="14,12" Spacing="10">
+                                    <CheckBox Content="自动清理报警日志" IsChecked="{Binding AlarmLogAutoCleanEnabled}" FontSize="13"/>
+                                    <StackPanel Spacing="4">
+                                        <TextBlock Text="保留天数" FontSize="12" Foreground="#4E5969"/>
+                                        <TextBox Text="{Binding AlarmLogCleanDays}" FontSize="13" Padding="6,4" TextAlignment="Center"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+
+            <!-- Tab 15: 波形图配置 -->
+            <TabItem Header="波形图">
+                <ScrollViewer VerticalScrollBarVisibility="Auto" Padding="12">
+                    <Border Background="#FFFFFF" BorderBrush="#E8E8E8" BorderThickness="1" CornerRadius="8" Margin="12">
+                        <StackPanel>
+                            <Border Background="#F0F5FF" Padding="14,10" BorderBrush="#D6E4FF" BorderThickness="0,0,0,1">
+                                <StackPanel Orientation="Horizontal" Spacing="8">
+                                    <fa:PackIconFontAwesome Kind="{x:Static fa:PackIconFontAwesomeKind.ChartLineSolid}" Width="16" Height="16" Foreground="#0052D9" VerticalAlignment="Center"/>
+                                    <TextBlock Text="波形显示配置" FontSize="15" FontWeight="SemiBold" Foreground="#0052D9" VerticalAlignment="Center"/>
+                                </StackPanel>
+                            </Border>
+                            <StackPanel Margin="14,12" Spacing="10">
+                                <StackPanel Spacing="4">
+                                    <TextBlock Text="波形刷新率 (Hz)" FontSize="12" Foreground="#4E5969"/>
+                                    <TextBox Text="{Binding WaveRefreshRate}" FontSize="13" Padding="6,4" TextAlignment="Center"/>
+                                </StackPanel>
+                                <StackPanel Spacing="4">
+                                    <TextBlock Text="默认通道组" FontSize="12" Foreground="#4E5969"/>
+                                    <TextBox Text="{Binding WaveDefaultChannel}" FontSize="13" Padding="6,4"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                </ScrollViewer>
+            </TabItem>
+
+            <!-- Tab 16: 试验管理 -->
+            <TabItem Header="试验管理">
+                <ScrollViewer VerticalScrollBarVisibility="Auto" Padding="12">
+                    <StackPanel Spacing="12" Margin="12">
+                        <Border Background="#FFFFFF" BorderBrush="#E8E8E8" BorderThickness="1" CornerRadius="8">
+                            <StackPanel>
+                                <Border Background="#F0F5FF" Padding="14,10" BorderBrush="#D6E4FF" BorderThickness="0,0,0,1">
+                                    <StackPanel Orientation="Horizontal" Spacing="8">
+                                        <fa:PackIconFontAwesome Kind="{x:Static fa:PackIconFontAwesomeKind.FlaskSolid}" Width="16" Height="16" Foreground="#0052D9" VerticalAlignment="Center"/>
+                                        <TextBlock Text="试验数据存储" FontSize="15" FontWeight="SemiBold" Foreground="#0052D9" VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                </Border>
+                                <StackPanel Margin="14,12" Spacing="10">
+                                    <StackPanel Spacing="4">
+                                        <TextBlock Text="试验数据路径" FontSize="12" Foreground="#4E5969"/>
+                                        <TextBox Text="{Binding ExperimentDataPath}" FontSize="13" Padding="6,4"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+
+                        <Border Background="#FFFFFF" BorderBrush="#E8E8E8" BorderThickness="1" CornerRadius="8">
+                            <StackPanel>
+                                <Border Background="#F0F5FF" Padding="14,10" BorderBrush="#D6E4FF" BorderThickness="0,0,0,1">
+                                    <StackPanel Orientation="Horizontal" Spacing="8">
+                                        <fa:PackIconFontAwesome Kind="{x:Static fa:PackIconFontAwesomeKind.RobotSolid}" Width="16" Height="16" Foreground="#0052D9" VerticalAlignment="Center"/>
+                                        <TextBlock Text="自动化试验流程" FontSize="15" FontWeight="SemiBold" Foreground="#0052D9" VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                </Border>
+                                <StackPanel Margin="14,12" Spacing="10">
+                                    <StackPanel Spacing="4">
+                                        <TextBlock Text="预热时间 (秒)" FontSize="12" Foreground="#4E5969"/>
+                                        <TextBox Text="{Binding AutoTrialWarmupSec}" FontSize="13" Padding="6,4" TextAlignment="Center"/>
+                                    </StackPanel>
+                                    <StackPanel Spacing="4">
+                                        <TextBlock Text="稳态等待时间 (秒)" FontSize="12" Foreground="#4E5969"/>
+                                        <TextBox Text="{Binding AutoTrialSteadyStateSec}" FontSize="13" Padding="6,4" TextAlignment="Center"/>
+                                    </StackPanel>
+                                    <CheckBox Content="自动保存试验数据" IsChecked="{Binding AutoTrialAutoSave}" FontSize="13"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+
+            <!-- Tab 17: 界面设置 -->
+            <TabItem Header="界面设置">
+                <ScrollViewer VerticalScrollBarVisibility="Auto" Padding="12">
+                    <Border Background="#FFFFFF" BorderBrush="#E8E8E8" BorderThickness="1" CornerRadius="8" Margin="12">
+                        <StackPanel>
+                            <Border Background="#F0F5FF" Padding="14,10" BorderBrush="#D6E4FF" BorderThickness="0,0,0,1">
+                                <StackPanel Orientation="Horizontal" Spacing="8">
+                                    <fa:PackIconFontAwesome Kind="{x:Static fa:PackIconFontAwesomeKind.PaintbrushSolid}" Width="16" Height="16" Foreground="#0052D9" VerticalAlignment="Center"/>
+                                    <TextBlock Text="主题与布局" FontSize="15" FontWeight="SemiBold" Foreground="#0052D9" VerticalAlignment="Center"/>
+                                </StackPanel>
+                            </Border>
+                            <StackPanel Margin="14,12" Spacing="10">
+                                <StackPanel Spacing="4">
+                                    <TextBlock Text="主题" FontSize="12" Foreground="#4E5969"/>
+                                    <ComboBox ItemsSource="{Binding ThemeOptions}" SelectedItem="{Binding Theme}" FontSize="13" Padding="6,4"/>
+                                </StackPanel>
+                                <StackPanel Spacing="4">
+                                    <TextBlock Text="侧边栏宽度 (px)" FontSize="12" Foreground="#4E5969"/>
+                                    <TextBox Text="{Binding SidebarWidth}" FontSize="13" Padding="6,4" TextAlignment="Center"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                </ScrollViewer>
+            </TabItem>
+
+            <!-- Tab 18: 用户管理 -->
+            <TabItem Header="用户管理">
+                <ScrollViewer VerticalScrollBarVisibility="Auto" Padding="12">
+                    <StackPanel Spacing="12" Margin="12">
+                        <Border Background="#FFFFFF" BorderBrush="#E8E8E8" BorderThickness="1" CornerRadius="8">
+                            <StackPanel>
+                                <Border Background="#F0F5FF" Padding="14,10" BorderBrush="#D6E4FF" BorderThickness="0,0,0,1">
+                                    <StackPanel Orientation="Horizontal" Spacing="8">
+                                        <fa:PackIconFontAwesome Kind="{x:Static fa:PackIconFontAwesomeKind.UserSolid}" Width="16" Height="16" Foreground="#0052D9" VerticalAlignment="Center"/>
+                                        <TextBlock Text="用户列表 (选中可删除)" FontSize="15" FontWeight="SemiBold" Foreground="#0052D9" VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                </Border>
+                                <StackPanel Margin="14,12" Spacing="10">
+                                    <ComboBox ItemsSource="{Binding UserList}" SelectedItem="{Binding SelectedUser}" FontSize="13" Padding="6,4"/>
+                                    <Button Classes="danger" Content="删除选中用户" Command="{Binding RemoveUserCommand}" Padding="18,8" FontSize="13" HorizontalAlignment="Left"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+
+                        <Border Background="#FFFFFF" BorderBrush="#E8E8E8" BorderThickness="1" CornerRadius="8">
+                            <StackPanel>
+                                <Border Background="#F0F5FF" Padding="14,10" BorderBrush="#D6E4FF" BorderThickness="0,0,0,1">
+                                    <StackPanel Orientation="Horizontal" Spacing="8">
+                                        <fa:PackIconFontAwesome Kind="{x:Static fa:PackIconFontAwesomeKind.UserPlusSolid}" Width="16" Height="16" Foreground="#0052D9" VerticalAlignment="Center"/>
+                                        <TextBlock Text="新增用户" FontSize="15" FontWeight="SemiBold" Foreground="#0052D9" VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                </Border>
+                                <StackPanel Margin="14,12" Spacing="10">
+                                    <Grid ColumnDefinitions="*,*" ColumnSpacing="12" RowSpacing="10" RowDefinitions="Auto,Auto,Auto">
+                                        <StackPanel Spacing="4">
+                                            <TextBlock Text="用户名" FontSize="12" Foreground="#4E5969"/>
+                                            <TextBox Text="{Binding NewUsername}" FontSize="13" Padding="6,4" Watermark="输入新用户名"/>
+                                        </StackPanel>
+                                        <StackPanel Spacing="4">
+                                            <TextBlock Text="角色" FontSize="12" Foreground="#4E5969"/>
+                                            <ComboBox ItemsSource="{Binding NewRoleOptions}" SelectedItem="{Binding NewRole}" FontSize="13" Padding="6,4"/>
+                                        </StackPanel>
+                                        <StackPanel Grid.Column="0" Spacing="4">
+                                            <TextBlock Text="初始密码" FontSize="12" Foreground="#4E5969"/>
+                                            <TextBox Text="{Binding NewPassword}" FontSize="13" Padding="6,4" PasswordChar="*" Watermark="输入初始密码"/>
+                                        </StackPanel>
+                                    </Grid>
+                                    <Button Classes="primary" Content="创建用户" Command="{Binding AddUserCommand}" Padding="18,8" FontSize="13" HorizontalAlignment="Left"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+
+        </TabControl>
+
+        <!-- 底部保存按钮 -->
+        <Border Background="#FFFFFF" BorderBrush="#E8E8E8" BorderThickness="0,1,0,0" Padding="12,8" VerticalAlignment="Bottom">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Spacing="10">
+                <Button Classes="primary" Content="保存" Command="{Binding SaveCommand}" Padding="32,10" FontSize="14"/>
+            </StackPanel>
+        </Border>
+    </Grid>
+</UserControl>

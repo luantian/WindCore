@@ -1,0 +1,67 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:WindCore.MainControl.ViewModels"
+             xmlns:ScottPlot="using:ScottPlot.Avalonia"
+             x:DataType="vm:WaveformPageViewModel"
+             x:Class="WindCore.MainControl.Views.WaveformPage">
+    <Grid RowDefinitions="Auto,*,Auto">
+
+        <!-- 顶部: 通道选择 + 控制按钮 -->
+        <Border Grid.Row="0" Background="#FFFFFF" BorderBrush="#E8E8E8" BorderThickness="1" CornerRadius="6" Padding="14,10" Margin="0,0,0,8">
+            <Grid ColumnDefinitions="*,Auto">
+                <!-- 通道选择 -->
+                <ListBox x:Name="channelListBox" ItemsSource="{Binding AvailableChannels}" Background="Transparent" BorderThickness="0"
+                         SelectionMode="Multiple">
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel Orientation="Horizontal" ItemWidth="110"/>
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+                    <ListBox.ItemTemplate>
+                        <DataTemplate x:DataType="vm:ChannelInfo">
+                            <StackPanel Orientation="Horizontal" Spacing="6" Margin="4,2">
+                                <Ellipse Width="10" Height="10" Fill="{Binding Color}"/>
+                                <TextBlock Text="{Binding Name}" FontSize="11" Foreground="#1D2129"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                    <ListBox.Styles>
+                        <Style Selector="ListBoxItem">
+                            <Setter Property="Background" Value="#F5F7FA"/>
+                            <Setter Property="CornerRadius" Value="4"/>
+                            <Setter Property="Padding" Value="4,2"/>
+                            <Setter Property="Margin" Value="2"/>
+                        </Style>
+                    </ListBox.Styles>
+                </ListBox>
+
+                <!-- 控制按钮 -->
+                <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="8" VerticalAlignment="Center">
+                    <Button Classes="primary" Content="开始" Command="{Binding StartRecordingCommand}" Padding="12,6" FontSize="12"/>
+                    <Button Content="停止" Command="{Binding StopRecordingCommand}" Padding="12,6" FontSize="12"/>
+                    <Button Content="清空" Command="{Binding ClearCommand}" Padding="12,6" FontSize="12"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!-- 中部: 波形图 -->
+        <Border Grid.Row="1" Background="#FFFFFF" BorderBrush="#E8E8E8" BorderThickness="1" CornerRadius="6" Padding="8">
+            <ScottPlot:AvaPlot x:Name="wavePlot"/>
+        </Border>
+
+        <!-- 底部: 统计表格 -->
+        <Border Grid.Row="2" Background="#FFFFFF" BorderBrush="#E8E8E8" BorderThickness="1" CornerRadius="6" Padding="14,10" Margin="0,8,0,0">
+            <DataGrid x:Name="statsGrid" AutoGenerateColumns="False" GridLinesVisibility="Horizontal" HeadersVisibility="Column" BorderThickness="0">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="通道" Width="100"/>
+                    <DataGridTextColumn Header="最小值" Width="80"/>
+                    <DataGridTextColumn Header="最大值" Width="80"/>
+                    <DataGridTextColumn Header="峰峰值" Width="80"/>
+                    <DataGridTextColumn Header="均值" Width="80"/>
+                    <DataGridTextColumn Header="幅值" Width="80"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Border>
+
+    </Grid>
+</UserControl>

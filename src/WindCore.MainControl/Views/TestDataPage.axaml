@@ -1,0 +1,223 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:viewmodels="using:WindCore.MainControl.ViewModels"
+             xmlns:fa="using:IconPacks.Avalonia.FontAwesome"
+             x:DataType="viewmodels:TestDataPageViewModel"
+             x:Class="WindCore.MainControl.Views.TestDataPage">
+    <ScrollViewer VerticalScrollBarVisibility="Auto" Padding="12">
+        <Grid ColumnDefinitions="*,*,*" ColumnSpacing="14">
+
+            <!-- 左列: RAT负载系统 -->
+            <StackPanel Grid.Column="0" Spacing="12">
+                <Border Background="#FFFFFF" BorderBrush="#E8E8E8" BorderThickness="1" CornerRadius="8">
+                    <StackPanel>
+                        <Border Background="#F0F5FF" Padding="14,10" BorderBrush="#D6E4FF" BorderThickness="0,0,0,1">
+                            <StackPanel Orientation="Horizontal" Spacing="8">
+                                <fa:PackIconFontAwesome Kind="{x:Static fa:PackIconFontAwesomeKind.BoltSolid}" Width="16" Height="16" Foreground="#0052D9" VerticalAlignment="Center"/>
+                                <TextBlock Text="RAT负载系统" FontSize="15" FontWeight="SemiBold" Foreground="#0052D9" VerticalAlignment="Center"/>
+                                <Border Background="#0052D9" CornerRadius="10" Padding="8,2" VerticalAlignment="Center">
+                                    <TextBlock Text="{Binding Rat.RatMode}" FontSize="10" Foreground="#FFFFFF"/>
+                                </Border>
+                            </StackPanel>
+                        </Border>
+                        <StackPanel Margin="14,12" Spacing="10">
+                            <!-- 4 个指标卡片 -->
+                            <Grid ColumnDefinitions="*,*" ColumnSpacing="10" RowSpacing="10" RowDefinitions="Auto,Auto">
+                                <!-- 推力 -->
+                                <Border Grid.Row="0" Grid.Column="0" BorderBrush="#D6E4FF" BorderThickness="1" Background="#FAFBFF" CornerRadius="6" Padding="12,10">
+                                    <StackPanel>
+                                        <StackPanel Orientation="Horizontal" Spacing="4">
+                                            <Ellipse Width="8" Height="8" Fill="#0052D9"/>
+                                            <TextBlock Text="推力" FontSize="11" Foreground="#86909C"/>
+                                        </StackPanel>
+                                        <TextBlock Text="{Binding Rat.RatThrust, StringFormat={}{0:F0} N}" FontSize="22" FontWeight="Bold" Foreground="#0052D9" Margin="0,4,0,0"/>
+                                    </StackPanel>
+                                </Border>
+                                <!-- 扭矩 -->
+                                <Border Grid.Row="0" Grid.Column="1" BorderBrush="#D6E4FF" BorderThickness="1" Background="#FAFBFF" CornerRadius="6" Padding="12,10">
+                                    <StackPanel>
+                                        <StackPanel Orientation="Horizontal" Spacing="4">
+                                            <Ellipse Width="8" Height="8" Fill="#0052D9"/>
+                                            <TextBlock Text="扭矩" FontSize="11" Foreground="#86909C"/>
+                                        </StackPanel>
+                                        <TextBlock Text="{Binding Rat.RatTorque, StringFormat={}{0:F1} N·m}" FontSize="22" FontWeight="Bold" Foreground="#0052D9" Margin="0,4,0,0"/>
+                                    </StackPanel>
+                                </Border>
+                                <!-- 转速 -->
+                                <Border Grid.Row="1" Grid.Column="0" BorderBrush="#B7E4C7" BorderThickness="1" Background="#FAFFFD" CornerRadius="6" Padding="12,10">
+                                    <StackPanel>
+                                        <StackPanel Orientation="Horizontal" Spacing="4">
+                                            <Ellipse Width="8" Height="8" Fill="#2BA471"/>
+                                            <TextBlock Text="转速" FontSize="11" Foreground="#86909C"/>
+                                        </StackPanel>
+                                        <TextBlock Text="{Binding Rat.RatRpm, StringFormat={}{0:F0} r/min}" FontSize="22" FontWeight="Bold" Foreground="#2BA471" Margin="0,4,0,0"/>
+                                    </StackPanel>
+                                </Border>
+                                <!-- 功率 -->
+                                <Border Grid.Row="1" Grid.Column="1" BorderBrush="#FFD5B8" BorderThickness="1" Background="#FFFCF8" CornerRadius="6" Padding="12,10">
+                                    <StackPanel>
+                                        <StackPanel Orientation="Horizontal" Spacing="4">
+                                            <Ellipse Width="8" Height="8" Fill="#ED7B2F"/>
+                                            <TextBlock Text="功率" FontSize="11" Foreground="#86909C"/>
+                                        </StackPanel>
+                                        <TextBlock Text="{Binding Rat.RatPower, StringFormat={}{0:F1} kW}" FontSize="22" FontWeight="Bold" Foreground="#ED7B2F" Margin="0,4,0,0"/>
+                                    </StackPanel>
+                                </Border>
+                            </Grid>
+                            <!-- 传感器状态 -->
+                            <Border Background="#F7F9FC" CornerRadius="4" Padding="10,6">
+                                <StackPanel Orientation="Horizontal" Spacing="6">
+                                    <Ellipse Width="8" Height="8" Fill="#2BA471" VerticalAlignment="Center"/>
+                                    <TextBlock Text="{Binding Rat.SensorStatus}" FontSize="12" VerticalAlignment="Center"/>
+                                </StackPanel>
+                            </Border>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+
+            <!-- 中列: 龙门架位置 -->
+            <StackPanel Grid.Column="1" Spacing="12">
+                <Border Background="#FFFFFF" BorderBrush="#E8E8E8" BorderThickness="1" CornerRadius="8">
+                    <StackPanel>
+                        <Border Background="#F0F5FF" Padding="14,10" BorderBrush="#D6E4FF" BorderThickness="0,0,0,1">
+                            <StackPanel Orientation="Horizontal" Spacing="8">
+                                <fa:PackIconFontAwesome Kind="{x:Static fa:PackIconFontAwesomeKind.CrosshairsSolid}" Width="16" Height="16" Foreground="#0052D9" VerticalAlignment="Center"/>
+                                <TextBlock Text="龙门架位置" FontSize="15" FontWeight="SemiBold" Foreground="#0052D9" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </Border>
+                        <StackPanel Margin="14,12" Spacing="10">
+                            <!-- XYZ 位置 -->
+                            <Grid ColumnDefinitions="*,*,*" ColumnSpacing="10">
+                                <!-- X 轴 -->
+                                <Border BorderBrush="#D6E4FF" BorderThickness="1" Background="#FAFBFF" CornerRadius="6" Padding="12,10">
+                                    <StackPanel>
+                                        <StackPanel Orientation="Horizontal" Spacing="4">
+                                            <Ellipse Width="8" Height="8" Fill="#0052D9"/>
+                                            <TextBlock Text="X 轴" FontSize="11" Foreground="#86909C"/>
+                                        </StackPanel>
+                                        <TextBlock Text="{Binding Gantry.GantryX, StringFormat={}{0:F2} m}" FontSize="22" FontWeight="Bold" Foreground="#0052D9" Margin="0,4,0,0"/>
+                                    </StackPanel>
+                                </Border>
+                                <!-- Y 轴 -->
+                                <Border BorderBrush="#B7E4C7" BorderThickness="1" Background="#FAFFFD" CornerRadius="6" Padding="12,10">
+                                    <StackPanel>
+                                        <StackPanel Orientation="Horizontal" Spacing="4">
+                                            <Ellipse Width="8" Height="8" Fill="#2BA471"/>
+                                            <TextBlock Text="Y 轴" FontSize="11" Foreground="#86909C"/>
+                                        </StackPanel>
+                                        <TextBlock Text="{Binding Gantry.GantryY, StringFormat={}{0:F2} m}" FontSize="22" FontWeight="Bold" Foreground="#2BA471" Margin="0,4,0,0"/>
+                                    </StackPanel>
+                                </Border>
+                                <!-- Z 轴 -->
+                                <Border BorderBrush="#FFD5B8" BorderThickness="1" Background="#FFFCF8" CornerRadius="6" Padding="12,10">
+                                    <StackPanel>
+                                        <StackPanel Orientation="Horizontal" Spacing="4">
+                                            <Ellipse Width="8" Height="8" Fill="#ED7B2F"/>
+                                            <TextBlock Text="Z 轴" FontSize="11" Foreground="#86909C"/>
+                                        </StackPanel>
+                                        <TextBlock Text="{Binding Gantry.GantryZ, StringFormat={}{0:F2} m}" FontSize="22" FontWeight="Bold" Foreground="#ED7B2F" Margin="0,4,0,0"/>
+                                    </StackPanel>
+                                </Border>
+                            </Grid>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+
+                <!-- 目标位置 -->
+                <Border Background="#FFFFFF" BorderBrush="#E8E8E8" BorderThickness="1" CornerRadius="8">
+                    <StackPanel>
+                        <Border Background="#F7F9FC" Padding="14,10" BorderBrush="#E8E8E8" BorderThickness="0,0,0,1">
+                            <StackPanel Orientation="Horizontal" Spacing="8">
+                                <fa:PackIconFontAwesome Kind="{x:Static fa:PackIconFontAwesomeKind.LocationDotSolid}" Width="16" Height="16" Foreground="#86909C" VerticalAlignment="Center"/>
+                                <TextBlock Text="目标位置" FontSize="15" FontWeight="SemiBold" Foreground="#1D2129" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </Border>
+                        <StackPanel Margin="14,12" Spacing="10">
+                            <Grid ColumnDefinitions="Auto,*,Auto,*,Auto,*" ColumnSpacing="8" RowSpacing="8" RowDefinitions="Auto,Auto">
+                                <TextBlock Grid.Row="0" Grid.Column="0" Text="X" FontSize="12" FontWeight="SemiBold" Foreground="#4E5969" Width="22" VerticalAlignment="Center"/>
+                                <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Gantry.TargetX}" Width="80" FontSize="13" Padding="5,4" TextAlignment="Center" VerticalAlignment="Center"/>
+                                <TextBlock Grid.Row="0" Grid.Column="2" Text="Y" FontSize="12" FontWeight="SemiBold" Foreground="#4E5969" Width="22" VerticalAlignment="Center"/>
+                                <TextBox Grid.Row="0" Grid.Column="3" Text="{Binding Gantry.TargetY}" Width="80" FontSize="13" Padding="5,4" TextAlignment="Center" VerticalAlignment="Center"/>
+                                <TextBlock Grid.Row="0" Grid.Column="4" Text="Z" FontSize="12" FontWeight="SemiBold" Foreground="#4E5969" Width="22" VerticalAlignment="Center"/>
+                                <TextBox Grid.Row="0" Grid.Column="5" Text="{Binding Gantry.TargetZ}" Width="80" FontSize="13" Padding="5,4" TextAlignment="Center" VerticalAlignment="Center"/>
+
+                                <TextBlock Grid.Row="1" Grid.Column="0" Text="Vx" FontSize="12" FontWeight="SemiBold" Foreground="#4E5969" Width="22" VerticalAlignment="Center"/>
+                                <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Gantry.SpeedX}" Width="80" FontSize="13" Padding="5,4" TextAlignment="Center" VerticalAlignment="Center"/>
+                                <TextBlock Grid.Row="1" Grid.Column="2" Text="Vy" FontSize="12" FontWeight="SemiBold" Foreground="#4E5969" Width="22" VerticalAlignment="Center"/>
+                                <TextBox Grid.Row="1" Grid.Column="3" Text="{Binding Gantry.SpeedY}" Width="80" FontSize="13" Padding="5,4" TextAlignment="Center" VerticalAlignment="Center"/>
+                                <TextBlock Grid.Row="1" Grid.Column="4" Text="Vz" FontSize="12" FontWeight="SemiBold" Foreground="#4E5969" Width="22" VerticalAlignment="Center"/>
+                                <TextBox Grid.Row="1" Grid.Column="5" Text="{Binding Gantry.SpeedZ}" Width="80" FontSize="13" Padding="5,4" TextAlignment="Center" VerticalAlignment="Center"/>
+                            </Grid>
+                            <StackPanel Orientation="Horizontal" Spacing="8">
+                                <Button Classes="primary" Content="移动" Command="{Binding Gantry.MoveToPositionCommand}" Padding="18,8" FontSize="13"/>
+                                <Button Classes="default" Content="回零" Command="{Binding Gantry.MoveHomeCommand}" Padding="18,8" FontSize="13"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+
+            <!-- 右列: 桨距角测量 -->
+            <StackPanel Grid.Column="2" Spacing="12">
+                <Border Background="#FFFFFF" BorderBrush="#E8E8E8" BorderThickness="1" CornerRadius="8">
+                    <StackPanel>
+                        <Border Background="#F0F5FF" Padding="14,10" BorderBrush="#D6E4FF" BorderThickness="0,0,0,1">
+                            <StackPanel Orientation="Horizontal" Spacing="8">
+                                <fa:PackIconFontAwesome Kind="{x:Static fa:PackIconFontAwesomeKind.FanSolid}" Width="16" Height="16" Foreground="#0052D9" VerticalAlignment="Center"/>
+                                <TextBlock Text="桨距角测量" FontSize="15" FontWeight="SemiBold" Foreground="#0052D9" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </Border>
+                        <StackPanel Margin="14,12" Spacing="10">
+                            <!-- 3 桨叶卡片 -->
+                            <Grid ColumnDefinitions="*,*,*" ColumnSpacing="10">
+                                <!-- 桨叶 #1 -->
+                                <Border BorderBrush="#D6E4FF" BorderThickness="1" Background="#FAFBFF" CornerRadius="6" Padding="12,10">
+                                    <StackPanel>
+                                        <StackPanel Orientation="Horizontal" Spacing="4">
+                                            <Ellipse Width="8" Height="8" Fill="#0052D9"/>
+                                            <TextBlock Text="桨叶 #1" FontSize="11" Foreground="#86909C"/>
+                                        </StackPanel>
+                                        <TextBlock Text="{Binding BladePitch.BladePitch1, StringFormat={}{0:F1}°}" FontSize="22" FontWeight="Bold" Foreground="#0052D9" Margin="0,4,0,0"/>
+                                    </StackPanel>
+                                </Border>
+                                <!-- 桨叶 #2 -->
+                                <Border BorderBrush="#D6E4FF" BorderThickness="1" Background="#FAFBFF" CornerRadius="6" Padding="12,10">
+                                    <StackPanel>
+                                        <StackPanel Orientation="Horizontal" Spacing="4">
+                                            <Ellipse Width="8" Height="8" Fill="#0052D9"/>
+                                            <TextBlock Text="桨叶 #2" FontSize="11" Foreground="#86909C"/>
+                                        </StackPanel>
+                                        <TextBlock Text="{Binding BladePitch.BladePitch2, StringFormat={}{0:F1}°}" FontSize="22" FontWeight="Bold" Foreground="#0052D9" Margin="0,4,0,0"/>
+                                    </StackPanel>
+                                </Border>
+                                <!-- 桨叶 #3 -->
+                                <Border BorderBrush="#B7E4C7" BorderThickness="1" Background="#FAFFFD" CornerRadius="6" Padding="12,10">
+                                    <StackPanel>
+                                        <StackPanel Orientation="Horizontal" Spacing="4">
+                                            <Ellipse Width="8" Height="8" Fill="#2BA471"/>
+                                            <TextBlock Text="桨叶 #3" FontSize="11" Foreground="#86909C"/>
+                                        </StackPanel>
+                                        <TextBlock Text="{Binding BladePitch.BladePitch3, StringFormat={}{0:F1}°}" FontSize="22" FontWeight="Bold" Foreground="#2BA471" Margin="0,4,0,0"/>
+                                    </StackPanel>
+                                </Border>
+                            </Grid>
+                            <!-- 平均桨距角 -->
+                            <Border BorderBrush="#FFD5B8" BorderThickness="1" Background="#FFFCF8" CornerRadius="6" Padding="14,10">
+                                <StackPanel Orientation="Horizontal" Spacing="12">
+                                    <StackPanel>
+                                        <StackPanel Orientation="Horizontal" Spacing="4">
+                                            <Ellipse Width="8" Height="8" Fill="#ED7B2F"/>
+                                            <TextBlock Text="平均桨距角" FontSize="11" Foreground="#86909C"/>
+                                        </StackPanel>
+                                        <TextBlock Text="{Binding BladePitch.BladePitchAvg, StringFormat={}{0:F1}°}" FontSize="22" FontWeight="Bold" Foreground="#ED7B2F" Margin="0,4,0,0"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </Border>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Grid>
+    </ScrollViewer>
+</UserControl>

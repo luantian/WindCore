@@ -1,0 +1,418 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:controls="using:WindCore.MainControl.Controls"
+             xmlns:viewmodels="using:WindCore.MainControl.ViewModels"
+             xmlns:fa="using:IconPacks.Avalonia.FontAwesome"
+             x:DataType="viewmodels:OverviewPageViewModel"
+             x:Class="WindCore.MainControl.Views.OverviewPage">
+    <Grid>
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <StackPanel Spacing="12">
+
+            <!-- 仪表盘组 (UniformGrid: 宽屏均匀拉伸铺满, 窄屏自动增加行数) -->
+            <UniformGrid Columns="6" RowSpacing="8" ColumnSpacing="8" MinHeight="220">
+                <!-- 风速仪表盘 -->
+                <Panel>
+                    <Border Background="#FFFFFF" BorderBrush="#E8E8E8" BorderThickness="1" CornerRadius="8" MaxWidth="360"
+                            HorizontalAlignment="Center" VerticalAlignment="Top">
+                        <StackPanel>
+                            <Border Background="#F0F5FF" Padding="12,8" BorderBrush="#D6E4FF" BorderThickness="0,0,0,1">
+                                <StackPanel Orientation="Horizontal" Spacing="8">
+                                    <fa:PackIconFontAwesome Kind="{x:Static fa:PackIconFontAwesomeKind.WindSolid}" Width="14" Height="14" Foreground="#0052D9" VerticalAlignment="Center"/>
+                                    <TextBlock Text="风速" FontSize="13" FontWeight="Bold" Foreground="#0052D9"/>
+                                </StackPanel>
+                            </Border>
+                            <controls:ModernGauge Value="{Binding WindSpeed}" Min="0" Max="120" Unit="m/s"
+                                                   WarningThreshold="90" DangerThreshold="110"/>
+                        </StackPanel>
+                    </Border>
+                </Panel>
+                <!-- 电机转速仪表盘 -->
+                <Panel>
+                    <Border Background="#FFFFFF" BorderBrush="#E8E8E8" BorderThickness="1" CornerRadius="8" MaxWidth="360"
+                            HorizontalAlignment="Center" VerticalAlignment="Top">
+                        <StackPanel>
+                            <Border Background="#F0F5FF" Padding="12,8" BorderBrush="#D6E4FF" BorderThickness="0,0,0,1">
+                                <StackPanel Orientation="Horizontal" Spacing="8">
+                                    <fa:PackIconFontAwesome Kind="{x:Static fa:PackIconFontAwesomeKind.GaugeSolid}" Width="14" Height="14" Foreground="#0052D9" VerticalAlignment="Center"/>
+                                    <TextBlock Text="电机转速" FontSize="13" FontWeight="Bold" Foreground="#0052D9"/>
+                                </StackPanel>
+                            </Border>
+                            <controls:ModernGauge Value="{Binding MotorRpm}" Min="0" Max="1800" Unit="r/min"
+                                                   WarningThreshold="1500" DangerThreshold="1700"/>
+                        </StackPanel>
+                    </Border>
+                </Panel>
+                <!-- 温度仪表盘 -->
+                <Panel>
+                    <Border Background="#FFFFFF" BorderBrush="#E8E8E8" BorderThickness="1" CornerRadius="8" MaxWidth="360"
+                            HorizontalAlignment="Center" VerticalAlignment="Top">
+                        <StackPanel>
+                            <Border Background="#F0F5FF" Padding="12,8" BorderBrush="#D6E4FF" BorderThickness="0,0,0,1">
+                                <StackPanel Orientation="Horizontal" Spacing="8">
+                                    <fa:PackIconFontAwesome Kind="{x:Static fa:PackIconFontAwesomeKind.TemperatureHighSolid}" Width="14" Height="14" Foreground="#0052D9" VerticalAlignment="Center"/>
+                                    <TextBlock Text="温度" FontSize="13" FontWeight="Bold" Foreground="#0052D9"/>
+                                </StackPanel>
+                            </Border>
+                            <controls:ModernGauge Value="{Binding MotorTemp}" Min="0" Max="60" Unit="°C"
+                                                   WarningThreshold="40" DangerThreshold="55"/>
+                        </StackPanel>
+                    </Border>
+                </Panel>
+                <!-- RAT推力仪表盘 -->
+                <Panel>
+                    <Border Background="#FFFFFF" BorderBrush="#E8E8E8" BorderThickness="1" CornerRadius="8" MaxWidth="360"
+                            HorizontalAlignment="Center" VerticalAlignment="Top">
+                        <StackPanel>
+                            <Border Background="#F0F5FF" Padding="12,8" BorderBrush="#D6E4FF" BorderThickness="0,0,0,1">
+                                <StackPanel Orientation="Horizontal" Spacing="8">
+                                    <fa:PackIconFontAwesome Kind="{x:Static fa:PackIconFontAwesomeKind.ArrowUpSolid}" Width="14" Height="14" Foreground="#0052D9" VerticalAlignment="Center"/>
+                                    <TextBlock Text="RAT推力" FontSize="13" FontWeight="Bold" Foreground="#0052D9"/>
+                                </StackPanel>
+                            </Border>
+                            <controls:ModernGauge Value="{Binding RatThrust}" Min="0" Max="5000" Unit="N"/>
+                        </StackPanel>
+                    </Border>
+                </Panel>
+                <!-- RAT转速仪表盘 -->
+                <Panel>
+                    <Border Background="#FFFFFF" BorderBrush="#E8E8E8" BorderThickness="1" CornerRadius="8" MaxWidth="360"
+                            HorizontalAlignment="Center" VerticalAlignment="Top">
+                        <StackPanel>
+                            <Border Background="#F0F5FF" Padding="12,8" BorderBrush="#D6E4FF" BorderThickness="0,0,0,1">
+                                <StackPanel Orientation="Horizontal" Spacing="8">
+                                    <fa:PackIconFontAwesome Kind="{x:Static fa:PackIconFontAwesomeKind.RotateSolid}" Width="14" Height="14" Foreground="#0052D9" VerticalAlignment="Center"/>
+                                    <TextBlock Text="RAT转速" FontSize="13" FontWeight="Bold" Foreground="#0052D9"/>
+                                </StackPanel>
+                            </Border>
+                            <controls:ModernGauge Value="{Binding RatRpm}" Min="0" Max="10000" Unit="r/min"
+                                                   WarningThreshold="8000" DangerThreshold="9000"/>
+                        </StackPanel>
+                    </Border>
+                </Panel>
+                <!-- 俯仰角仪表盘 -->
+                <Panel>
+                    <Border Background="#FFFFFF" BorderBrush="#E8E8E8" BorderThickness="1" CornerRadius="8" MaxWidth="360"
+                            HorizontalAlignment="Center" VerticalAlignment="Top">
+                        <StackPanel>
+                            <Border Background="#F0F5FF" Padding="12,8" BorderBrush="#D6E4FF" BorderThickness="0,0,0,1">
+                                <StackPanel Orientation="Horizontal" Spacing="8">
+                                    <fa:PackIconFontAwesome Kind="{x:Static fa:PackIconFontAwesomeKind.PlaneSolid}" Width="14" Height="14" Foreground="#0052D9" VerticalAlignment="Center"/>
+                                    <TextBlock Text="俯仰角" FontSize="13" FontWeight="Bold" Foreground="#0052D9"/>
+                                </StackPanel>
+                            </Border>
+                            <controls:ModernGauge Value="{Binding Pitch}" Min="-20" Max="20" Unit="°"/>
+                        </StackPanel>
+                    </Border>
+                </Panel>
+            </UniformGrid>
+
+            <!-- 辅助指标卡片 (UniformGrid: 宽屏均匀拉伸铺满) -->
+            <UniformGrid Columns="5" ColumnSpacing="8">
+                <Border Background="#FFFFFF" BorderBrush="#D6E4FF" BorderThickness="1" CornerRadius="6" Padding="14,12">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal" Spacing="4">
+                            <Ellipse Width="8" Height="8" Fill="#0052D9"/>
+                            <TextBlock Text="电机频率" FontSize="12" Foreground="#86909C"/>
+                        </StackPanel>
+                        <TextBlock Text="{Binding MotorFrequency, StringFormat={}{0:F1} Hz}" FontSize="22" FontWeight="Bold" Foreground="#0052D9" FontFamily="Consolas" Margin="0,4,0,0"/>
+                    </StackPanel>
+                </Border>
+                <Border Background="#FFFFFF" BorderBrush="#B7E4C7" BorderThickness="1" CornerRadius="6" Padding="14,12">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal" Spacing="4">
+                            <Ellipse Width="8" Height="8" Fill="#2BA471"/>
+                            <TextBlock Text="冷却液流量" FontSize="12" Foreground="#86909C"/>
+                        </StackPanel>
+                        <TextBlock Text="{Binding CoolingFlow, StringFormat={}{0:F1} L/min}" FontSize="22" FontWeight="Bold" Foreground="#2BA471" FontFamily="Consolas" Margin="0,4,0,0"/>
+                    </StackPanel>
+                </Border>
+                <Border Background="#FFFFFF" BorderBrush="#D6E4FF" BorderThickness="1" CornerRadius="6" Padding="14,12">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal" Spacing="4">
+                            <Ellipse Width="8" Height="8" Fill="#0052D9"/>
+                            <TextBlock Text="RAT扭矩" FontSize="12" Foreground="#86909C"/>
+                        </StackPanel>
+                        <TextBlock Text="{Binding RatTorque, StringFormat={}{0:F1} N·m}" FontSize="22" FontWeight="Bold" Foreground="#0052D9" FontFamily="Consolas" Margin="0,4,0,0"/>
+                    </StackPanel>
+                </Border>
+                <Border Background="#FFFFFF" BorderBrush="#FFD5B8" BorderThickness="1" CornerRadius="6" Padding="14,12">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal" Spacing="4">
+                            <Ellipse Width="8" Height="8" Fill="#ED7B2F"/>
+                            <TextBlock Text="RAT功率" FontSize="12" Foreground="#86909C"/>
+                        </StackPanel>
+                        <TextBlock Text="{Binding RatPower, StringFormat={}{0:F1} kW}" FontSize="22" FontWeight="Bold" Foreground="#ED7B2F" FontFamily="Consolas" Margin="0,4,0,0"/>
+                    </StackPanel>
+                </Border>
+                <Border Background="#FFFFFF" BorderBrush="#D6E4FF" BorderThickness="1" CornerRadius="6" Padding="14,12">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal" Spacing="4">
+                            <Ellipse Width="8" Height="8" Fill="#0052D9"/>
+                            <TextBlock Text="侧滑角" FontSize="12" Foreground="#86909C"/>
+                        </StackPanel>
+                        <TextBlock Text="{Binding YawActual, StringFormat={}{0:F1}°}" FontSize="22" FontWeight="Bold" Foreground="#0052D9" FontFamily="Consolas" Margin="0,4,0,0"/>
+                    </StackPanel>
+                </Border>
+            </UniformGrid>
+
+            <!-- 分系统状态面板 (UniformGrid: 宽屏均匀拉伸铺满) -->
+            <UniformGrid Columns="4" ColumnSpacing="8">
+                <!-- 动力系统 -->
+                <Border Background="#FFFFFF" BorderBrush="#E8E8E8" BorderThickness="1" CornerRadius="8">
+                    <StackPanel>
+                        <Border Background="#F0F5FF" Padding="12,8" BorderBrush="#D6E4FF" BorderThickness="0,0,0,1">
+                            <StackPanel Orientation="Horizontal" Spacing="8">
+                                <fa:PackIconFontAwesome Kind="{x:Static fa:PackIconFontAwesomeKind.BoltSolid}" Width="14" Height="14" Foreground="#0052D9" VerticalAlignment="Center"/>
+                                <TextBlock Text="动力系统" FontSize="13" FontWeight="Bold" Foreground="#0052D9"/>
+                            </StackPanel>
+                        </Border>
+                        <StackPanel Margin="12,10" Spacing="8">
+                            <Grid ColumnDefinitions="Auto,*">
+                                <TextBlock Text="电机状态" FontSize="12" Foreground="#86909C"/>
+                                <TextBlock Text="{Binding MotorStatus}" Grid.Column="1" HorizontalAlignment="Right" FontSize="12" FontWeight="Bold" Foreground="#2BA471"/>
+                            </Grid>
+                            <Grid ColumnDefinitions="Auto,*">
+                                <TextBlock Text="绕组温度" FontSize="12" Foreground="#86909C"/>
+                                <TextBlock Text="{Binding MotorWindingTemp, StringFormat={}{0:F0} °C}" Grid.Column="1" HorizontalAlignment="Right" FontSize="12" FontFamily="Consolas" Foreground="#ED7B2F"/>
+                            </Grid>
+                            <Grid ColumnDefinitions="Auto,*">
+                                <TextBlock Text="电机电流" FontSize="12" Foreground="#86909C"/>
+                                <TextBlock Text="{Binding MotorCurrent, StringFormat={}{0:F1} A}" Grid.Column="1" HorizontalAlignment="Right" FontSize="12" FontFamily="Consolas" Foreground="#1D2129"/>
+                            </Grid>
+                            <Grid ColumnDefinitions="Auto,*">
+                                <TextBlock Text="变频器状态" FontSize="12" Foreground="#86909C"/>
+                                <TextBlock Text="{Binding InverterStatus}" Grid.Column="1" HorizontalAlignment="Right" FontSize="12" Foreground="#2BA471"/>
+                            </Grid>
+                            <Separator Margin="0,2" Opacity="0.3"/>
+                            <!-- 操作区 -->
+                            <StackPanel Orientation="Horizontal" Spacing="6">
+                                <TextBlock Text="目标" FontSize="12" Foreground="#86909C" VerticalAlignment="Center" Width="32"/>
+                                <TextBox Text="{Binding PowerDrive.TargetWindSpeed}" Width="64" FontSize="12" Padding="4,3" TextAlignment="Center" VerticalAlignment="Center"/>
+                                <TextBlock Text="m/s" FontSize="11" Foreground="#4E5969" VerticalAlignment="Center"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Spacing="6">
+                                <Button Classes="success" Content="启动" Click="OnStartMotorClick" Padding="12,5" FontSize="12" FontWeight="Bold"/>
+                                <Button Classes="danger" Content="停止" Click="OnStopMotorClick" Padding="12,5" FontSize="12" FontWeight="Bold"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+                <!-- 冷却系统 -->
+                <Border Background="#FFFFFF" BorderBrush="#E8E8E8" BorderThickness="1" CornerRadius="8">
+                    <StackPanel>
+                        <Border Background="#F0F5FF" Padding="12,8" BorderBrush="#D6E4FF" BorderThickness="0,0,0,1">
+                            <StackPanel Orientation="Horizontal" Spacing="8">
+                                <fa:PackIconFontAwesome Kind="{x:Static fa:PackIconFontAwesomeKind.SnowflakeSolid}" Width="14" Height="14" Foreground="#0052D9" VerticalAlignment="Center"/>
+                                <TextBlock Text="冷却系统" FontSize="13" FontWeight="Bold" Foreground="#0052D9"/>
+                            </StackPanel>
+                        </Border>
+                        <StackPanel Margin="12,10" Spacing="8">
+                            <Grid ColumnDefinitions="Auto,*">
+                                <TextBlock Text="出水温度" FontSize="12" Foreground="#86909C"/>
+                                <TextBlock Text="{Binding CoolingOutTemp, StringFormat={}{0:F1} °C}" Grid.Column="1" HorizontalAlignment="Right" FontSize="12" FontFamily="Consolas" Foreground="#1D2129"/>
+                            </Grid>
+                            <Grid ColumnDefinitions="Auto,*">
+                                <TextBlock Text="回水温度" FontSize="12" Foreground="#86909C"/>
+                                <TextBlock Text="{Binding CoolingReturnTemp, StringFormat={}{0:F1} °C}" Grid.Column="1" HorizontalAlignment="Right" FontSize="12" FontFamily="Consolas" Foreground="#1D2129"/>
+                            </Grid>
+                            <Grid ColumnDefinitions="Auto,*">
+                                <TextBlock Text="管路压力" FontSize="12" Foreground="#86909C"/>
+                                <TextBlock Text="{Binding CoolingPressure, StringFormat={}{0:F1} MPa}" Grid.Column="1" HorizontalAlignment="Right" FontSize="12" FontFamily="Consolas" Foreground="#ED7B2F"/>
+                            </Grid>
+                            <Grid ColumnDefinitions="Auto,*">
+                                <TextBlock Text="水泵状态" FontSize="12" Foreground="#86909C"/>
+                                <TextBlock Text="{Binding PumpStatus}" Grid.Column="1" HorizontalAlignment="Right" FontSize="12" Foreground="#2BA471"/>
+                            </Grid>
+                            <Separator Margin="0,2" Opacity="0.3"/>
+                            <!-- 操作区 -->
+                            <StackPanel Orientation="Horizontal" Spacing="6">
+                                <TextBlock Text="目标" FontSize="12" Foreground="#86909C" VerticalAlignment="Center" Width="32"/>
+                                <TextBox Text="{Binding Cooling.TargetTemp}" Width="64" FontSize="12" Padding="4,3" TextAlignment="Center" VerticalAlignment="Center"/>
+                                <TextBlock Text="°C" FontSize="11" Foreground="#4E5969" VerticalAlignment="Center"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Spacing="6">
+                                <Button Classes="success" Content="启动" Click="OnStartPumpClick" Padding="12,5" FontSize="12" FontWeight="Bold"/>
+                                <Button Classes="danger" Content="停止" Click="OnStopPumpClick" Padding="12,5" FontSize="12" FontWeight="Bold"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+                <!-- 台架系统 -->
+                <Border Background="#FFFFFF" BorderBrush="#E8E8E8" BorderThickness="1" CornerRadius="8">
+                    <StackPanel>
+                        <Border Background="#F0F5FF" Padding="12,8" BorderBrush="#D6E4FF" BorderThickness="0,0,0,1">
+                            <StackPanel Orientation="Horizontal" Spacing="8">
+                                <fa:PackIconFontAwesome Kind="{x:Static fa:PackIconFontAwesomeKind.GearsSolid}" Width="14" Height="14" Foreground="#0052D9" VerticalAlignment="Center"/>
+                                <TextBlock Text="台架系统" FontSize="13" FontWeight="Bold" Foreground="#0052D9"/>
+                            </StackPanel>
+                        </Border>
+                        <StackPanel Margin="12,10" Spacing="8">
+                            <Grid ColumnDefinitions="Auto,*">
+                                <TextBlock Text="俯仰角 目标/实际" FontSize="12" Foreground="#86909C"/>
+                                <TextBlock Text="{Binding PitchSetpoint, StringFormat={}{0:F1}°} / {Binding PitchActual, StringFormat={}{0:F1}°}" Grid.Column="1" HorizontalAlignment="Right" FontSize="12" FontFamily="Consolas" Foreground="#1D2129"/>
+                            </Grid>
+                            <Grid ColumnDefinitions="Auto,*">
+                                <TextBlock Text="侧滑角 目标/实际" FontSize="12" Foreground="#86909C"/>
+                                <TextBlock Text="{Binding YawSetpoint, StringFormat={}{0:F1}°} / {Binding YawActualVal, StringFormat={}{0:F1}°}" Grid.Column="1" HorizontalAlignment="Right" FontSize="12" FontFamily="Consolas" Foreground="#1D2129"/>
+                            </Grid>
+                            <Grid ColumnDefinitions="Auto,*">
+                                <TextBlock Text="俯仰偏差" FontSize="12" Foreground="#86909C"/>
+                                <TextBlock Text="{Binding PitchDeviation, StringFormat={}{0:F1}°}" Grid.Column="1" HorizontalAlignment="Right" FontSize="12" FontFamily="Consolas" Foreground="#2BA471"/>
+                            </Grid>
+                            <Grid ColumnDefinitions="Auto,*">
+                                <TextBlock Text="侧滑偏差" FontSize="12" Foreground="#86909C"/>
+                                <TextBlock Text="{Binding YawDeviation, StringFormat={}{0:F1}°}" Grid.Column="1" HorizontalAlignment="Right" FontSize="12" FontFamily="Consolas" Foreground="#2BA471"/>
+                            </Grid>
+                            <Separator Margin="0,2" Opacity="0.3"/>
+                            <!-- 操作区 -->
+                            <StackPanel Orientation="Horizontal" Spacing="6">
+                                <TextBlock Text="俯仰" FontSize="11" Foreground="#86909C" VerticalAlignment="Center" Width="32"/>
+                                <TextBox Text="{Binding GantryCtrl.PitchSetpoint}" Width="60" FontSize="11" Padding="4,3" TextAlignment="Center" VerticalAlignment="Center"/>
+                                <TextBlock Text="°" FontSize="11" Foreground="#4E5969" VerticalAlignment="Center"/>
+                                <Button Content="设定" Command="{Binding SetPitchAngleCommand}" Padding="8,4" FontSize="11"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Spacing="6">
+                                <TextBlock Text="侧滑" FontSize="11" Foreground="#86909C" VerticalAlignment="Center" Width="32"/>
+                                <TextBox Text="{Binding GantryCtrl.YawSetpoint}" Width="60" FontSize="11" Padding="4,3" TextAlignment="Center" VerticalAlignment="Center"/>
+                                <TextBlock Text="°" FontSize="11" Foreground="#4E5969" VerticalAlignment="Center"/>
+                                <Button Content="设定" Command="{Binding SetYawAngleCommand}" Padding="8,4" FontSize="11"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Spacing="6">
+                                <Button Content="俯仰回零" Click="OnPitchHomeClick" Padding="12,5" FontSize="11"/>
+                                <Button Content="侧滑回零" Click="OnYawHomeClick" Padding="12,5" FontSize="11"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+                <!-- RAT负载系统 -->
+                <Border Background="#FFFFFF" BorderBrush="#E8E8E8" BorderThickness="1" CornerRadius="8">
+                    <StackPanel>
+                        <Border Background="#F0F5FF" Padding="12,8" BorderBrush="#D6E4FF" BorderThickness="0,0,0,1">
+                            <StackPanel Orientation="Horizontal" Spacing="8">
+                                <fa:PackIconFontAwesome Kind="{x:Static fa:PackIconFontAwesomeKind.WeightHangingSolid}" Width="14" Height="14" Foreground="#0052D9" VerticalAlignment="Center"/>
+                                <TextBlock Text="RAT负载系统" FontSize="13" FontWeight="Bold" Foreground="#0052D9"/>
+                            </StackPanel>
+                        </Border>
+                        <StackPanel Margin="12,10" Spacing="8">
+                            <Grid ColumnDefinitions="Auto,*">
+                                <TextBlock Text="载荷模式" FontSize="12" Foreground="#86909C"/>
+                                <TextBlock Text="{Binding RatMode}" Grid.Column="1" HorizontalAlignment="Right" FontSize="12" FontWeight="Bold" Foreground="#0052D9"/>
+                            </Grid>
+                            <Grid ColumnDefinitions="Auto,*">
+                                <TextBlock Text="推力偏差" FontSize="12" Foreground="#86909C"/>
+                                <TextBlock Text="{Binding ThrustDeviation, StringFormat=±{0:F0} N}" Grid.Column="1" HorizontalAlignment="Right" FontSize="12" FontFamily="Consolas" Foreground="#1D2129"/>
+                            </Grid>
+                            <Grid ColumnDefinitions="Auto,*">
+                                <TextBlock Text="采样频率" FontSize="12" Foreground="#86909C"/>
+                                <TextBlock Text="{Binding SampleRate, StringFormat={}{0:F0} Hz}" Grid.Column="1" HorizontalAlignment="Right" FontSize="12" FontFamily="Consolas" Foreground="#1D2129"/>
+                            </Grid>
+                            <Grid ColumnDefinitions="Auto,*">
+                                <TextBlock Text="传感器状态" FontSize="12" Foreground="#86909C"/>
+                                <TextBlock Text="{Binding SensorStatus}" Grid.Column="1" HorizontalAlignment="Right" FontSize="12" Foreground="#2BA471"/>
+                            </Grid>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+            </UniformGrid>
+
+            <!-- 风速趋势 + 报警信息 -->
+            <Grid ColumnDefinitions="1.2*,*" ColumnSpacing="8">
+                <Border Grid.Column="0" Background="#FFFFFF" BorderBrush="#E8E8E8" BorderThickness="1" CornerRadius="8">
+                    <StackPanel>
+                        <Border Background="#F0F5FF" Padding="14,10" BorderBrush="#D6E4FF" BorderThickness="0,0,0,1">
+                            <StackPanel Orientation="Horizontal" Spacing="8">
+                                <fa:PackIconFontAwesome Kind="{x:Static fa:PackIconFontAwesomeKind.ChartLineSolid}" Width="16" Height="16" Foreground="#0052D9" VerticalAlignment="Center"/>
+                                <TextBlock Text="风速趋势" FontSize="15" FontWeight="SemiBold" Foreground="#0052D9" VerticalAlignment="Center"/>
+                                <Border Background="#0052D9" CornerRadius="10" Padding="8,2" VerticalAlignment="Center">
+                                    <TextBlock Text="实时" FontSize="10" Foreground="#FFFFFF"/>
+                                </Border>
+                            </StackPanel>
+                        </Border>
+                        <Border Height="200" Background="#FAFBFC" BorderBrush="#E8E8E8" BorderThickness="1" CornerRadius="4" Margin="12,12,12,12">
+                            <TextBlock Text="风速实时曲线图 (ScottPlot / LiveCharts2)"
+                                       HorizontalAlignment="Center" VerticalAlignment="Center"
+                                       Foreground="#86909C" FontSize="13"/>
+                        </Border>
+                    </StackPanel>
+                </Border>
+
+                <Border Grid.Column="1" Background="#FFFFFF" BorderBrush="#E8E8E8" BorderThickness="1" CornerRadius="8">
+                    <StackPanel>
+                        <Border Background="#FFF6F7" Padding="14,10" BorderBrush="#FFE0E3" BorderThickness="0,0,0,1">
+                            <StackPanel Orientation="Horizontal" Spacing="8">
+                                <fa:PackIconFontAwesome Kind="{x:Static fa:PackIconFontAwesomeKind.BellSolid}" Width="16" Height="16" Foreground="#E34D59" VerticalAlignment="Center"/>
+                                <TextBlock Text="报警信息" FontSize="15" FontWeight="SemiBold" Foreground="#E34D59" VerticalAlignment="Center"/>
+                                <Border Background="#E34D59" CornerRadius="10" Padding="8,2" VerticalAlignment="Center">
+                                    <TextBlock Text="{Binding Alarms.Count}" FontSize="11" Foreground="#FFFFFF" FontWeight="Bold"/>
+                                </Border>
+                            </StackPanel>
+                        </Border>
+                        <ItemsControl ItemsSource="{Binding Alarms}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate x:DataType="viewmodels:AlarmRecordViewModel">
+                                    <Border Padding="12,10" BorderBrush="#F5F7FA" BorderThickness="0,0,0,1">
+                                        <Grid ColumnDefinitions="Auto,Auto,*,Auto">
+                                            <Border Grid.Column="0" CornerRadius="4" Padding="6,2" MinWidth="40" VerticalAlignment="Center"
+                                                    Background="{Binding Level, Converter={x:Static controls:AlarmLevelColorConverter.Instance}}">
+                                                <TextBlock Text="{Binding Level, StringFormat={}{0}级}" FontSize="11" Foreground="#FFFFFF" HorizontalAlignment="Center"/>
+                                            </Border>
+                                            <TextBlock Text="{Binding Time}" Grid.Column="1" FontSize="11" Foreground="#86909C" FontFamily="Consolas" Margin="8,0,0,0" VerticalAlignment="Center"/>
+                                            <TextBlock Text="{Binding Description}" Grid.Column="2" FontSize="13" Foreground="#1D2129" Margin="8,0,0,0" VerticalAlignment="Center"/>
+                                            <Border Grid.Column="3" CornerRadius="4" Padding="6,2" VerticalAlignment="Center"
+                                                    Background="{Binding Status, Converter={x:Static controls:AlarmStatusBgConverter.Instance}}">
+                                                <TextBlock Text="{Binding Status}" FontSize="10"
+                                                           Foreground="{Binding Status, Converter={x:Static controls:AlarmStatusTextColorConverter.Instance}}"/>
+                                            </Border>
+                                        </Grid>
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+                </Border>
+            </Grid>
+
+            <!-- 关键参数波形图 -->
+            <Border Background="#FFFFFF" BorderBrush="#E8E8E8" BorderThickness="1" CornerRadius="8">
+                <StackPanel>
+                    <Border Background="#F0F5FF" Padding="14,10" BorderBrush="#D6E4FF" BorderThickness="0,0,0,1">
+                        <StackPanel Orientation="Horizontal" Spacing="8">
+                            <fa:PackIconFontAwesome Kind="{x:Static fa:PackIconFontAwesomeKind.WaveSquareSolid}" Width="16" Height="16" Foreground="#0052D9" VerticalAlignment="Center"/>
+                            <TextBlock Text="关键参数波形" FontSize="15" FontWeight="SemiBold" Foreground="#0052D9" VerticalAlignment="Center"/>
+                            <Border Background="#0052D9" CornerRadius="10" Padding="8,2" VerticalAlignment="Center">
+                                <TextBlock Text="实时" FontSize="10" Foreground="#FFFFFF"/>
+                            </Border>
+                        </StackPanel>
+                    </Border>
+                    <Border Height="180" Background="#FAFBFC" BorderBrush="#E8E8E8" BorderThickness="1" CornerRadius="4" Margin="12,12,12,12">
+                        <TextBlock Text="多参数实时波形 (ScottPlot) — 风速 / 温度 / 推力 / 转速 实时曲线"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"
+                                   Foreground="#86909C" FontSize="13"/>
+                    </Border>
+                    <StackPanel Orientation="Horizontal" Margin="12,4,12,8" Spacing="24">
+                        <StackPanel Orientation="Horizontal" Spacing="4">
+                            <Rectangle Width="20" Height="3" Fill="#0052D9" VerticalAlignment="Center"/>
+                            <TextBlock Text="风速 (m/s)" FontSize="11" Foreground="#4E5969"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Spacing="4">
+                            <Rectangle Width="20" Height="3" Fill="#ED7B2F" VerticalAlignment="Center"/>
+                            <TextBlock Text="温度 (°C)" FontSize="11" Foreground="#4E5969"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Spacing="4">
+                            <Rectangle Width="20" Height="3" Fill="#2BA471" VerticalAlignment="Center"/>
+                            <TextBlock Text="推力 (N)" FontSize="11" Foreground="#4E5969"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Spacing="4">
+                            <Rectangle Width="20" Height="3" Fill="#885ED3" VerticalAlignment="Center"/>
+                            <TextBlock Text="转速 (r/min)" FontSize="11" Foreground="#4E5969"/>
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+
+        </StackPanel>
+        </ScrollViewer>
+        <controls:ConfirmDialog x:Name="confirmDialog"/>
+    </Grid>
+</UserControl>

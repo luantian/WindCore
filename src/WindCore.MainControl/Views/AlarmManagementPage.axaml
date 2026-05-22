@@ -1,0 +1,92 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:controls="using:WindCore.MainControl.Controls"
+             xmlns:viewmodels="using:WindCore.MainControl.ViewModels"
+             xmlns:fa="using:IconPacks.Avalonia.FontAwesome"
+             x:DataType="viewmodels:AlarmManagementPageViewModel"
+             x:Class="WindCore.MainControl.Views.AlarmManagementPage">
+    <TabControl TabStripPlacement="Top" Margin="0,0,0,0">
+        <!-- Tab 1: 报警记录 -->
+        <TabItem Header="报警记录">
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <StackPanel Spacing="10">
+                    <Border Background="#FFFFFF" BorderBrush="#E8E8E8" BorderThickness="1" CornerRadius="8">
+                        <StackPanel>
+                            <Border Background="#FFF6F7" Padding="14,10" BorderBrush="#FFE0E3" BorderThickness="0,0,0,1">
+                                <StackPanel Orientation="Horizontal" Spacing="8">
+                                    <fa:PackIconFontAwesome Kind="{x:Static fa:PackIconFontAwesomeKind.TriangleExclamationSolid}" Width="16" Height="16" Foreground="#E34D59" VerticalAlignment="Center"/>
+                                    <TextBlock Text="实时报警" FontSize="15" FontWeight="SemiBold" Foreground="#E34D59" VerticalAlignment="Center"/>
+                                    <Border Background="#E34D59" CornerRadius="10" Padding="8,2" VerticalAlignment="Center">
+                                        <TextBlock Text="{Binding Alarms.Count}" FontSize="11" Foreground="#FFFFFF" FontWeight="Bold"/>
+                                    </Border>
+                                </StackPanel>
+                            </Border>
+                            <StackPanel Margin="14,12" Spacing="6">
+                                <ItemsControl ItemsSource="{Binding Alarms}">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate x:DataType="viewmodels:AlarmRecordViewModel">
+                                            <Border Padding="12,10" BorderBrush="#F5F7FA" BorderThickness="0,0,0,1">
+                                                <StackPanel Orientation="Horizontal" Spacing="12">
+                                                    <Border CornerRadius="4" Padding="6,2" MinWidth="40"
+                                                            Background="{Binding Level, Converter={x:Static controls:AlarmLevelColorConverter.Instance}}">
+                                                        <TextBlock Text="{Binding Level, StringFormat={}{0}级}" FontSize="11" Foreground="#FFFFFF" HorizontalAlignment="Center"/>
+                                                    </Border>
+                                                    <TextBlock Text="{Binding Time}" FontSize="11" Foreground="#86909C" FontFamily="Consolas" VerticalAlignment="Center"/>
+                                                    <TextBlock Text="{Binding Description}" FontSize="12" Foreground="#1D2129" VerticalAlignment="Center" TextWrapping="Wrap"/>
+                                                    <Button Classes="danger" Content="确认" FontSize="11" Padding="12,4"
+                                                            Command="{Binding $parent[UserControl].DataContext.ClearAlarmCommand}"
+                                                            CommandParameter="{Binding}" VerticalAlignment="Center"/>
+                                                </StackPanel>
+                                            </Border>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                                <StackPanel Orientation="Horizontal" Spacing="10" Margin="0,14,0,0">
+                                    <Button Classes="default" Content="清除所有报警" Command="{Binding ClearAllAlarmsCommand}" Padding="18,8" FontSize="13"/>
+                                    <Button Classes="default" Content="导出" Padding="18,8" FontSize="13"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+            </ScrollViewer>
+        </TabItem>
+
+        <!-- Tab 2: 告警配置 -->
+        <TabItem Header="告警配置">
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <StackPanel Spacing="10">
+                    <Border Background="#FFFFFF" BorderBrush="#E8E8E8" BorderThickness="1" CornerRadius="8">
+                        <StackPanel>
+                            <Border Background="#FFF7ED" Padding="14,10" BorderBrush="#FFD5B8" BorderThickness="0,0,0,1">
+                                <StackPanel Orientation="Horizontal" Spacing="8">
+                                    <fa:PackIconFontAwesome Kind="{x:Static fa:PackIconFontAwesomeKind.SlidersSolid}" Width="16" Height="16" Foreground="#ED7B2F" VerticalAlignment="Center"/>
+                                    <TextBlock Text="报警阈值配置" FontSize="15" FontWeight="SemiBold" Foreground="#ED7B2F" VerticalAlignment="Center"/>
+                                </StackPanel>
+                            </Border>
+                            <StackPanel Margin="14,12" Spacing="14">
+                                <Grid ColumnDefinitions="Auto,*,Auto" RowDefinitions="Auto,Auto,Auto" RowSpacing="14" ColumnSpacing="14">
+                                    <TextBlock Text="温度上限 (°C)" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" FontSize="13"/>
+                                    <TextBox Text="55" Grid.Row="0" Grid.Column="1" FontSize="13" Padding="6,4"/>
+                                    <CheckBox Content="启用声光报警" Grid.Row="0" Grid.Column="2" IsChecked="True" VerticalAlignment="Center" FontSize="12"/>
+
+                                    <TextBlock Text="压力上限 (MPa)" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" FontSize="13"/>
+                                    <TextBox Text="1.5" Grid.Row="1" Grid.Column="1" FontSize="13" Padding="6,4"/>
+                                    <CheckBox Content="启用推送通知" Grid.Row="1" Grid.Column="2" IsChecked="True" VerticalAlignment="Center" FontSize="12"/>
+
+                                    <TextBlock Text="风速偏差 (%)" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" FontSize="13"/>
+                                    <TextBox Text="5" Grid.Row="2" Grid.Column="1" FontSize="13" Padding="6,4"/>
+                                    <CheckBox Content="启用日志记录" Grid.Row="2" Grid.Column="2" IsChecked="True" VerticalAlignment="Center" FontSize="12"/>
+                                </Grid>
+                                <StackPanel Orientation="Horizontal" Spacing="10" Margin="0,4,0,0">
+                                    <Button Classes="primary" Content="保存配置" Padding="24,8" FontSize="13"/>
+                                    <Button Classes="default" Content="恢复默认" Padding="24,8" FontSize="13"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+            </ScrollViewer>
+        </TabItem>
+    </TabControl>
+</UserControl>

@@ -1,0 +1,31 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="WindCore.MainControl.Views.TestPage">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Spacing="12">
+            <Border Background="#FFFFFF" BorderBrush="#E8E8E8" BorderThickness="1" CornerRadius="4">
+                <StackPanel>
+                    <Border Background="#F5F7FA" Padding="12,8" BorderBrush="#E8E8E8" BorderThickness="0,0,0,1">
+                        <TextBlock Text="试验管理" FontSize="13" FontWeight="Bold" Foreground="#1D2129"/>
+                    </Border>
+                    <StackPanel Margin="16">
+                        <TextBlock Text="试验任务管理" FontSize="12" Foreground="#4E5969" Margin="0,0,0,12"/>
+                        <StackPanel Orientation="Horizontal" Spacing="8" Margin="0,0,0,16">
+                            <Button Classes="primary" Content="新建试验"/>
+                            <Button Classes="default" Content="导入"/>
+                            <Button Classes="default" Content="导出"/>
+                        </StackPanel>
+                        <Border Background="#FAFBFC" BorderBrush="#E8E8E8" BorderThickness="1" CornerRadius="4" Padding="12">
+                            <StackPanel Spacing="8">
+                                <TextBlock Text="当前试验: 空载基准试验 #20260520-001" FontSize="12" FontWeight="Bold"/>
+                                <TextBlock Text="状态: 采集中" FontSize="12" Foreground="#2BA471"/>
+                                <TextBlock Text="开始时间: 2026-05-20 09:00:00" FontSize="12"/>
+                                <TextBlock Text="已采集数据: 2.5 GB" FontSize="12"/>
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

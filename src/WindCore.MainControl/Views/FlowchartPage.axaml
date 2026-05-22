@@ -1,0 +1,172 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:viewmodels="using:WindCore.MainControl.ViewModels"
+             xmlns:fa="using:IconPacks.Avalonia.FontAwesome"
+             x:DataType="viewmodels:FlowchartPageViewModel"
+             x:Class="WindCore.MainControl.Views.FlowchartPage">
+    <Border Background="#F5F7FA" Padding="16">
+        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+            <Canvas Width="1200" Height="700">
+
+                <!-- === 风管路径 === -->
+                <!-- 风速传感器 -->
+                <Border Canvas.Left="40" Canvas.Top="250" Width="130" Height="80" Background="#FFFFFF" BorderBrush="#0052D9" BorderThickness="2" CornerRadius="8">
+                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="2">
+                        <fa:PackIconFontAwesome Kind="{x:Static fa:PackIconFontAwesomeKind.WindSolid}" Width="18" Height="18" Foreground="#0052D9" HorizontalAlignment="Center"/>
+                        <TextBlock Text="风速" FontSize="10" Foreground="#86909C" HorizontalAlignment="Center"/>
+                        <TextBlock Text="{Binding WindSpeed, StringFormat={}{0:F1} m/s}" FontSize="16" FontWeight="Bold" Foreground="#0052D9" HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </Border>
+
+                <!-- 连线: 风速 → 电机 -->
+                <Path Canvas.Left="170" Canvas.Top="285" Data="M 0 0 L 60 0" Stroke="#B0BEC5" StrokeThickness="3"/>
+
+                <!-- === 电机节点 === -->
+                <Border Canvas.Left="240" Canvas.Top="230" Width="140" Height="100" Background="#FFFFFF" BorderBrush="{Binding MotorColor}" BorderThickness="2" CornerRadius="8">
+                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="2">
+                        <fa:PackIconFontAwesome Kind="{x:Static fa:PackIconFontAwesomeKind.GearSolid}" Width="18" Height="18" Foreground="#0052D9" HorizontalAlignment="Center"/>
+                        <TextBlock Text="驱动电机" FontSize="10" Foreground="#86909C" HorizontalAlignment="Center"/>
+                        <TextBlock Text="{Binding MotorRpm, StringFormat={}{0:F0} r/min}" FontSize="16" FontWeight="Bold" Foreground="#0052D9" HorizontalAlignment="Center"/>
+                        <TextBlock Text="{Binding MotorTemp, StringFormat={}{0:F1}°C}" FontSize="11" Foreground="#4E5969" HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </Border>
+
+                <!-- 连线: 电机 → RAT -->
+                <Path Canvas.Left="380" Canvas.Top="285" Data="M 0 0 L 60 0" Stroke="#B0BEC5" StrokeThickness="3"/>
+
+                <!-- === RAT 负载 === -->
+                <Border Canvas.Left="450" Canvas.Top="230" Width="150" Height="120" Background="#FFFFFF" BorderBrush="{Binding RatColor}" BorderThickness="2" CornerRadius="8">
+                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="2">
+                        <fa:PackIconFontAwesome Kind="{x:Static fa:PackIconFontAwesomeKind.BoltSolid}" Width="18" Height="18" Foreground="#0052D9" HorizontalAlignment="Center"/>
+                        <TextBlock Text="RAT 负载系统" FontSize="10" Foreground="#86909C" HorizontalAlignment="Center"/>
+                        <TextBlock Text="{Binding RatThrust, StringFormat={}{0:F0} N}" FontSize="16" FontWeight="Bold" Foreground="#0052D9" HorizontalAlignment="Center"/>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="8">
+                            <TextBlock Text="{Binding RatRpm, StringFormat={}{0:F0} r/min}" FontSize="10" Foreground="#4E5969"/>
+                            <TextBlock Text="{Binding RatTorque, StringFormat={}{0:F1} N·m}" FontSize="10" Foreground="#4E5969"/>
+                        </StackPanel>
+                        <TextBlock Text="{Binding RatPower, StringFormat={}{0:F1} kW}" FontSize="10" Foreground="#4E5969"/>
+                    </StackPanel>
+                </Border>
+
+                <!-- === 冷却系统 (下方) === -->
+                <!-- 水箱 -->
+                <Border Canvas.Left="240" Canvas.Top="420" Width="140" Height="90" Background="#FFFFFF" BorderBrush="{Binding TankColor}" BorderThickness="2" CornerRadius="8">
+                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="2">
+                        <fa:PackIconFontAwesome Kind="{x:Static fa:PackIconFontAwesomeKind.DropletSolid}" Width="16" Height="16" Foreground="#0052D9" HorizontalAlignment="Center"/>
+                        <TextBlock Text="冷却水箱" FontSize="10" Foreground="#86909C" HorizontalAlignment="Center"/>
+                        <TextBlock Text="{Binding TankLevel, StringFormat={}{0:F0}%}" FontSize="16" FontWeight="Bold" Foreground="#0052D9" HorizontalAlignment="Center"/>
+                        <TextBlock Text="液位" FontSize="10" Foreground="#4E5969" HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </Border>
+
+                <!-- 连线: 水箱 → 泵 -->
+                <Path Canvas.Left="380" Canvas.Top="460" Data="M 0 0 L 50 0" Stroke="#B0BEC5" StrokeThickness="3"/>
+
+                <!-- 泵 -->
+                <Border Canvas.Left="440" Canvas.Top="420" Width="110" Height="80" Background="#FFFFFF" BorderBrush="{Binding CoolingColor}" BorderThickness="2" CornerRadius="8">
+                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="2">
+                        <fa:PackIconFontAwesome Kind="{x:Static fa:PackIconFontAwesomeKind.FaucetSolid}" Width="16" Height="16" Foreground="#0052D9" HorizontalAlignment="Center"/>
+                        <TextBlock Text="供水泵" FontSize="10" Foreground="#86909C" HorizontalAlignment="Center"/>
+                        <TextBlock Text="{Binding PumpStatus}" FontSize="11" FontWeight="Bold" Foreground="#2BA471" HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </Border>
+
+                <!-- 连线: 泵 → 管路参数 -->
+                <Path Canvas.Left="550" Canvas.Top="460" Data="M 0 0 L 50 0" Stroke="#B0BEC5" StrokeThickness="3"/>
+
+                <!-- 管路参数 -->
+                <Border Canvas.Left="610" Canvas.Top="420" Width="140" Height="100" Background="#FFFFFF" BorderBrush="{Binding CoolingColor}" BorderThickness="2" CornerRadius="8">
+                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="3">
+                        <TextBlock Text="冷却管路" FontSize="10" Foreground="#86909C" HorizontalAlignment="Center"/>
+                        <TextBlock Text="{Binding CoolingPressure, StringFormat={}{0:F2} MPa}" FontSize="14" FontWeight="Bold" Foreground="#0052D9" HorizontalAlignment="Center"/>
+                        <TextBlock Text="{Binding CoolingFlow, StringFormat={}{0:F1} L/min}" FontSize="11" Foreground="#4E5969" HorizontalAlignment="Center"/>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="6">
+                            <TextBlock Text="出" FontSize="9" Foreground="#86909C"/>
+                            <TextBlock Text="{Binding CoolingOutTemp, StringFormat={}{0:F1}°C}" FontSize="9" Foreground="#4E5969"/>
+                            <TextBlock Text="回" FontSize="9" Foreground="#86909C"/>
+                            <TextBlock Text="{Binding CoolingReturnTemp, StringFormat={}{0:F1}°C}" FontSize="9" Foreground="#4E5969"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+
+                <!-- === 台架控制 (右上) === -->
+                <Border Canvas.Left="680" Canvas.Top="230" Width="140" Height="90" Background="#FFFFFF" BorderBrush="#0052D9" BorderThickness="2" CornerRadius="8">
+                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="2">
+                        <TextBlock Text="台架系统" FontSize="10" Foreground="#86909C" HorizontalAlignment="Center"/>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="12">
+                            <StackPanel>
+                                <TextBlock Text="俯仰" FontSize="9" Foreground="#86909C" HorizontalAlignment="Center"/>
+                                <TextBlock Text="{Binding PitchActual, StringFormat={}{0:F1}°}" FontSize="14" FontWeight="Bold" Foreground="#0052D9" HorizontalAlignment="Center"/>
+                            </StackPanel>
+                            <StackPanel>
+                                <TextBlock Text="侧滑" FontSize="9" Foreground="#86909C" HorizontalAlignment="Center"/>
+                                <TextBlock Text="{Binding YawActual, StringFormat={}{0:F1}°}" FontSize="14" FontWeight="Bold" Foreground="#0052D9" HorizontalAlignment="Center"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+
+                <!-- === 桨距角测量 (右中) === -->
+                <Border Canvas.Left="680" Canvas.Top="350" Width="160" Height="110" Background="#FFFFFF" BorderBrush="#0052D9" BorderThickness="2" CornerRadius="8">
+                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="3">
+                        <TextBlock Text="桨距角测量" FontSize="10" Foreground="#86909C" HorizontalAlignment="Center"/>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="10">
+                            <StackPanel>
+                                <TextBlock Text="#1" FontSize="9" Foreground="#86909C" HorizontalAlignment="Center"/>
+                                <TextBlock Text="{Binding BladePitch1, StringFormat={}{0:F1}°}" FontSize="12" FontWeight="Bold" Foreground="#0052D9" HorizontalAlignment="Center"/>
+                            </StackPanel>
+                            <StackPanel>
+                                <TextBlock Text="#2" FontSize="9" Foreground="#86909C" HorizontalAlignment="Center"/>
+                                <TextBlock Text="{Binding BladePitch2, StringFormat={}{0:F1}°}" FontSize="12" FontWeight="Bold" Foreground="#0052D9" HorizontalAlignment="Center"/>
+                            </StackPanel>
+                            <StackPanel>
+                                <TextBlock Text="#3" FontSize="9" Foreground="#86909C" HorizontalAlignment="Center"/>
+                                <TextBlock Text="{Binding BladePitch3, StringFormat={}{0:F1}°}" FontSize="12" FontWeight="Bold" Foreground="#0052D9" HorizontalAlignment="Center"/>
+                            </StackPanel>
+                        </StackPanel>
+                        <TextBlock Text="{Binding BladePitchAvg, StringFormat=平均 {0:F2}°}" FontSize="10" Foreground="#4E5969" HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </Border>
+
+                <!-- === 龙门架位置 (右下) === -->
+                <Border Canvas.Left="680" Canvas.Top="490" Width="140" Height="90" Background="#FFFFFF" BorderBrush="#0052D9" BorderThickness="2" CornerRadius="8">
+                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="2">
+                        <TextBlock Text="龙门架位置" FontSize="10" Foreground="#86909C" HorizontalAlignment="Center"/>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="10">
+                            <StackPanel>
+                                <TextBlock Text="X" FontSize="9" Foreground="#86909C" HorizontalAlignment="Center"/>
+                                <TextBlock Text="{Binding GantryX, StringFormat={}{0:F0}}" FontSize="12" FontWeight="Bold" Foreground="#0052D9" HorizontalAlignment="Center"/>
+                            </StackPanel>
+                            <StackPanel>
+                                <TextBlock Text="Y" FontSize="9" Foreground="#86909C" HorizontalAlignment="Center"/>
+                                <TextBlock Text="{Binding GantryY, StringFormat={}{0:F0}}" FontSize="12" FontWeight="Bold" Foreground="#0052D9" HorizontalAlignment="Center"/>
+                            </StackPanel>
+                            <StackPanel>
+                                <TextBlock Text="Z" FontSize="9" Foreground="#86909C" HorizontalAlignment="Center"/>
+                                <TextBlock Text="{Binding GantryZ, StringFormat={}{0:F0}}" FontSize="12" FontWeight="Bold" Foreground="#0052D9" HorizontalAlignment="Center"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+
+                <!-- 图例 -->
+                <Border Canvas.Left="40" Canvas.Top="20" Width="200" Height="60" Background="#FFFFFF" BorderBrush="#E8E8E8" BorderThickness="1" CornerRadius="6" Padding="12,8">
+                    <StackPanel>
+                        <TextBlock Text="状态图例" FontSize="11" FontWeight="SemiBold" Foreground="#1D2129"/>
+                        <StackPanel Orientation="Horizontal" Spacing="12" Margin="0,4,0,0">
+                            <StackPanel Orientation="Horizontal" Spacing="4">
+                                <Ellipse Width="10" Height="10" Fill="#2BA471"/>
+                                <TextBlock Text="正常" FontSize="10" Foreground="#4E5969"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Spacing="4">
+                                <Ellipse Width="10" Height="10" Fill="#E34D59"/>
+                                <TextBlock Text="超限" FontSize="10" Foreground="#4E5969"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+
+            </Canvas>
+        </ScrollViewer>
+    </Border>
+</UserControl>

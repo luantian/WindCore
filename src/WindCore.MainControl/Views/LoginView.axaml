@@ -1,0 +1,66 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:WindCore.MainControl.ViewModels"
+             xmlns:fa="using:IconPacks.Avalonia.FontAwesome"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="600"
+             x:Class="WindCore.MainControl.Views.LoginView"
+             x:DataType="vm:LoginViewModel">
+
+    <Border HorizontalAlignment="Center" VerticalAlignment="Center"
+            Width="300" CornerRadius="12"
+            Background="#FFFFFF"
+            Padding="32,28,32,24"
+            BoxShadow="0 8 32 #00000015">
+
+        <StackPanel Spacing="14">
+            <!-- 标题区域 -->
+            <StackPanel Spacing="6" HorizontalAlignment="Center" Margin="0,0,0,8">
+                <fa:PackIconFontAwesome Kind="{x:Static fa:PackIconFontAwesomeKind.ShieldHalvedSolid}" Width="36" Height="36"
+                                        Foreground="#0052D9" HorizontalAlignment="Center"/>
+                <TextBlock Text="南京609风洞测控系统"
+                           FontSize="16" FontWeight="Bold"
+                           Foreground="#1D2129"
+                           HorizontalAlignment="Center"/>
+                <TextBlock Text="主控软件 - 系统登录"
+                           FontSize="11"
+                           Foreground="#86909C"
+                           HorizontalAlignment="Center"/>
+            </StackPanel>
+
+            <StackPanel Spacing="4">
+                <TextBlock Text="用户名" FontSize="12" Foreground="#4E5969"/>
+                <TextBox Text="{Binding Username}"
+                         Watermark="请输入用户名"/>
+            </StackPanel>
+
+            <StackPanel Spacing="4">
+                <TextBlock Text="密码" FontSize="12" Foreground="#4E5969"/>
+                <TextBox x:Name="txtPassword"
+                         Text="{Binding Password}"
+                         Watermark="请输入密码"
+                         PasswordChar="*"
+                         KeyDown="Password_KeyDown"/>
+            </StackPanel>
+
+            <TextBlock Text="{Binding ErrorMessage}"
+                       FontSize="11"
+                       Foreground="#E34D59"
+                       IsVisible="{Binding HasError}"
+                       HorizontalAlignment="Center"/>
+
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Center"
+                        Spacing="12"
+                        Margin="0,4,0,0">
+                <Button Classes="primary"
+                        Content="登录"
+                        Command="{Binding LoginCommand}"/>
+                <Button Classes="default"
+                        Content="取消"
+                        Command="{Binding CancelCommand}"/>
+            </StackPanel>
+        </StackPanel>
+    </Border>
+</UserControl>

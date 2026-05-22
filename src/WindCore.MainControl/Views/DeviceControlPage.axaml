@@ -1,0 +1,399 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:viewmodels="using:WindCore.MainControl.ViewModels"
+             xmlns:controls="using:WindCore.MainControl.Controls"
+             xmlns:fa="using:IconPacks.Avalonia.FontAwesome"
+             x:DataType="viewmodels:DeviceControlPageViewModel"
+             x:Class="WindCore.MainControl.Views.DeviceControlPage">
+    <Grid>
+        <ScrollViewer VerticalScrollBarVisibility="Auto" Padding="12">
+            <Grid ColumnDefinitions="*,*,*" ColumnSpacing="14">
+
+                <!-- ==================== 左列: 风速控制 ==================== -->
+                <StackPanel Grid.Column="0" Spacing="12">
+
+                    <!-- 风速设定 -->
+                    <Border Background="#FFFFFF" BorderBrush="#E8E8E8" BorderThickness="1" CornerRadius="8">
+                        <StackPanel>
+                            <Border Background="#F0F5FF" Padding="14,10" BorderBrush="#D6E4FF" BorderThickness="0,0,0,1">
+                                <StackPanel Orientation="Horizontal" Spacing="8">
+                                    <fa:PackIconFontAwesome Kind="{x:Static fa:PackIconFontAwesomeKind.WindSolid}" Width="16" Height="16" Foreground="#0052D9" VerticalAlignment="Center"/>
+                                    <TextBlock Text="风速控制" FontSize="15" FontWeight="SemiBold" Foreground="#0052D9" VerticalAlignment="Center"/>
+                                </StackPanel>
+                            </Border>
+                            <StackPanel Margin="14,12" Spacing="10">
+                                <!-- 目标 & 实际 -->
+                                <StackPanel Orientation="Horizontal" Spacing="12" VerticalAlignment="Center">
+                                    <TextBlock Text="目标" FontSize="12" Foreground="#86909C" VerticalAlignment="Center" Width="36"/>
+                                    <TextBox Text="{Binding PowerDrive.TargetWindSpeed}" Width="72" FontSize="13" Padding="6,4" TextAlignment="Center" VerticalAlignment="Center"/>
+                                    <TextBlock Text="m/s" FontSize="12" Foreground="#4E5969" VerticalAlignment="Center" Width="36"/>
+                                    <TextBlock Text="实际" FontSize="12" Foreground="#86909C" VerticalAlignment="Center" Width="36"/>
+                                    <TextBlock Text="{Binding PowerDrive.WindSpeed, StringFormat={}{0:F1} m/s}" FontSize="16" FontWeight="Bold" Foreground="#0052D9" VerticalAlignment="Center"/>
+                                </StackPanel>
+                                <!-- 操作按钮 -->
+                                <StackPanel Orientation="Horizontal" Spacing="8" VerticalAlignment="Center">
+                                    <Button Classes="success" Content="▶ 启动" Click="OnStartMotorClick" Padding="14,7" FontSize="13" FontWeight="Bold"/>
+                                    <Button Classes="danger" Content="■ 停止" Click="OnStopMotorClick" Padding="14,7" FontSize="13" FontWeight="Bold"/>
+                                    <Button Classes="primary" Content="应用" Command="{Binding PowerDrive.ApplyPIDCommand}" Padding="14,7" FontSize="13"/>
+                                    <TextBlock Text="{Binding PowerDrive.PidStatus}" FontSize="12" Foreground="#2BA471" VerticalAlignment="Center" Margin="4,0"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- 电机状态 -->
+                    <Border Background="#FFFFFF" BorderBrush="#E8E8E8" BorderThickness="1" CornerRadius="8">
+                        <StackPanel>
+                            <Border Background="#F7F9FC" Padding="14,10" BorderBrush="#E8E8E8" BorderThickness="0,0,0,1">
+                                <StackPanel Orientation="Horizontal" Spacing="8">
+                                    <fa:PackIconFontAwesome Kind="{x:Static fa:PackIconFontAwesomeKind.BoltSolid}" Width="16" Height="16" Foreground="#86909C" VerticalAlignment="Center"/>
+                                    <TextBlock Text="变频电机" FontSize="15" FontWeight="SemiBold" Foreground="#1D2129" VerticalAlignment="Center"/>
+                                </StackPanel>
+                            </Border>
+                            <StackPanel Margin="14,12" Spacing="10">
+                                <!-- 4 个指标卡片 -->
+                                <Grid ColumnDefinitions="*,*" ColumnSpacing="10" RowSpacing="10" RowDefinitions="Auto,Auto">
+                                    <!-- 电机频率 -->
+                                    <Border Grid.Row="0" Grid.Column="0" BorderBrush="#D6E4FF" BorderThickness="1" Background="#FAFBFF" CornerRadius="6" Padding="12,10">
+                                        <StackPanel>
+                                            <StackPanel Orientation="Horizontal" Spacing="4">
+                                                <Ellipse Width="8" Height="8" Fill="#0052D9"/>
+                                                <TextBlock Text="电机频率" FontSize="11" Foreground="#86909C"/>
+                                            </StackPanel>
+                                            <TextBlock Text="{Binding PowerDrive.MotorFrequency, StringFormat={}{0:F1}}" FontSize="22" FontWeight="Bold" Foreground="#0052D9" Margin="0,4,0,2"/>
+                                            <TextBlock Text="Hz" FontSize="11" Foreground="#4E5969"/>
+                                        </StackPanel>
+                                    </Border>
+                                    <!-- 电机电流 -->
+                                    <Border Grid.Row="0" Grid.Column="1" BorderBrush="#B7E4C7" BorderThickness="1" Background="#FAFFFD" CornerRadius="6" Padding="12,10">
+                                        <StackPanel>
+                                            <StackPanel Orientation="Horizontal" Spacing="4">
+                                                <Ellipse Width="8" Height="8" Fill="#2BA471"/>
+                                                <TextBlock Text="电机电流" FontSize="11" Foreground="#86909C"/>
+                                            </StackPanel>
+                                            <TextBlock Text="{Binding PowerDrive.MotorCurrent, StringFormat={}{0:F1}}" FontSize="22" FontWeight="Bold" Foreground="#2BA471" Margin="0,4,0,2"/>
+                                            <TextBlock Text="A" FontSize="11" Foreground="#4E5969"/>
+                                        </StackPanel>
+                                    </Border>
+                                    <!-- 电机转速 -->
+                                    <Border Grid.Row="1" Grid.Column="0" BorderBrush="#D6E4FF" BorderThickness="1" Background="#FAFBFF" CornerRadius="6" Padding="12,10">
+                                        <StackPanel>
+                                            <StackPanel Orientation="Horizontal" Spacing="4">
+                                                <Ellipse Width="8" Height="8" Fill="#0052D9"/>
+                                                <TextBlock Text="电机转速" FontSize="11" Foreground="#86909C"/>
+                                            </StackPanel>
+                                            <TextBlock Text="{Binding PowerDrive.MotorRpm, StringFormat={}{0:F0}}" FontSize="22" FontWeight="Bold" Foreground="#0052D9" Margin="0,4,0,2"/>
+                                            <TextBlock Text="r/min" FontSize="11" Foreground="#4E5969"/>
+                                        </StackPanel>
+                                    </Border>
+                                    <!-- 电机温度 -->
+                                    <Border Grid.Row="1" Grid.Column="1" BorderBrush="#FFD5B8" BorderThickness="1" Background="#FFFCF8" CornerRadius="6" Padding="12,10">
+                                        <StackPanel>
+                                            <StackPanel Orientation="Horizontal" Spacing="4">
+                                                <Ellipse Width="8" Height="8" Fill="#ED7B2F"/>
+                                                <TextBlock Text="电机温度" FontSize="11" Foreground="#86909C"/>
+                                            </StackPanel>
+                                            <TextBlock Text="{Binding PowerDrive.MotorWindingTemp, StringFormat={}{0:F1}}" FontSize="22" FontWeight="Bold" Foreground="#ED7B2F" Margin="0,4,0,2"/>
+                                            <TextBlock Text="°C" FontSize="11" Foreground="#4E5969"/>
+                                        </StackPanel>
+                                    </Border>
+                                </Grid>
+                                <!-- 状态栏 -->
+                                <Border Background="#F7F9FC" CornerRadius="4" Padding="10,6">
+                                    <StackPanel Orientation="Horizontal" Spacing="12">
+                                        <StackPanel Orientation="Horizontal" Spacing="4">
+                                            <Ellipse Width="9" Height="9" Fill="#2BA471" VerticalAlignment="Center"/>
+                                            <TextBlock Text="{Binding PowerDrive.MotorStatus}" FontSize="12" VerticalAlignment="Center"/>
+                                        </StackPanel>
+                                        <Border Width="1" Height="12" Background="#D8D8D8" VerticalAlignment="Center"/>
+                                        <StackPanel Orientation="Horizontal" Spacing="4">
+                                            <Ellipse Width="9" Height="9" Fill="#0052D9" VerticalAlignment="Center"/>
+                                            <TextBlock Text="{Binding PowerDrive.InverterStatus}" FontSize="12" VerticalAlignment="Center"/>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </Border>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- PID 参数 -->
+                    <Border Background="#FFFFFF" BorderBrush="#E8E8E8" BorderThickness="1" CornerRadius="8">
+                        <StackPanel>
+                            <Border Background="#F7F9FC" Padding="14,10" BorderBrush="#E8E8E8" BorderThickness="0,0,0,1">
+                                <StackPanel Orientation="Horizontal" Spacing="8">
+                                    <fa:PackIconFontAwesome Kind="{x:Static fa:PackIconFontAwesomeKind.SlidersSolid}" Width="16" Height="16" Foreground="#86909C" VerticalAlignment="Center"/>
+                                    <TextBlock Text="PID 参数" FontSize="15" FontWeight="SemiBold" Foreground="#1D2129" VerticalAlignment="Center"/>
+                                </StackPanel>
+                            </Border>
+                            <StackPanel Margin="14,12" Spacing="8">
+                                <Grid ColumnDefinitions="Auto,Auto,Auto,Auto" ColumnSpacing="8" RowSpacing="8" RowDefinitions="Auto,Auto,Auto">
+                                    <TextBlock Grid.Row="0" Grid.Column="0" Text="Kp" FontSize="12" FontWeight="SemiBold" Foreground="#4E5969" Width="28" VerticalAlignment="Center"/>
+                                    <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding PowerDrive.Kp}" Width="80" FontSize="13" Padding="5,4" TextAlignment="Center" VerticalAlignment="Center"/>
+                                    <TextBlock Grid.Row="0" Grid.Column="2" Text="Ki" FontSize="12" FontWeight="SemiBold" Foreground="#4E5969" Width="28" VerticalAlignment="Center"/>
+                                    <TextBox Grid.Row="0" Grid.Column="3" Text="{Binding PowerDrive.Ki}" Width="80" FontSize="13" Padding="5,4" TextAlignment="Center" VerticalAlignment="Center"/>
+
+                                    <TextBlock Grid.Row="1" Grid.Column="0" Text="Kd" FontSize="12" FontWeight="SemiBold" Foreground="#4E5969" Width="28" VerticalAlignment="Center"/>
+                                    <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding PowerDrive.Kd}" Width="80" FontSize="13" Padding="5,4" TextAlignment="Center" VerticalAlignment="Center"/>
+                                    <TextBlock Grid.Row="1" Grid.Column="2" Text="α" FontSize="12" FontWeight="SemiBold" Foreground="#4E5969" Width="28" VerticalAlignment="Center"/>
+                                    <TextBox Grid.Row="1" Grid.Column="3" Text="{Binding PowerDrive.FilterAlpha}" Width="80" FontSize="13" Padding="5,4" TextAlignment="Center" VerticalAlignment="Center"/>
+
+                                    <TextBlock Grid.Row="2" Grid.Column="0" Text="Min" FontSize="12" FontWeight="SemiBold" Foreground="#4E5969" Width="28" VerticalAlignment="Center"/>
+                                    <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding PowerDrive.OutputMin}" Width="80" FontSize="13" Padding="5,4" TextAlignment="Center" VerticalAlignment="Center"/>
+                                    <TextBlock Grid.Row="2" Grid.Column="2" Text="Max" FontSize="12" FontWeight="SemiBold" Foreground="#4E5969" Width="28" VerticalAlignment="Center"/>
+                                    <TextBox Grid.Row="2" Grid.Column="3" Text="{Binding PowerDrive.OutputMax}" Width="80" FontSize="13" Padding="5,4" TextAlignment="Center" VerticalAlignment="Center"/>
+                                </Grid>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+
+                <!-- ==================== 中列: 冷却系统 ==================== -->
+                <StackPanel Grid.Column="1" Spacing="12">
+
+                    <!-- 温度监控 -->
+                    <Border Background="#FFFFFF" BorderBrush="#E8E8E8" BorderThickness="1" CornerRadius="8">
+                        <StackPanel>
+                            <Border Background="#F0F5FF" Padding="14,10" BorderBrush="#D6E4FF" BorderThickness="0,0,0,1">
+                                <StackPanel Orientation="Horizontal" Spacing="8">
+                                    <Ellipse Width="12" Height="12" Fill="#0052D9" VerticalAlignment="Center"/>
+                                    <TextBlock Text="温度监控" FontSize="15" FontWeight="SemiBold" Foreground="#0052D9" VerticalAlignment="Center"/>
+                                </StackPanel>
+                            </Border>
+                            <StackPanel Margin="14,12" Spacing="10">
+                                <!-- 3 个温度卡片 -->
+                                <Grid ColumnDefinitions="*,*,*" ColumnSpacing="10">
+                                    <!-- 出水温度 -->
+                                    <Border BorderBrush="#D6E4FF" BorderThickness="1" Background="#FAFBFF" CornerRadius="6" Padding="12,10">
+                                        <StackPanel>
+                                            <StackPanel Orientation="Horizontal" Spacing="4">
+                                                <Ellipse Width="8" Height="8" Fill="#0052D9"/>
+                                                <TextBlock Text="出水温度" FontSize="11" Foreground="#86909C"/>
+                                            </StackPanel>
+                                            <TextBlock Text="{Binding Cooling.CoolingOutTemp, StringFormat={}{0:F1}}" FontSize="22" FontWeight="Bold" Foreground="#0052D9" Margin="0,4,0,2"/>
+                                            <TextBlock Text="°C" FontSize="11" Foreground="#4E5969"/>
+                                        </StackPanel>
+                                    </Border>
+                                    <!-- 回水温度 -->
+                                    <Border BorderBrush="#FFD5B8" BorderThickness="1" Background="#FFFCF8" CornerRadius="6" Padding="12,10">
+                                        <StackPanel>
+                                            <StackPanel Orientation="Horizontal" Spacing="4">
+                                                <Ellipse Width="8" Height="8" Fill="#ED7B2F"/>
+                                                <TextBlock Text="回水温度" FontSize="11" Foreground="#86909C"/>
+                                            </StackPanel>
+                                            <TextBlock Text="{Binding Cooling.CoolingReturnTemp, StringFormat={}{0:F1}}" FontSize="22" FontWeight="Bold" Foreground="#ED7B2F" Margin="0,4,0,2"/>
+                                            <TextBlock Text="°C" FontSize="11" Foreground="#4E5969"/>
+                                        </StackPanel>
+                                    </Border>
+                                    <!-- 设定温度 -->
+                                    <Border BorderBrush="#B7E4C7" BorderThickness="1" Background="#FAFFFD" CornerRadius="6" Padding="12,10">
+                                        <StackPanel>
+                                            <StackPanel Orientation="Horizontal" Spacing="4">
+                                                <Ellipse Width="8" Height="8" Fill="#2BA471"/>
+                                                <TextBlock Text="设定温度" FontSize="11" Foreground="#86909C"/>
+                                            </StackPanel>
+                                            <TextBox Text="{Binding Cooling.TargetTemp}" FontSize="22" FontWeight="Bold" Foreground="#2BA471" Background="Transparent" BorderThickness="0,0,0,1" BorderBrush="#B7E4C7" Padding="0,2,0,2" Margin="0,4,0,2" TextAlignment="Center" Width="60" HorizontalAlignment="Left"/>
+                                            <TextBlock Text="°C" FontSize="11" Foreground="#4E5969"/>
+                                        </StackPanel>
+                                    </Border>
+                                </Grid>
+                                <!-- 管路压力 & 流量 -->
+                                <Border Background="#F7F9FC" CornerRadius="4" Padding="10,6">
+                                    <StackPanel Orientation="Horizontal" Spacing="16">
+                                        <StackPanel Orientation="Horizontal" Spacing="4">
+                                            <TextBlock Text="压力" FontSize="11" Foreground="#86909C"/>
+                                            <TextBlock Text="{Binding Cooling.CoolingPressure, StringFormat={}{0:F1} MPa}" FontSize="12" FontWeight="Bold" Foreground="#1D2129"/>
+                                        </StackPanel>
+                                        <Border Width="1" Height="12" Background="#D8D8D8" VerticalAlignment="Center"/>
+                                        <StackPanel Orientation="Horizontal" Spacing="4">
+                                            <TextBlock Text="流量" FontSize="11" Foreground="#86909C"/>
+                                            <TextBlock Text="{Binding Cooling.CoolingFlow, StringFormat={}{0:F1} L/min}" FontSize="12" FontWeight="Bold" Foreground="#1D2129"/>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </Border>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- 阀门控制 -->
+                    <Border Background="#FFFFFF" BorderBrush="#E8E8E8" BorderThickness="1" CornerRadius="8">
+                        <StackPanel>
+                            <Border Background="#F7F9FC" Padding="14,10" BorderBrush="#E8E8E8" BorderThickness="0,0,0,1">
+                                <StackPanel Orientation="Horizontal" Spacing="8">
+                                    <Ellipse Width="12" Height="12" Fill="#86909C" VerticalAlignment="Center"/>
+                                    <TextBlock Text="阀门控制" FontSize="15" FontWeight="SemiBold" Foreground="#1D2129" VerticalAlignment="Center"/>
+                                </StackPanel>
+                            </Border>
+                            <StackPanel Margin="14,12" Spacing="10">
+                                <!-- 阀门 #1 -->
+                                <Border BorderBrush="#D6E4FF" BorderThickness="1" Background="#FAFBFF" CornerRadius="6" Padding="12,8">
+                                    <StackPanel Orientation="Horizontal" Spacing="10">
+                                        <TextBlock Text="#1" FontSize="11" FontWeight="SemiBold" Foreground="#86909C" Width="22" VerticalAlignment="Center"/>
+                                        <ProgressBar Value="{Binding Cooling.ValveOpening}" Minimum="0" Maximum="100" Height="8" CornerRadius="4" Width="120"/>
+                                        <TextBlock Text="{Binding Cooling.ValveOpening, StringFormat={}{0:F0}%}" FontSize="12" FontWeight="SemiBold" Foreground="#0052D9" Width="38" TextAlignment="Right" VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                </Border>
+                                <!-- 阀门 #2 -->
+                                <Border BorderBrush="#EDF0F5" BorderThickness="1" Background="#FAFBFC" CornerRadius="6" Padding="12,8">
+                                    <StackPanel Orientation="Horizontal" Spacing="10">
+                                        <TextBlock Text="#2" FontSize="11" FontWeight="SemiBold" Foreground="#86909C" Width="22" VerticalAlignment="Center"/>
+                                        <ProgressBar Value="45" Minimum="0" Maximum="100" Height="8" CornerRadius="4" Width="120"/>
+                                        <TextBlock Text="45%" FontSize="12" FontWeight="SemiBold" Foreground="#4E5969" Width="38" TextAlignment="Right" VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                </Border>
+                                <!-- 阀门 #3 -->
+                                <Border BorderBrush="#EDF0F5" BorderThickness="1" Background="#FAFBFC" CornerRadius="6" Padding="12,8">
+                                    <StackPanel Orientation="Horizontal" Spacing="10">
+                                        <TextBlock Text="#3" FontSize="11" FontWeight="SemiBold" Foreground="#86909C" Width="22" VerticalAlignment="Center"/>
+                                        <ProgressBar Value="0" Minimum="0" Maximum="100" Height="8" CornerRadius="4" Width="120"/>
+                                        <TextBlock Text="已关闭" FontSize="12" Foreground="#86909C" Width="38" TextAlignment="Right" VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                </Border>
+                                <Button Classes="primary" Content="应用开度" Command="{Binding Cooling.ApplyValveCommand}" Padding="16,7" FontSize="13" HorizontalAlignment="Left"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- 供水泵 -->
+                    <Border Background="#FFFFFF" BorderBrush="#E8E8E8" BorderThickness="1" CornerRadius="8">
+                        <StackPanel>
+                            <Border Background="#F7F9FC" Padding="14,10" BorderBrush="#E8E8E8" BorderThickness="0,0,0,1">
+                                <StackPanel Orientation="Horizontal" Spacing="8">
+                                    <fa:PackIconFontAwesome Kind="{x:Static fa:PackIconFontAwesomeKind.DropletSolid}" Width="16" Height="16" Foreground="#86909C" VerticalAlignment="Center"/>
+                                    <TextBlock Text="供水泵" FontSize="15" FontWeight="SemiBold" Foreground="#1D2129" VerticalAlignment="Center"/>
+                                </StackPanel>
+                            </Border>
+                            <StackPanel Margin="14,12" Spacing="10">
+                                <!-- 泵状态卡片 -->
+                                <Grid ColumnDefinitions="*,*" ColumnSpacing="10">
+                                    <Border Grid.Column="0" BorderBrush="#B7E4C7" BorderThickness="1" Background="#FAFFFD" CornerRadius="6" Padding="12,10">
+                                        <StackPanel Spacing="4">
+                                            <StackPanel Orientation="Horizontal" Spacing="6">
+                                                <Ellipse Width="8" Height="8" Fill="#2BA471"/>
+                                                <TextBlock Text="泵 #1" FontSize="12" FontWeight="SemiBold" Foreground="#1D2129"/>
+                                            </StackPanel>
+                                            <TextBlock Text="{Binding Cooling.PumpStatus}" FontSize="11"/>
+                                        </StackPanel>
+                                    </Border>
+                                    <Border Grid.Column="1" BorderBrush="#E8E8E8" BorderThickness="1" Background="#FAFBFC" CornerRadius="6" Padding="12,10">
+                                        <StackPanel Spacing="4">
+                                            <StackPanel Orientation="Horizontal" Spacing="6">
+                                                <Ellipse Width="8" Height="8" Fill="#D8D8D8"/>
+                                                <TextBlock Text="泵 #2" FontSize="12" FontWeight="SemiBold" Foreground="#1D2129"/>
+                                            </StackPanel>
+                                            <TextBlock Text="待机" FontSize="11"/>
+                                        </StackPanel>
+                                    </Border>
+                                </Grid>
+                                <StackPanel Orientation="Horizontal" Spacing="8">
+                                    <Button Classes="success" Content="▶ 启动" Click="OnStartPumpClick" Padding="16,7" FontSize="13" FontWeight="Bold"/>
+                                    <Button Classes="danger" Content="■ 停止" Click="OnStopPumpClick" Padding="16,7" FontSize="13" FontWeight="Bold"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+
+                <!-- ==================== 右列: 台架控制 ==================== -->
+                <StackPanel Grid.Column="2" Spacing="12">
+
+                    <!-- 俯仰角控制 -->
+                    <Border Background="#FFFFFF" BorderBrush="#E8E8E8" BorderThickness="1" CornerRadius="8">
+                        <StackPanel>
+                            <Border Background="#F0F5FF" Padding="14,10" BorderBrush="#D6E4FF" BorderThickness="0,0,0,1">
+                                <StackPanel Orientation="Horizontal" Spacing="8">
+                                    <Ellipse Width="12" Height="12" Fill="#0052D9" VerticalAlignment="Center"/>
+                                    <TextBlock Text="俯仰角控制" FontSize="15" FontWeight="SemiBold" Foreground="#0052D9" VerticalAlignment="Center"/>
+                                </StackPanel>
+                            </Border>
+                            <StackPanel Margin="14,12" Spacing="10">
+                                <!-- 目标 / 实际 -->
+                                <Border BorderBrush="#D6E4FF" BorderThickness="1" Background="#FAFBFF" CornerRadius="6" Padding="12,10">
+                                    <StackPanel Spacing="6">
+                                        <StackPanel Orientation="Horizontal" Spacing="12" VerticalAlignment="Center">
+                                            <TextBlock Text="目标" FontSize="12" Foreground="#86909C" VerticalAlignment="Center" Width="36"/>
+                                            <TextBox Text="{Binding GantryCtrl.PitchSetpoint}" Width="64" FontSize="13" Padding="5,4" TextAlignment="Center" VerticalAlignment="Center"/>
+                                            <TextBlock Text="°" FontSize="13" Foreground="#4E5969" VerticalAlignment="Center" Width="20"/>
+                                            <TextBlock Text="实际" FontSize="12" Foreground="#86909C" VerticalAlignment="Center" Width="36"/>
+                                            <TextBlock Text="{Binding GantryCtrl.PitchActual, StringFormat={}{0:F2}°}" FontSize="15" FontWeight="Bold" Foreground="#0052D9" VerticalAlignment="Center"/>
+                                        </StackPanel>
+                                        <TextBlock Text="{Binding GantryCtrl.PitchDeviation, StringFormat='偏差: {0:F2}°'}" FontSize="11"/>
+                                    </StackPanel>
+                                </Border>
+                                <!-- 操作 -->
+                                <StackPanel Orientation="Horizontal" Spacing="8" VerticalAlignment="Center">
+                                    <Button Classes="primary" Content="设置" Command="{Binding GantryCtrl.SetPitchAngleCommand}" Padding="14,7" FontSize="13"/>
+                                    <Button Classes="default" Content="回零" Click="OnPitchHomeClick" Padding="14,7" FontSize="13"/>
+                                    <Border Height="18" Width="1" Background="#E8E8E8" VerticalAlignment="Center"/>
+                                    <TextBlock Text="速度" FontSize="11" VerticalAlignment="Center"/>
+                                    <TextBox Text="{Binding GantryCtrl.PitchSpeed}" Width="56" FontSize="13" Padding="5,4" TextAlignment="Center" VerticalAlignment="Center"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- 侧滑角控制 -->
+                    <Border Background="#FFFFFF" BorderBrush="#E8E8E8" BorderThickness="1" CornerRadius="8">
+                        <StackPanel>
+                            <Border Background="#F0F5FF" Padding="14,10" BorderBrush="#D6E4FF" BorderThickness="0,0,0,1">
+                                <StackPanel Orientation="Horizontal" Spacing="8">
+                                    <Ellipse Width="12" Height="12" Fill="#0052D9" VerticalAlignment="Center"/>
+                                    <TextBlock Text="侧滑角控制" FontSize="15" FontWeight="SemiBold" Foreground="#0052D9" VerticalAlignment="Center"/>
+                                </StackPanel>
+                            </Border>
+                            <StackPanel Margin="14,12" Spacing="10">
+                                <!-- 目标 / 实际 -->
+                                <Border BorderBrush="#B7E4C7" BorderThickness="1" Background="#FAFFFD" CornerRadius="6" Padding="12,10">
+                                    <StackPanel Spacing="6">
+                                        <StackPanel Orientation="Horizontal" Spacing="12" VerticalAlignment="Center">
+                                            <TextBlock Text="目标" FontSize="12" Foreground="#86909C" VerticalAlignment="Center" Width="36"/>
+                                            <TextBox Text="{Binding GantryCtrl.YawSetpoint}" Width="64" FontSize="13" Padding="5,4" TextAlignment="Center" VerticalAlignment="Center"/>
+                                            <TextBlock Text="°" FontSize="13" Foreground="#4E5969" VerticalAlignment="Center" Width="20"/>
+                                            <TextBlock Text="实际" FontSize="12" Foreground="#86909C" VerticalAlignment="Center" Width="36"/>
+                                            <TextBlock Text="{Binding GantryCtrl.YawActual, StringFormat={}{0:F2}°}" FontSize="15" FontWeight="Bold" Foreground="#2BA471" VerticalAlignment="Center"/>
+                                        </StackPanel>
+                                        <TextBlock Text="{Binding GantryCtrl.YawDeviation, StringFormat='偏差: {0:F2}°'}" FontSize="11"/>
+                                    </StackPanel>
+                                </Border>
+                                <!-- 操作 -->
+                                <StackPanel Orientation="Horizontal" Spacing="8" VerticalAlignment="Center">
+                                    <Button Classes="primary" Content="设置" Command="{Binding GantryCtrl.SetYawAngleCommand}" Padding="14,7" FontSize="13"/>
+                                    <Button Classes="default" Content="回零" Click="OnYawHomeClick" Padding="14,7" FontSize="13"/>
+                                    <Border Height="18" Width="1" Background="#E8E8E8" VerticalAlignment="Center"/>
+                                    <TextBlock Text="速度" FontSize="11" VerticalAlignment="Center"/>
+                                    <TextBox Text="{Binding GantryCtrl.YawSpeed}" Width="56" FontSize="13" Padding="5,4" TextAlignment="Center" VerticalAlignment="Center"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+            </Grid>
+        </ScrollViewer>
+
+        <!-- 确认弹窗覆盖层 -->
+        <controls:ConfirmDialog x:Name="confirmDialog" IsOpen="False" ZIndex="100"
+                                HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                                Background="#80000000">
+            <Border x:Name="dialogPanel" Background="White" CornerRadius="10" Width="380" Padding="28"
+                    HorizontalAlignment="Center" VerticalAlignment="Center"
+                    BoxShadow="0 8 32 0 #00000040">
+                <StackPanel Spacing="20">
+                    <StackPanel Orientation="Horizontal" Spacing="10">
+                        <Ellipse Width="22" Height="22" Fill="#E34D59" VerticalAlignment="Center"/>
+                        <TextBlock x:Name="titleText" Text="{Binding Title, RelativeSource={RelativeSource AncestorType=controls:ConfirmDialog}}" FontSize="18" FontWeight="SemiBold" Foreground="#1D2129" VerticalAlignment="Center"/>
+                    </StackPanel>
+                    <Border Background="#FFF6F7" BorderBrush="#FFE0E3" BorderThickness="1" CornerRadius="6" Padding="14,10">
+                        <TextBlock x:Name="messageText" Text="{Binding Message, RelativeSource={RelativeSource AncestorType=controls:ConfirmDialog}}" FontSize="14" Foreground="#4E5969" TextWrapping="Wrap"/>
+                    </Border>
+                    <StackPanel Orientation="Horizontal" Spacing="10" HorizontalAlignment="Right">
+                        <Button x:Name="cancelBtn" Content="取消" Padding="24,8" CornerRadius="4" FontSize="14"
+                                Background="#F2F3F5" Foreground="#4E5969" BorderThickness="1" BorderBrush="#E8E8E8"
+                                Command="{Binding CancelCommand, ElementName=confirmDialog}"/>
+                        <Button x:Name="confirmBtn" Content="确认执行" Padding="24,8" CornerRadius="4" FontSize="14" FontWeight="Bold"
+                                Background="#E34D59" Foreground="White" BorderThickness="1" BorderBrush="#E34D59"
+                                Command="{Binding ConfirmCommand, ElementName=confirmDialog}"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+        </controls:ConfirmDialog>
+    </Grid>
+</UserControl>

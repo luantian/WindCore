@@ -1,0 +1,299 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="WindCore.MainControl.App"
+             xmlns:local="using:WindCore.MainControl"
+             xmlns:controls="using:WindCore.MainControl.Controls"
+             RequestedThemeVariant="Light">
+
+    <Application.DataTemplates>
+        <local:ViewLocator/>
+    </Application.DataTemplates>
+
+    <Application.Resources>
+        <!-- ==================== 字体设置 ==================== -->
+        <FontFamily x:Key="AppFont">Arial, sans-serif</FontFamily>
+
+        <!-- ==================== TDesign 主题色系 ==================== -->
+        <!-- 主色 (TDesign 品牌色) -->
+        <Color x:Key="Primary">#0052D9</Color>
+        <Color x:Key="PrimaryHover">#366EF4</Color>
+        <Color x:Key="PrimaryPressed">#0034B5</Color>
+
+        <!-- 状态色 (TDesign 功能色) -->
+        <Color x:Key="Success">#2BA471</Color>
+        <Color x:Key="SuccessHover">#45B88C</Color>
+        <Color x:Key="SuccessPressed">#1C7E55</Color>
+        <Color x:Key="Warning">#ED7B2F</Color>
+        <Color x:Key="WarningHover">#F5A050</Color>
+        <Color x:Key="WarningPressed">#C85E1F</Color>
+        <Color x:Key="Danger">#E34D59</Color>
+        <Color x:Key="DangerHover">#E9717A</Color>
+        <Color x:Key="DangerPressed">#C93B44</Color>
+        <Color x:Key="Info">#0052D9</Color>
+
+        <!-- 中性色 (TDesign 灰阶) -->
+        <Color x:Key="TextPrimary">#1D2129</Color>
+        <Color x:Key="TextSecondary">#4E5969</Color>
+        <Color x:Key="TextMuted">#86909C</Color>
+        <Color x:Key="BorderInput">#D8D8D8</Color>
+        <Color x:Key="BorderPanel">#E8E8E8</Color>
+        <Color x:Key="BgBase">#FFFFFF</Color>
+        <Color x:Key="BgInput">#FFFFFF</Color>
+        <Color x:Key="BgPanel">#F5F7FA</Color>
+        <Color x:Key="BgPanelHover">#EDF2F7</Color>
+
+        <!-- 画笔 -->
+        <SolidColorBrush x:Key="PrimaryBrush" Color="{StaticResource Primary}"/>
+        <SolidColorBrush x:Key="PrimaryHoverBrush" Color="{StaticResource PrimaryHover}"/>
+        <SolidColorBrush x:Key="PrimaryPressedBrush" Color="{StaticResource PrimaryPressed}"/>
+        <SolidColorBrush x:Key="SuccessBrush" Color="{StaticResource Success}"/>
+        <SolidColorBrush x:Key="SuccessHoverBrush" Color="{StaticResource SuccessHover}"/>
+        <SolidColorBrush x:Key="SuccessPressedBrush" Color="{StaticResource SuccessPressed}"/>
+        <SolidColorBrush x:Key="WarningBrush" Color="{StaticResource Warning}"/>
+        <SolidColorBrush x:Key="WarningHoverBrush" Color="{StaticResource WarningHover}"/>
+        <SolidColorBrush x:Key="WarningPressedBrush" Color="{StaticResource WarningPressed}"/>
+        <SolidColorBrush x:Key="DangerBrush" Color="{StaticResource Danger}"/>
+        <SolidColorBrush x:Key="DangerHoverBrush" Color="{StaticResource DangerHover}"/>
+        <SolidColorBrush x:Key="DangerPressedBrush" Color="{StaticResource DangerPressed}"/>
+        <SolidColorBrush x:Key="InfoBrush" Color="{StaticResource Info}"/>
+        <SolidColorBrush x:Key="TextPrimaryBrush" Color="{StaticResource TextPrimary}"/>
+        <SolidColorBrush x:Key="TextSecondaryBrush" Color="{StaticResource TextSecondary}"/>
+        <SolidColorBrush x:Key="TextMutedBrush" Color="{StaticResource TextMuted}"/>
+        <SolidColorBrush x:Key="BorderInputBrush" Color="{StaticResource BorderInput}"/>
+        <SolidColorBrush x:Key="BorderPanelBrush" Color="{StaticResource BorderPanel}"/>
+        <SolidColorBrush x:Key="BgBaseBrush" Color="{StaticResource BgBase}"/>
+        <SolidColorBrush x:Key="BgInputBrush" Color="{StaticResource BgInput}"/>
+        <SolidColorBrush x:Key="BgPanelBrush" Color="{StaticResource BgPanel}"/>
+        <SolidColorBrush x:Key="BgPanelHoverBrush" Color="{StaticResource BgPanelHover}"/>
+
+        <!-- 覆盖 Fluent 默认选中色（改为 TDesign 蓝） -->
+        <Color x:Key="ThemeAccent">#0052D9</Color>
+        <SolidColorBrush x:Key="ThemeAccentBrush" Color="{StaticResource ThemeAccent}"/>
+        <SolidColorBrush x:Key="HighlightBrush" Color="#D6E4FF"/>
+    </Application.Resources>
+
+    <Application.Styles>
+        <FluentTheme>
+            <FluentTheme.Resources>
+                <Color x:Key="SystemAccentColor">#0052D9</Color>
+                <Color x:Key="SystemAccentColorLight1">#366EF4</Color>
+                <Color x:Key="SystemAccentColorLight2">#6B93F7</Color>
+                <Color x:Key="SystemAccentColorLight3">#A8C2FA</Color>
+                <Color x:Key="SystemAccentColorDark1">#0034B5</Color>
+                <Color x:Key="SystemAccentColorDark2">#00298D</Color>
+                <Color x:Key="SystemAccentColorDark3">#001F66</Color>
+                <SolidColorBrush x:Key="SystemAccentColorBrush" Color="{StaticResource SystemAccentColor}"/>
+                <SolidColorBrush x:Key="SystemAccentColorBrushLight1" Color="{StaticResource SystemAccentColorLight1}"/>
+                <SolidColorBrush x:Key="SystemAccentColorBrushLight2" Color="{StaticResource SystemAccentColorLight2}"/>
+                <SolidColorBrush x:Key="SystemAccentColorBrushLight3" Color="{StaticResource SystemAccentColorLight3}"/>
+                <SolidColorBrush x:Key="SystemAccentColorBrushDark1" Color="{StaticResource SystemAccentColorDark1}"/>
+            </FluentTheme.Resources>
+        </FluentTheme>
+        <StyleInclude Source="avares://IconPacks.Avalonia.FontAwesome/FontAwesome.axaml" />
+
+        <!-- 全局字体 -->
+        <Style Selector="Window">
+            <Setter Property="FontFamily" Value="{StaticResource AppFont}"/>
+        </Style>
+        <Style Selector="UserControl">
+            <Setter Property="FontFamily" Value="{StaticResource AppFont}"/>
+        </Style>
+
+        <!-- TextBox: 深色输入框 -->
+        <Style Selector="TextBox">
+            <Setter Property="Background" Value="{StaticResource BgInputBrush}"/>
+            <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource BorderInputBrush}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="3"/>
+            <Setter Property="Padding" Value="8,6"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="SelectionBrush" Value="{StaticResource HighlightBrush}"/>
+        </Style>
+        <Style Selector="TextBox:pointerover /template/ Border#PART_BorderElement">
+            <Setter Property="BorderBrush" Value="{StaticResource PrimaryBrush}"/>
+        </Style>
+        <Style Selector="TextBox:focus /template/ Border#PART_BorderElement">
+            <Setter Property="BorderBrush" Value="{StaticResource PrimaryBrush}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+        </Style>
+
+        <!-- TabItem: 选中文字变蓝，选中指示器覆盖 -->
+        <Style Selector="TabItem">
+            <Setter Property="FontSize" Value="13"/>
+        </Style>
+        <Style Selector="TabItem:selected">
+            <Setter Property="Foreground" Value="{StaticResource PrimaryBrush}"/>
+        </Style>
+        <Style Selector="TabItem:selected /template/ Border#PART_SelectedPipe">
+            <Setter Property="BorderBrush" Value="{StaticResource PrimaryBrush}"/>
+        </Style>
+
+        <!-- Fluent 内部 TabStripItem 选中下划线覆盖 -->
+        <Style Selector="TabStripItem /template/ Border#PART_Border">
+            <Setter Property="BorderBrush" Value="{StaticResource PrimaryBrush}"/>
+        </Style>
+        <Style Selector="TabStripItem:selected /template/ Border#PART_Border">
+            <Setter Property="BorderBrush" Value="{StaticResource PrimaryBrush}"/>
+        </Style>
+
+        <!-- Button: 深色按钮基类 -->
+        <Style Selector="Button">
+            <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="3"/>
+            <Setter Property="Padding" Value="20,8"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="FontSize" Value="13"/>
+        </Style>
+
+        <!-- Button.primary -->
+        <Style Selector="Button.primary">
+            <Setter Property="Background" Value="{StaticResource PrimaryBrush}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource PrimaryBrush}"/>
+            <Setter Property="Foreground" Value="#FFFFFF"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+        <Style Selector="Button.primary:pointerover">
+            <Setter Property="Background" Value="{StaticResource PrimaryHoverBrush}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource PrimaryHoverBrush}"/>
+        </Style>
+        <Style Selector="Button.primary:pressed">
+            <Setter Property="Background" Value="{StaticResource PrimaryPressedBrush}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource PrimaryPressedBrush}"/>
+        </Style>
+
+        <!-- Button.default (次级按钮) -->
+        <Style Selector="Button.default">
+            <Setter Property="Background" Value="{StaticResource BgPanelBrush}"/>
+            <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource BorderPanelBrush}"/>
+        </Style>
+        <Style Selector="Button.default:pointerover">
+            <Setter Property="Background" Value="{StaticResource BgPanelHoverBrush}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource PrimaryBrush}"/>
+        </Style>
+
+        <!-- Button.danger -->
+        <Style Selector="Button.danger">
+            <Setter Property="Background" Value="{StaticResource DangerBrush}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource DangerBrush}"/>
+            <Setter Property="Foreground" Value="#FFFFFF"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+        <Style Selector="Button.danger:pointerover">
+            <Setter Property="Background" Value="{StaticResource DangerHoverBrush}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource DangerHoverBrush}"/>
+        </Style>
+
+        <!-- Button.warning -->
+        <Style Selector="Button.warning">
+            <Setter Property="Background" Value="{StaticResource WarningBrush}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource WarningBrush}"/>
+            <Setter Property="Foreground" Value="#FFFFFF"/>
+        </Style>
+        <Style Selector="Button.warning:pointerover">
+            <Setter Property="Background" Value="{StaticResource WarningHoverBrush}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource WarningHoverBrush}"/>
+        </Style>
+
+        <!-- Button.success -->
+        <Style Selector="Button.success">
+            <Setter Property="Background" Value="{StaticResource SuccessBrush}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource SuccessBrush}"/>
+            <Setter Property="Foreground" Value="#FFFFFF"/>
+        </Style>
+        <Style Selector="Button.success:pointerover">
+            <Setter Property="Background" Value="{StaticResource SuccessHoverBrush}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource SuccessHoverBrush}"/>
+        </Style>
+
+        <!-- ComboBox -->
+        <Style Selector="ComboBox">
+            <Setter Property="Background" Value="{StaticResource BgInputBrush}"/>
+            <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource BorderInputBrush}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="3"/>
+        </Style>
+
+        <!-- DataGrid -->
+        <Style Selector="DataGridCell">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
+        </Style>
+
+        <!-- 侧边栏导航按钮 - 精细化 TDesign 风格 -->
+        <Style Selector="Button.nav-item">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="#4E5969"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="CornerRadius" Value="6"/>
+            <Setter Property="Padding" Value="8,6"/>
+            <Setter Property="Margin" Value="4,1"/>
+        </Style>
+        <Style Selector="Button.nav-item:pointerover">
+            <Setter Property="Background" Value="#F7F9FC"/>
+        </Style>
+        <Style Selector="Button.nav-item:pressed">
+            <Setter Property="Background" Value="#EDF0F5"/>
+        </Style>
+        <Style Selector="Button.nav-item.active">
+            <Setter Property="Background" Value="#F0F5FF"/>
+            <Setter Property="Foreground" Value="#0052D9"/>
+        </Style>
+
+        <!-- 侧边栏一级标题 -->
+        <Style Selector="Button.nav-group-title.level1">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="#1D2129"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Padding" Value="12,10,12,8"/>
+            <Setter Property="Margin" Value="0,0,0,2"/>
+        </Style>
+        <Style Selector="Button.nav-group-title.level1:pointerover">
+            <Setter Property="Background" Value="#F7F9FC"/>
+        </Style>
+
+        <!-- 侧边栏二级标题 -->
+        <Style Selector="Button.nav-group-title.level2">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="#4E5969"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Padding" Value="24,8,12,6"/>
+            <Setter Property="Margin" Value="0,0,0,2"/>
+        </Style>
+        <Style Selector="Button.nav-group-title.level2:pointerover">
+            <Setter Property="Background" Value="#F7F9FC"/>
+        </Style>
+
+        <!-- Toast -->
+        <Style Selector="controls|Toast">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="Margin" Value="0,20,0,0"/>
+            <Setter Property="Padding" Value="16,10"/>
+            <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="IsVisible" Value="False"/>
+        </Style>
+    </Application.Styles>
+</Application>
