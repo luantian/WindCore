@@ -203,6 +203,51 @@
                 </Border>
             </UniformGrid>
 
+            <!-- 子系统投入状态条 -->
+            <Border Background="#FFFFFF" BorderBrush="#E8E8E8" BorderThickness="1" CornerRadius="8" Padding="16,10">
+                <StackPanel>
+                    <TextBlock Text="子系统控制" FontSize="13" FontWeight="SemiBold" Foreground="#86909C" Margin="0,0,0,8"/>
+                    <UniformGrid Columns="6" ColumnSpacing="12">
+                        <!-- 动力系统 -->
+                        <StackPanel Orientation="Horizontal" Spacing="6" HorizontalAlignment="Center">
+                            <Ellipse Width="10" Height="10" Fill="{Binding MotorCommStatus, Converter={x:Static controls:CommStatusColorConverter.Instance}}"/>
+                            <TextBlock Text="动力" FontSize="13" Foreground="#1D2129"/>
+                            <ToggleButton IsChecked="{Binding MotorEnabled}" MinWidth="52" Content="{Binding MotorEnabled, Converter={x:Static controls:SubsystemToggleTextConverter.Instance}}" FontSize="12" Padding="8,3"/>
+                        </StackPanel>
+                        <!-- 冷却系统 -->
+                        <StackPanel Orientation="Horizontal" Spacing="6" HorizontalAlignment="Center">
+                            <Ellipse Width="10" Height="10" Fill="{Binding CoolingCommStatus, Converter={x:Static controls:CommStatusColorConverter.Instance}}"/>
+                            <TextBlock Text="冷却" FontSize="13" Foreground="#1D2129"/>
+                            <ToggleButton IsChecked="{Binding CoolingEnabled}" MinWidth="52" Content="{Binding CoolingEnabled, Converter={x:Static controls:SubsystemToggleTextConverter.Instance}}" FontSize="12" Padding="8,3"/>
+                        </StackPanel>
+                        <!-- 台架系统 -->
+                        <StackPanel Orientation="Horizontal" Spacing="6" HorizontalAlignment="Center">
+                            <Ellipse Width="10" Height="10" Fill="{Binding StandCommStatus, Converter={x:Static controls:CommStatusColorConverter.Instance}}"/>
+                            <TextBlock Text="台架" FontSize="13" Foreground="#1D2129"/>
+                            <ToggleButton IsChecked="{Binding StandEnabled}" MinWidth="52" Content="{Binding StandEnabled, Converter={x:Static controls:SubsystemToggleTextConverter.Instance}}" FontSize="12" Padding="8,3"/>
+                        </StackPanel>
+                        <!-- RAT负载 -->
+                        <StackPanel Orientation="Horizontal" Spacing="6" HorizontalAlignment="Center">
+                            <Ellipse Width="10" Height="10" Fill="{Binding RatCommStatus, Converter={x:Static controls:CommStatusColorConverter.Instance}}"/>
+                            <TextBlock Text="RAT负载" FontSize="13" Foreground="#1D2129"/>
+                            <ToggleButton IsChecked="{Binding RatEnabled}" MinWidth="52" Content="{Binding RatEnabled, Converter={x:Static controls:SubsystemToggleTextConverter.Instance}}" FontSize="12" Padding="8,3"/>
+                        </StackPanel>
+                        <!-- 龙门架 -->
+                        <StackPanel Orientation="Horizontal" Spacing="6" HorizontalAlignment="Center">
+                            <Ellipse Width="10" Height="10" Fill="{Binding GantryCommStatus, Converter={x:Static controls:CommStatusColorConverter.Instance}}"/>
+                            <TextBlock Text="龙门架" FontSize="13" Foreground="#1D2129"/>
+                            <ToggleButton IsChecked="{Binding GantryEnabled}" MinWidth="52" Content="{Binding GantryEnabled, Converter={x:Static controls:SubsystemToggleTextConverter.Instance}}" FontSize="12" Padding="8,3"/>
+                        </StackPanel>
+                        <!-- 桨距角 -->
+                        <StackPanel Orientation="Horizontal" Spacing="6" HorizontalAlignment="Center">
+                            <Ellipse Width="10" Height="10" Fill="{Binding BladePitchCommStatus, Converter={x:Static controls:CommStatusColorConverter.Instance}}"/>
+                            <TextBlock Text="桨距角" FontSize="13" Foreground="#1D2129"/>
+                            <ToggleButton IsChecked="{Binding BladePitchEnabled}" MinWidth="52" Content="{Binding BladePitchEnabled, Converter={x:Static controls:SubsystemToggleTextConverter.Instance}}" FontSize="12" Padding="8,3"/>
+                        </StackPanel>
+                    </UniformGrid>
+                </StackPanel>
+            </Border>
+
             <!-- 分系统状态面板 (UniformGrid: 5 列 — 动力/冷却/台架/龙门架/RAT) -->
             <UniformGrid Columns="5" ColumnSpacing="10">
                 <!-- 动力系统 -->
@@ -239,14 +284,16 @@
                             </Grid>
                             <Separator Margin="0,4" Opacity="0.3"/>
                             <!-- 操作区 -->
-                            <StackPanel Orientation="Horizontal" Spacing="8">
-                                <TextBlock Text="目标" FontSize="14" Foreground="#86909C" VerticalAlignment="Center" Width="40"/>
-                                <TextBox Text="{Binding PowerDrive.TargetWindSpeed}" Width="72" FontSize="14" Padding="6,4" TextAlignment="Center" VerticalAlignment="Center"/>
-                                <TextBlock Text="m/s" FontSize="13" Foreground="#4E5969" VerticalAlignment="Center"/>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" Spacing="8">
-                                <Button Classes="success" Content="启动" Click="OnStartMotorClick" Padding="16,7" FontSize="14" FontWeight="Bold"/>
-                                <Button Classes="danger" Content="停止" Click="OnStopMotorClick" Padding="16,7" FontSize="14" FontWeight="Bold"/>
+                            <StackPanel Spacing="8" IsEnabled="{Binding MotorEnabled}">
+                                <StackPanel Orientation="Horizontal" Spacing="8">
+                                    <TextBlock Text="目标" FontSize="14" Foreground="#86909C" VerticalAlignment="Center" Width="40"/>
+                                    <TextBox Text="{Binding PowerDrive.TargetWindSpeed}" Width="72" FontSize="14" Padding="6,4" TextAlignment="Center" VerticalAlignment="Center"/>
+                                    <TextBlock Text="m/s" FontSize="13" Foreground="#4E5969" VerticalAlignment="Center"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Spacing="8">
+                                    <Button Classes="success" Content="启动" Click="OnStartMotorClick" Padding="16,7" FontSize="14" FontWeight="Bold"/>
+                                    <Button Classes="danger" Content="停止" Click="OnStopMotorClick" Padding="16,7" FontSize="14" FontWeight="Bold"/>
+                                </StackPanel>
                             </StackPanel>
                         </StackPanel>
                     </StackPanel>
@@ -285,14 +332,16 @@
                             </Grid>
                             <Separator Margin="0,4" Opacity="0.3"/>
                             <!-- 操作区 -->
-                            <StackPanel Orientation="Horizontal" Spacing="8">
-                                <TextBlock Text="目标" FontSize="14" Foreground="#86909C" VerticalAlignment="Center" Width="40"/>
-                                <TextBox Text="{Binding Cooling.TargetTemp}" Width="72" FontSize="14" Padding="6,4" TextAlignment="Center" VerticalAlignment="Center"/>
-                                <TextBlock Text="°C" FontSize="13" Foreground="#4E5969" VerticalAlignment="Center"/>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" Spacing="8">
-                                <Button Classes="success" Content="启动" Click="OnStartPumpClick" Padding="16,7" FontSize="14" FontWeight="Bold"/>
-                                <Button Classes="danger" Content="停止" Click="OnStopPumpClick" Padding="16,7" FontSize="14" FontWeight="Bold"/>
+                            <StackPanel Spacing="8" IsEnabled="{Binding CoolingEnabled}">
+                                <StackPanel Orientation="Horizontal" Spacing="8">
+                                    <TextBlock Text="目标" FontSize="14" Foreground="#86909C" VerticalAlignment="Center" Width="40"/>
+                                    <TextBox Text="{Binding Cooling.TargetTemp}" Width="72" FontSize="14" Padding="6,4" TextAlignment="Center" VerticalAlignment="Center"/>
+                                    <TextBlock Text="°C" FontSize="13" Foreground="#4E5969" VerticalAlignment="Center"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Spacing="8">
+                                    <Button Classes="success" Content="启动" Click="OnStartPumpClick" Padding="16,7" FontSize="14" FontWeight="Bold"/>
+                                    <Button Classes="danger" Content="停止" Click="OnStopPumpClick" Padding="16,7" FontSize="14" FontWeight="Bold"/>
+                                </StackPanel>
                             </StackPanel>
                         </StackPanel>
                     </StackPanel>
@@ -331,6 +380,7 @@
                             </Grid>
                             <Separator Margin="0,4" Opacity="0.3"/>
                             <!-- 操作区 -->
+                            <StackPanel Spacing="8" IsEnabled="{Binding StandEnabled}">
                             <StackPanel Orientation="Horizontal" Spacing="8">
                                 <TextBlock Text="俯仰" FontSize="13" Foreground="#86909C" VerticalAlignment="Center" Width="40"/>
                                 <TextBox Text="{Binding GantryCtrl.PitchSetpoint}" Width="68" FontSize="13" Padding="6,4" TextAlignment="Center" VerticalAlignment="Center"/>
@@ -346,6 +396,7 @@
                             <StackPanel Orientation="Horizontal" Spacing="8">
                                 <Button Content="俯仰回零" Click="OnPitchHomeClick" Padding="16,7" FontSize="13"/>
                                 <Button Content="侧滑回零" Click="OnYawHomeClick" Padding="16,7" FontSize="13"/>
+                            </StackPanel>
                             </StackPanel>
                         </StackPanel>
                     </StackPanel>
@@ -367,7 +418,7 @@
                         </Border>
                         <StackPanel Margin="14,12" Spacing="10">
                             <!-- 模式切换 -->
-                            <StackPanel Spacing="6">
+                            <StackPanel Spacing="6" IsEnabled="{Binding RatEnabled}">
                                 <TextBlock Text="载荷模式" FontSize="13" Foreground="#86909C" FontWeight="SemiBold"/>
                                 <Grid ColumnDefinitions="*,Auto">
                                     <ComboBox ItemsSource="{Binding Rat.ModeOptions}" SelectedItem="{Binding Rat.RatMode}" FontSize="14" Padding="6,4"/>
@@ -395,7 +446,7 @@
                             <Separator Margin="0,4" Opacity="0.3"/>
                             <!-- 目标参数控制 -->
                             <TextBlock Text="目标参数" FontSize="13" Foreground="#86909C" FontWeight="SemiBold"/>
-                            <StackPanel Spacing="6">
+                            <StackPanel Spacing="6" IsEnabled="{Binding RatEnabled}">
                                 <Grid ColumnDefinitions="*,Auto">
                                     <StackPanel>
                                         <TextBlock Text="推力 (N)" FontSize="12" Foreground="#4E5969"/>
@@ -460,6 +511,7 @@
                             <Separator Margin="0,4" Opacity="0.3"/>
                             <!-- 目标位置控制 -->
                             <TextBlock Text="目标位置 (mm)" FontSize="13" Foreground="#86909C" FontWeight="SemiBold"/>
+                            <StackPanel Spacing="8" IsEnabled="{Binding GantryEnabled}">
                             <Grid ColumnDefinitions="*,*,*" ColumnSpacing="6">
                                 <StackPanel>
                                     <TextBlock Text="X" FontSize="12" Foreground="#4E5969" HorizontalAlignment="Center"/>
@@ -490,8 +542,9 @@
                                     <TextBox Text="{Binding Gantry.SpeedZ}" FontSize="13" Padding="4,4" TextAlignment="Center" FontFamily="Consolas"/>
                                 </StackPanel>
                             </Grid>
+                            </StackPanel>
                             <!-- 操作按钮 -->
-                            <StackPanel Orientation="Horizontal" Spacing="8">
+                            <StackPanel Orientation="Horizontal" Spacing="8" IsEnabled="{Binding GantryEnabled}">
                                 <Button Classes="primary" Content="移动" Command="{Binding GantryMoveToPositionCommand}" Padding="18,7" FontSize="13" FontWeight="Bold"/>
                                 <Button Content="回零" Command="{Binding GantryMoveHomeCommand}" Padding="18,7" FontSize="13"/>
                             </StackPanel>
@@ -534,7 +587,7 @@
                             </Grid>
                             <Separator Margin="0,4" Opacity="0.3"/>
                             <!-- 目标角度控制 -->
-                            <StackPanel Spacing="8">
+                            <StackPanel Spacing="8" IsEnabled="{Binding BladePitchEnabled}">
                                 <TextBlock Text="目标角度 (°)" FontSize="13" Foreground="#86909C" FontWeight="SemiBold"/>
                                 <Grid ColumnDefinitions="*,*,*" ColumnSpacing="6">
                                     <StackPanel>
@@ -550,7 +603,7 @@
                                         <TextBox Text="{Binding BladePitch.TargetPitch3}" FontSize="14" Padding="6,4" TextAlignment="Center" FontFamily="Consolas"/>
                                     </StackPanel>
                                 </Grid>
-                                <Button Content="设定" Command="{Binding SetBladePitchCommand}" Padding="14,6" FontSize="13" FontWeight="Bold" HorizontalAlignment="Stretch"/>
+                                <Button Content="设定" Command="{Binding SetBladePitchCommand}" Padding="12,6" FontSize="13"/>
                             </StackPanel>
                         </StackPanel>
                     </StackPanel>

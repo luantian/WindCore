@@ -90,6 +90,14 @@ public partial class OverviewPageViewModel : ObservableObject
     public string GantryCommStatus => _dataService.GantryCommStatus;
     public string BladePitchCommStatus => _dataService.BladePitchCommStatus;
 
+    // 子系统投入状态
+    public bool MotorEnabled => _dataService.MotorEnabled;
+    public bool CoolingEnabled => _dataService.CoolingEnabled;
+    public bool StandEnabled => _dataService.StandEnabled;
+    public bool RatEnabled => _dataService.RatEnabled;
+    public bool GantryEnabled => _dataService.GantryEnabled;
+    public bool BladePitchEnabled => _dataService.BladePitchEnabled;
+
     // 龙门架
     public double GantryX => _dataService.GantryX;
     public double GantryY => _dataService.GantryY;
@@ -135,6 +143,25 @@ public partial class OverviewPageViewModel : ObservableObject
     }
 
     // ===== 高频操作命令 =====
+    // 子系统投入/退出切换
+    [RelayCommand]
+    private void ToggleMotorEnabled() => _dataService.MotorEnabled = !_dataService.MotorEnabled;
+
+    [RelayCommand]
+    private void ToggleCoolingEnabled() => _dataService.CoolingEnabled = !_dataService.CoolingEnabled;
+
+    [RelayCommand]
+    private void ToggleStandEnabled() => _dataService.StandEnabled = !_dataService.StandEnabled;
+
+    [RelayCommand]
+    private void ToggleRatEnabled() => _dataService.RatEnabled = !_dataService.RatEnabled;
+
+    [RelayCommand]
+    private void ToggleGantryEnabled() => _dataService.GantryEnabled = !_dataService.GantryEnabled;
+
+    [RelayCommand]
+    private void ToggleBladePitchEnabled() => _dataService.BladePitchEnabled = !_dataService.BladePitchEnabled;
+
     [RelayCommand]
     private void DoStartMotor() => PowerDrive.StartMotor();
     public void StartMotor() => DoStartMotorCommand.Execute(null);
@@ -229,6 +256,12 @@ public partial class OverviewPageViewModel : ObservableObject
         OnPropertyChanged(nameof(RatCommStatus));
         OnPropertyChanged(nameof(GantryCommStatus));
         OnPropertyChanged(nameof(BladePitchCommStatus));
+        OnPropertyChanged(nameof(MotorEnabled));
+        OnPropertyChanged(nameof(CoolingEnabled));
+        OnPropertyChanged(nameof(StandEnabled));
+        OnPropertyChanged(nameof(RatEnabled));
+        OnPropertyChanged(nameof(GantryEnabled));
+        OnPropertyChanged(nameof(BladePitchEnabled));
         OnPropertyChanged(nameof(GantryX));
         OnPropertyChanged(nameof(GantryY));
         OnPropertyChanged(nameof(GantryZ));

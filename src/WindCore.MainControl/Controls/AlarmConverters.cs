@@ -43,6 +43,21 @@ public class AlarmStatusBgConverter : IValueConverter
     }
 }
 
+public class SubsystemToggleTextConverter : IValueConverter
+{
+    public static SubsystemToggleTextConverter Instance { get; } = new();
+
+    public object Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
+    {
+        if (value is bool b) return b ? "投入" : "退出";
+        return "退出";
+    }
+
+    public object ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
+    {
+        throw new NotImplementedException();
+    }
+}
 public class AlarmStatusTextColorConverter : IValueConverter
 {
     public static AlarmStatusTextColorConverter Instance { get; } = new();
