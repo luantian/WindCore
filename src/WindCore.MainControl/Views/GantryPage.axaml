@@ -1,0 +1,94 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:viewmodels="using:WindCore.MainControl.ViewModels"
+             xmlns:fa="using:IconPacks.Avalonia.FontAwesome"
+             x:Class="WindCore.MainControl.Views.GantryPage"
+             x:DataType="viewmodels:GantryPageViewModel">
+    <Grid>
+        <ScrollViewer VerticalScrollBarVisibility="Auto" Padding="12">
+            <StackPanel Spacing="12">
+
+                <!-- XYZ 位置 -->
+                <UniformGrid Columns="3" ColumnSpacing="8">
+                    <Border Background="#FFFFFF" BorderBrush="#D6E4FF" BorderThickness="1" CornerRadius="8" Padding="16,14">
+                        <StackPanel>
+                            <TextBlock Text="X 轴位置" FontSize="12" Foreground="#86909C"/>
+                            <TextBlock Text="{Binding GantryX, StringFormat={}{0:F2} m}" FontSize="24" FontWeight="Bold" FontFamily="Consolas" Foreground="#0052D9" Margin="0,6,0,0"/>
+                        </StackPanel>
+                    </Border>
+                    <Border Background="#FFFFFF" BorderBrush="#B7E4C7" BorderThickness="1" CornerRadius="8" Padding="16,14">
+                        <StackPanel>
+                            <TextBlock Text="Y 轴位置" FontSize="12" Foreground="#86909C"/>
+                            <TextBlock Text="{Binding GantryY, StringFormat={}{0:F2} m}" FontSize="24" FontWeight="Bold" FontFamily="Consolas" Foreground="#2BA471" Margin="0,6,0,0"/>
+                        </StackPanel>
+                    </Border>
+                    <Border Background="#FFFFFF" BorderBrush="#FFD5B8" BorderThickness="1" CornerRadius="8" Padding="16,14">
+                        <StackPanel>
+                            <TextBlock Text="Z 轴位置" FontSize="12" Foreground="#86909C"/>
+                            <TextBlock Text="{Binding GantryZ, StringFormat={}{0:F2} m}" FontSize="24" FontWeight="Bold" FontFamily="Consolas" Foreground="#ED7B2F" Margin="0,6,0,0"/>
+                        </StackPanel>
+                    </Border>
+                </UniformGrid>
+
+                <!-- 移动控制 -->
+                <Border Background="#FFFFFF" BorderBrush="#E8E8E8" BorderThickness="1" CornerRadius="8">
+                    <StackPanel>
+                        <Border Background="#F0F5FF" Padding="14,10" BorderBrush="#D6E4FF" BorderThickness="0,0,0,1">
+                            <StackPanel Orientation="Horizontal" Spacing="8">
+                                <fa:PackIconFontAwesome Kind="{x:Static fa:PackIconFontAwesomeKind.LocationCrosshairsSolid}" Width="16" Height="16" Foreground="#0052D9" VerticalAlignment="Center"/>
+                                <TextBlock Text="龙门架移动控制" FontSize="15" FontWeight="SemiBold" Foreground="#0052D9"/>
+                            </StackPanel>
+                        </Border>
+                        <StackPanel Margin="14,12" Spacing="10">
+                            <TextBlock Text="目标位置" FontSize="13" FontWeight="SemiBold" Foreground="#1D2129"/>
+                            <Grid ColumnDefinitions="*,*,*" ColumnSpacing="12">
+                                <StackPanel Spacing="4">
+                                    <TextBlock Text="X (m)" FontSize="12" Foreground="#4E5969"/>
+                                    <TextBox Text="{Binding TargetX}" FontSize="14" Padding="6,4" TextAlignment="Center" FontFamily="Consolas"/>
+                                </StackPanel>
+                                <StackPanel Spacing="4">
+                                    <TextBlock Text="Y (m)" FontSize="12" Foreground="#4E5969"/>
+                                    <TextBox Text="{Binding TargetY}" FontSize="14" Padding="6,4" TextAlignment="Center" FontFamily="Consolas"/>
+                                </StackPanel>
+                                <StackPanel Spacing="4">
+                                    <TextBlock Text="Z (m)" FontSize="12" Foreground="#4E5969"/>
+                                    <TextBox Text="{Binding TargetZ}" FontSize="14" Padding="6,4" TextAlignment="Center" FontFamily="Consolas"/>
+                                </StackPanel>
+                            </Grid>
+                            <StackPanel Orientation="Horizontal" Spacing="8" Margin="0,4,0,0">
+                                <Button Classes="primary" Content="移动到位置" Command="{Binding MoveToPositionCommand}" Padding="20,8" FontSize="13"/>
+                                <Button Content="回零" Command="{Binding MoveHomeCommand}" Padding="20,8" FontSize="13"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+
+                <!-- 速度设置 -->
+                <Border Background="#FFFFFF" BorderBrush="#E8E8E8" BorderThickness="1" CornerRadius="8">
+                    <StackPanel>
+                        <Border Background="#F0F5FF" Padding="14,10" BorderBrush="#D6E4FF" BorderThickness="0,0,0,1">
+                            <TextBlock Text="各轴移动速度 (m/s)" FontSize="15" FontWeight="SemiBold" Foreground="#0052D9"/>
+                        </Border>
+                        <StackPanel Margin="14,12" Spacing="10">
+                            <Grid ColumnDefinitions="*,*,*" ColumnSpacing="12">
+                                <StackPanel Spacing="4">
+                                    <TextBlock Text="X 轴速度" FontSize="12" Foreground="#4E5969"/>
+                                    <TextBox Text="{Binding SpeedX}" FontSize="14" Padding="6,4" TextAlignment="Center" FontFamily="Consolas"/>
+                                </StackPanel>
+                                <StackPanel Spacing="4">
+                                    <TextBlock Text="Y 轴速度" FontSize="12" Foreground="#4E5969"/>
+                                    <TextBox Text="{Binding SpeedY}" FontSize="14" Padding="6,4" TextAlignment="Center" FontFamily="Consolas"/>
+                                </StackPanel>
+                                <StackPanel Spacing="4">
+                                    <TextBlock Text="Z 轴速度" FontSize="12" Foreground="#4E5969"/>
+                                    <TextBox Text="{Binding SpeedZ}" FontSize="14" Padding="6,4" TextAlignment="Center" FontFamily="Consolas"/>
+                                </StackPanel>
+                            </Grid>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

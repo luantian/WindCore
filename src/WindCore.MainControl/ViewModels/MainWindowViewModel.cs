@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.IO;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using WindCore.MainControl.Services;
@@ -36,9 +35,8 @@ public partial class MainWindowViewModel : ViewModelBase
         DataService = new DataService();
         LoginViewModel = new LoginViewModel();
         _settingsViewModel = new SettingsPanelViewModel();
-        File.AppendAllText("login_debug.log", $"[{DateTime.Now:HH:mm:ss}] MainWindowViewModel ctor: subscribing to LoginViewModel.OnLoginSuccess\n");
         LoginViewModel.OnLoginSuccess += HandleLoginSuccess;
-        LoginViewModel.OnLoginFailed += msg => { File.AppendAllText("login_debug.log", $"[{DateTime.Now:HH:mm:ss}] MainWindowViewModel received OnLoginFailed: {msg}\n"); OnLoginError?.Invoke(msg); };
+        LoginViewModel.OnLoginFailed += msg => OnLoginError?.Invoke(msg);
 
         // Wire Settings connect/disconnect to CommunicationService
         _settingsViewModel.ConnectRequested += (ip, port) =>
@@ -82,12 +80,10 @@ public partial class MainWindowViewModel : ViewModelBase
 
     private void HandleLoginSuccess(string username, string role)
     {
-        File.AppendAllText("login_debug.log", $"[{DateTime.Now:HH:mm:ss}] HandleLoginSuccess called! user={username}, role={role}\n");
         CurrentUser = username;
         CurrentRole = role;
         IsLoggedIn = true;
         IsLoginVisible = false;
-        File.AppendAllText("login_debug.log", $"[{DateTime.Now:HH:mm:ss}] About to invoke OnLoginSuccess. Subscribers: {OnLoginSuccess != null}\n");
 
         DataService.Start();
 
@@ -105,7 +101,6 @@ public partial class MainWindowViewModel : ViewModelBase
         SelectedNavPage = new OverviewPage { DataContext = new OverviewPageViewModel(DataService) };
 
         OnLoginSuccess?.Invoke(username, role);
-        File.AppendAllText("login_debug.log", $"[{DateTime.Now:HH:mm:ss}] OnLoginSuccess returned\n");
     }
 
     /// <summary>

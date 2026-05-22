@@ -1,0 +1,119 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:viewmodels="using:WindCore.MainControl.ViewModels"
+             xmlns:fa="using:IconPacks.Avalonia.FontAwesome"
+             xmlns:controls="using:WindCore.MainControl.Controls"
+             x:Class="WindCore.MainControl.Views.CoolingSystemPage"
+             x:DataType="viewmodels:CoolingSystemPageViewModel">
+    <Grid>
+        <ScrollViewer VerticalScrollBarVisibility="Auto" Padding="12">
+            <StackPanel Spacing="12">
+
+                <!-- 温度指标 -->
+                <UniformGrid Columns="3" ColumnSpacing="8">
+                    <Border Background="#FFFFFF" BorderBrush="#E8E8E8" BorderThickness="1" CornerRadius="8">
+                        <StackPanel>
+                            <Border Background="#F0F5FF" Padding="12,8" BorderBrush="#D6E4FF" BorderThickness="0,0,0,1">
+                                <TextBlock Text="冷却液温度" FontSize="13" FontWeight="Bold" Foreground="#0052D9"/>
+                            </Border>
+                            <controls:ModernGauge Value="{Binding CoolingTemp}" Min="0" Max="60" Unit="°C" WarningThreshold="40" DangerThreshold="55"/>
+                        </StackPanel>
+                    </Border>
+                    <Border Background="#FFFFFF" BorderBrush="#E8E8E8" BorderThickness="1" CornerRadius="8">
+                        <StackPanel>
+                            <Border Background="#F0F5FF" Padding="12,8" BorderBrush="#D6E4FF" BorderThickness="0,0,0,1">
+                                <TextBlock Text="出水温度" FontSize="13" FontWeight="Bold" Foreground="#0052D9"/>
+                            </Border>
+                            <controls:ModernGauge Value="{Binding CoolingOutTemp}" Min="0" Max="60" Unit="°C"/>
+                        </StackPanel>
+                    </Border>
+                    <Border Background="#FFFFFF" BorderBrush="#E8E8E8" BorderThickness="1" CornerRadius="8">
+                        <StackPanel>
+                            <Border Background="#F0F5FF" Padding="12,8" BorderBrush="#D6E4FF" BorderThickness="0,0,0,1">
+                                <TextBlock Text="回水温度" FontSize="13" FontWeight="Bold" Foreground="#0052D9"/>
+                            </Border>
+                            <controls:ModernGauge Value="{Binding CoolingReturnTemp}" Min="0" Max="60" Unit="°C"/>
+                        </StackPanel>
+                    </Border>
+                </UniformGrid>
+
+                <!-- 流量/压力/水箱 -->
+                <UniformGrid Columns="3" ColumnSpacing="8">
+                    <Border Background="#FFFFFF" BorderBrush="#B7E4C7" BorderThickness="1" CornerRadius="6" Padding="14,12">
+                        <StackPanel>
+                            <TextBlock Text="冷却液流量" FontSize="12" Foreground="#86909C"/>
+                            <TextBlock Text="{Binding CoolingFlow, StringFormat={}{0:F1} L/min}" FontSize="22" FontWeight="Bold" Foreground="#2BA471" FontFamily="Consolas" Margin="0,4,0,0"/>
+                        </StackPanel>
+                    </Border>
+                    <Border Background="#FFFFFF" BorderBrush="#D6E4FF" BorderThickness="1" CornerRadius="6" Padding="14,12">
+                        <StackPanel>
+                            <TextBlock Text="管路压力" FontSize="12" Foreground="#86909C"/>
+                            <TextBlock Text="{Binding CoolingPressure, StringFormat={}{0:F1} MPa}" FontSize="22" FontWeight="Bold" Foreground="#0052D9" FontFamily="Consolas" Margin="0,4,0,0"/>
+                        </StackPanel>
+                    </Border>
+                    <Border Background="#FFFFFF" BorderBrush="#D6E4FF" BorderThickness="1" CornerRadius="6" Padding="14,12">
+                        <StackPanel>
+                            <TextBlock Text="水箱液位" FontSize="12" Foreground="#86909C"/>
+                            <TextBlock Text="{Binding TankLevel, StringFormat={}{0:F0}%}" FontSize="22" FontWeight="Bold" Foreground="#0052D9" FontFamily="Consolas" Margin="0,4,0,0"/>
+                        </StackPanel>
+                    </Border>
+                </UniformGrid>
+
+                <!-- 水泵控制 -->
+                <Border Background="#FFFFFF" BorderBrush="#E8E8E8" BorderThickness="1" CornerRadius="8">
+                    <StackPanel>
+                        <Border Background="#F0F5FF" Padding="14,10" BorderBrush="#D6E4FF" BorderThickness="0,0,0,1">
+                            <StackPanel Orientation="Horizontal" Spacing="8">
+                                <fa:PackIconFontAwesome Kind="{x:Static fa:PackIconFontAwesomeKind.GearsSolid}" Width="16" Height="16" Foreground="#0052D9" VerticalAlignment="Center"/>
+                                <TextBlock Text="水泵控制" FontSize="15" FontWeight="SemiBold" Foreground="#0052D9"/>
+                            </StackPanel>
+                        </Border>
+                        <StackPanel Margin="14,12" Spacing="10">
+                            <Grid ColumnDefinitions="Auto,*">
+                                <TextBlock Text="水泵状态" FontSize="12" Foreground="#86909C"/>
+                                <TextBlock Text="{Binding PumpStatus}" Grid.Column="1" HorizontalAlignment="Right" FontSize="12" FontWeight="Bold" Foreground="#2BA471"/>
+                            </Grid>
+                            <StackPanel Orientation="Horizontal" Spacing="6">
+                                <Button Classes="success" Content="启动水泵" Command="{Binding StartPumpCommand}" Padding="16,6" FontSize="13" FontWeight="Bold"/>
+                                <Button Classes="danger" Content="停止水泵" Command="{Binding StopPumpCommand}" Padding="16,6" FontSize="13" FontWeight="Bold"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+
+                <!-- 阀门与目标温度 -->
+                <UniformGrid Columns="2" ColumnSpacing="8">
+                    <Border Background="#FFFFFF" BorderBrush="#E8E8E8" BorderThickness="1" CornerRadius="8">
+                        <StackPanel>
+                            <Border Background="#F0F5FF" Padding="14,10" BorderBrush="#D6E4FF" BorderThickness="0,0,0,1">
+                                <TextBlock Text="阀门开度控制" FontSize="15" FontWeight="SemiBold" Foreground="#0052D9"/>
+                            </Border>
+                            <StackPanel Margin="14,12" Spacing="10">
+                                <Grid ColumnDefinitions="*,Auto">
+                                    <TextBox Text="{Binding ValveOpening}" FontSize="16" TextAlignment="Center" FontFamily="Consolas"/>
+                                    <TextBlock Text="%" Grid.Column="1" FontSize="14" Foreground="#86909C" VerticalAlignment="Center" Margin="8,0,0,0"/>
+                                </Grid>
+                                <Button Classes="primary" Content="应用开度" Command="{Binding ApplyValveCommand}" Padding="16,6" FontSize="13"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                    <Border Background="#FFFFFF" BorderBrush="#E8E8E8" BorderThickness="1" CornerRadius="8">
+                        <StackPanel>
+                            <Border Background="#F0F5FF" Padding="14,10" BorderBrush="#D6E4FF" BorderThickness="0,0,0,1">
+                                <TextBlock Text="目标温度控制" FontSize="15" FontWeight="SemiBold" Foreground="#0052D9"/>
+                            </Border>
+                            <StackPanel Margin="14,12" Spacing="10">
+                                <Grid ColumnDefinitions="*,Auto">
+                                    <TextBox Text="{Binding TargetTemp}" FontSize="16" TextAlignment="Center" FontFamily="Consolas"/>
+                                    <TextBlock Text="°C" Grid.Column="1" FontSize="14" Foreground="#86909C" VerticalAlignment="Center" Margin="8,0,0,0"/>
+                                </Grid>
+                                <Button Classes="primary" Content="应用温度" Command="{Binding ApplyTargetTempCommand}" Padding="16,6" FontSize="13"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                </UniformGrid>
+
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

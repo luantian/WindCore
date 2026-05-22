@@ -1,0 +1,74 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:viewmodels="using:WindCore.MainControl.ViewModels"
+             xmlns:fa="using:IconPacks.Avalonia.FontAwesome"
+             xmlns:controls="using:WindCore.MainControl.Controls"
+             x:Class="WindCore.MainControl.Views.RatPage"
+             x:DataType="viewmodels:RatPageViewModel">
+    <Grid>
+        <ScrollViewer VerticalScrollBarVisibility="Auto" Padding="12">
+            <StackPanel Spacing="12">
+
+                <!-- 核心指标仪表盘 -->
+                <UniformGrid Columns="3" ColumnSpacing="8">
+                    <Border Background="#FFFFFF" BorderBrush="#E8E8E8" BorderThickness="1" CornerRadius="8">
+                        <StackPanel>
+                            <Border Background="#F0F5FF" Padding="12,8" BorderBrush="#D6E4FF" BorderThickness="0,0,0,1">
+                                <StackPanel Orientation="Horizontal" Spacing="8">
+                                    <fa:PackIconFontAwesome Kind="{x:Static fa:PackIconFontAwesomeKind.ArrowUpSolid}" Width="14" Height="14" Foreground="#0052D9" VerticalAlignment="Center"/>
+                                    <TextBlock Text="推力" FontSize="13" FontWeight="Bold" Foreground="#0052D9"/>
+                                </StackPanel>
+                            </Border>
+                            <controls:ModernGauge Value="{Binding RatThrust}" Min="0" Max="5000" Unit="N"/>
+                        </StackPanel>
+                    </Border>
+                    <Border Background="#FFFFFF" BorderBrush="#E8E8E8" BorderThickness="1" CornerRadius="8">
+                        <StackPanel>
+                            <Border Background="#F0F5FF" Padding="12,8" BorderBrush="#D6E4FF" BorderThickness="0,0,0,1">
+                                <StackPanel Orientation="Horizontal" Spacing="8">
+                                    <fa:PackIconFontAwesome Kind="{x:Static fa:PackIconFontAwesomeKind.RotateSolid}" Width="14" Height="14" Foreground="#0052D9" VerticalAlignment="Center"/>
+                                    <TextBlock Text="转速" FontSize="13" FontWeight="Bold" Foreground="#0052D9"/>
+                                </StackPanel>
+                            </Border>
+                            <controls:ModernGauge Value="{Binding RatRpm}" Min="0" Max="10000" Unit="r/min" WarningThreshold="8000" DangerThreshold="9000"/>
+                        </StackPanel>
+                    </Border>
+                    <Border Background="#FFFFFF" BorderBrush="#E8E8E8" BorderThickness="1" CornerRadius="8">
+                        <StackPanel>
+                            <Border Background="#F0F5FF" Padding="12,8" BorderBrush="#D6E4FF" BorderThickness="0,0,0,1">
+                                <StackPanel Orientation="Horizontal" Spacing="8">
+                                    <fa:PackIconFontAwesome Kind="{x:Static fa:PackIconFontAwesomeKind.ScrewdriverWrenchSolid}" Width="14" Height="14" Foreground="#0052D9" VerticalAlignment="Center"/>
+                                    <TextBlock Text="扭矩" FontSize="13" FontWeight="Bold" Foreground="#0052D9"/>
+                                </StackPanel>
+                            </Border>
+                            <controls:ModernGauge Value="{Binding RatTorque}" Min="0" Max="500" Unit="N·m"/>
+                        </StackPanel>
+                    </Border>
+                </UniformGrid>
+
+                <!-- 辅助指标 -->
+                <UniformGrid Columns="3" ColumnSpacing="8">
+                    <Border Background="#FFFFFF" BorderBrush="#FFD5B8" BorderThickness="1" CornerRadius="6" Padding="14,12">
+                        <StackPanel>
+                            <TextBlock Text="RAT功率" FontSize="12" Foreground="#86909C"/>
+                            <TextBlock Text="{Binding RatPower, StringFormat={}{0:F1} kW}" FontSize="22" FontWeight="Bold" Foreground="#ED7B2F" FontFamily="Consolas" Margin="0,4,0,0"/>
+                        </StackPanel>
+                    </Border>
+                    <Border Background="#FFFFFF" BorderBrush="#D6E4FF" BorderThickness="1" CornerRadius="6" Padding="14,12">
+                        <StackPanel>
+                            <TextBlock Text="载荷模式" FontSize="12" Foreground="#86909C"/>
+                            <TextBlock Text="{Binding RatMode}" FontSize="16" FontWeight="Bold" Foreground="#0052D9" Margin="0,4,0,0"/>
+                        </StackPanel>
+                    </Border>
+                    <Border Background="#FFFFFF" BorderBrush="#B7E4C7" BorderThickness="1" CornerRadius="6" Padding="14,12">
+                        <StackPanel>
+                            <TextBlock Text="传感器状态" FontSize="12" Foreground="#86909C"/>
+                            <TextBlock Text="{Binding SensorStatus}" FontSize="16" FontWeight="Bold" Foreground="#2BA471" Margin="0,4,0,0"/>
+                        </StackPanel>
+                    </Border>
+                </UniformGrid>
+
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

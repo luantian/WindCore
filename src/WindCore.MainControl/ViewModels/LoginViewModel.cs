@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.IO;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 
@@ -25,7 +24,6 @@ public partial class LoginViewModel : ViewModelBase
     [RelayCommand]
     private void Login()
     {
-        File.AppendAllText("login_debug.log", $"[{DateTime.Now:HH:mm:ss}] Login() called. user={Username}\n");
         if (string.IsNullOrWhiteSpace(Username))
         {
             HasError = true;
@@ -38,8 +36,6 @@ public partial class LoginViewModel : ViewModelBase
         {
             HasError = true;
             ErrorMessage = "用户名不存在";
-            OnLoginFailed?.Invoke("用户名不存在");
-            File.AppendAllText("login_debug.log", $"[{DateTime.Now:HH:mm:ss}] Login failed: user not found\n");
             return;
         }
 
@@ -49,15 +45,12 @@ public partial class LoginViewModel : ViewModelBase
             HasError = true;
             ErrorMessage = "用户名或密码错误";
             OnLoginFailed?.Invoke("用户名或密码错误");
-            File.AppendAllText("login_debug.log", $"[{DateTime.Now:HH:mm:ss}] Login failed: wrong password\n");
             return;
         }
 
         HasError = false;
         ErrorMessage = "";
-        File.AppendAllText("login_debug.log", $"[{DateTime.Now:HH:mm:ss}] Login success! user={Username}, role={role}\n");
         OnLoginSuccess?.Invoke(Username, role);
-        File.AppendAllText("login_debug.log", $"[{DateTime.Now:HH:mm:ss}] OnLoginSuccess invoked\n");
     }
 
     [RelayCommand]

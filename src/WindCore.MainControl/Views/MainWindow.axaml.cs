@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.IO;
 using Avalonia.Controls;
 using IconPacks.Avalonia.FontAwesome;
 using WindCore.MainControl.Controls;
@@ -77,9 +76,9 @@ public partial class MainWindow : Window
                     _toast.Show($"欢迎回来，角色：{role}", ToastType.Success);
                 });
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                File.AppendAllText("login_debug.log", $"[{DateTime.Now:HH:mm:ss}] ERROR: {ex.Message}\n");
+                // Ignore
             }
         };
         vm.OnLoginError += msg =>

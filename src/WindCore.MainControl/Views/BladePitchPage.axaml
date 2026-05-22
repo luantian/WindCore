@@ -1,0 +1,45 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:viewmodels="using:WindCore.MainControl.ViewModels"
+             xmlns:fa="using:IconPacks.Avalonia.FontAwesome"
+             x:Class="WindCore.MainControl.Views.BladePitchPage"
+             x:DataType="viewmodels:BladePitchPageViewModel">
+    <Grid>
+        <ScrollViewer VerticalScrollBarVisibility="Auto" Padding="12">
+            <StackPanel Spacing="12">
+                <Border Background="#FFFFFF" BorderBrush="#E8E8E8" BorderThickness="1" CornerRadius="8">
+                    <StackPanel>
+                        <Border Background="#F0F5FF" Padding="14,10" BorderBrush="#D6E4FF" BorderThickness="0,0,0,1">
+                            <StackPanel Orientation="Horizontal" Spacing="8">
+                                <fa:PackIconFontAwesome Kind="{x:Static fa:PackIconFontAwesomeKind.FanSolid}" Width="16" Height="16" Foreground="#0052D9" VerticalAlignment="Center"/>
+                                <TextBlock Text="桨距角监测" FontSize="15" FontWeight="SemiBold" Foreground="#0052D9"/>
+                            </StackPanel>
+                        </Border>
+                        <StackPanel Margin="14,12" Spacing="10">
+                            <Grid ColumnDefinitions="Auto,*,Auto">
+                                <TextBlock Text="桨叶 1" FontSize="12" Foreground="#86909C"/>
+                                <ProgressBar Value="{Binding BladePitch1}" Minimum="-10" Maximum="60" Grid.Column="1" Margin="12,0" Height="20"/>
+                                <TextBlock Text="{Binding BladePitch1, StringFormat={}{0:F1}°}" Grid.Column="2" FontSize="14" FontWeight="Bold" FontFamily="Consolas" Foreground="#0052D9"/>
+                            </Grid>
+                            <Grid ColumnDefinitions="Auto,*,Auto">
+                                <TextBlock Text="桨叶 2" FontSize="12" Foreground="#86909C"/>
+                                <ProgressBar Value="{Binding BladePitch2}" Minimum="-10" Maximum="60" Grid.Column="1" Margin="12,0" Height="20"/>
+                                <TextBlock Text="{Binding BladePitch2, StringFormat={}{0:F1}°}" Grid.Column="2" FontSize="14" FontWeight="Bold" FontFamily="Consolas" Foreground="#0052D9"/>
+                            </Grid>
+                            <Grid ColumnDefinitions="Auto,*,Auto">
+                                <TextBlock Text="桨叶 3" FontSize="12" Foreground="#86909C"/>
+                                <ProgressBar Value="{Binding BladePitch3}" Minimum="-10" Maximum="60" Grid.Column="1" Margin="12,0" Height="20"/>
+                                <TextBlock Text="{Binding BladePitch3, StringFormat={}{0:F1}°}" Grid.Column="2" FontSize="14" FontWeight="Bold" FontFamily="Consolas" Foreground="#0052D9"/>
+                            </Grid>
+                            <Separator Margin="0,4"/>
+                            <Grid ColumnDefinitions="Auto,*">
+                                <TextBlock Text="平均值" FontSize="13" FontWeight="SemiBold" Foreground="#1D2129"/>
+                                <TextBlock Text="{Binding BladePitchAvg, StringFormat={}{0:F1}°}" Grid.Column="1" HorizontalAlignment="Right" FontSize="20" FontWeight="Bold" FontFamily="Consolas" Foreground="#0052D9"/>
+                            </Grid>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>
