@@ -536,7 +536,7 @@
                             <!-- 目标角度控制 -->
                             <StackPanel Spacing="8">
                                 <TextBlock Text="目标角度 (°)" FontSize="13" Foreground="#86909C" FontWeight="SemiBold"/>
-                                <Grid ColumnDefinitions="*,*,*">
+                                <Grid ColumnDefinitions="*,*,*" ColumnSpacing="6">
                                     <StackPanel>
                                         <TextBlock Text="桨叶 1" FontSize="12" Foreground="#4E5969" HorizontalAlignment="Center"/>
                                         <TextBox Text="{Binding BladePitch.TargetPitch1}" FontSize="14" Padding="6,4" TextAlignment="Center" FontFamily="Consolas"/>
