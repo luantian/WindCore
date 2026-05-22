@@ -8,49 +8,6 @@
     <Grid>
         <ScrollViewer VerticalScrollBarVisibility="Auto">
             <StackPanel Spacing="14">
-
-            <!-- 顶部状态栏 -->
-            <Border Background="#FFFFFF" BorderBrush="#E8E8E8" BorderThickness="1" CornerRadius="8" Padding="18,12">
-                <Grid ColumnDefinitions="*,Auto,*,Auto,*,Auto,*,Auto,*">
-                    <!-- 试验状态 -->
-                    <StackPanel Orientation="Horizontal" Spacing="10">
-                        <fa:PackIconFontAwesome Kind="{x:Static fa:PackIconFontAwesomeKind.FlaskSolid}" Width="18" Height="18" Foreground="#0052D9" VerticalAlignment="Center"/>
-                        <TextBlock Text="试验:" FontSize="15" Foreground="#86909C" VerticalAlignment="Center"/>
-                        <TextBlock Text="{Binding ExperimentStatus}" FontSize="15" FontWeight="Bold" Foreground="#0052D9" VerticalAlignment="Center"/>
-                        <TextBlock Text="{Binding CurrentExperimentName}" FontSize="14" Foreground="#4E5969" VerticalAlignment="Center" Margin="6,0,0,0"/>
-                    </StackPanel>
-                    <!-- 分隔线 -->
-                    <Border Grid.Column="1" Width="1" Height="24" Background="#E8E8E8" Margin="14,0"/>
-                    <!-- PLC 通讯 -->
-                    <StackPanel Grid.Column="2" Orientation="Horizontal" Spacing="8">
-                        <Ellipse Width="10" Height="10" Fill="#2BA471"/>
-                        <TextBlock Text="PLC:" FontSize="15" Foreground="#86909C" VerticalAlignment="Center"/>
-                        <TextBlock Text="{Binding PlcCommStatus}" FontSize="15" FontWeight="SemiBold" VerticalAlignment="Center"/>
-                    </StackPanel>
-                    <Border Grid.Column="3" Width="1" Height="24" Background="#E8E8E8" Margin="14,0"/>
-                    <!-- 数采通讯 -->
-                    <StackPanel Grid.Column="4" Orientation="Horizontal" Spacing="8">
-                        <Ellipse Width="10" Height="10" Fill="#2BA471"/>
-                        <TextBlock Text="数采:" FontSize="15" Foreground="#86909C" VerticalAlignment="Center"/>
-                        <TextBlock Text="{Binding DaqCommStatus}" FontSize="15" FontWeight="SemiBold" VerticalAlignment="Center"/>
-                    </StackPanel>
-                    <Border Grid.Column="5" Width="1" Height="24" Background="#E8E8E8" Margin="14,0"/>
-                    <!-- 数据库通讯 -->
-                    <StackPanel Grid.Column="6" Orientation="Horizontal" Spacing="8">
-                        <Ellipse Width="10" Height="10" Fill="#2BA471"/>
-                        <TextBlock Text="数据库:" FontSize="15" Foreground="#86909C" VerticalAlignment="Center"/>
-                        <TextBlock Text="{Binding DbCommStatus}" FontSize="15" FontWeight="SemiBold" VerticalAlignment="Center"/>
-                    </StackPanel>
-                    <Border Grid.Column="7" Width="1" Height="24" Background="#E8E8E8" Margin="14,0"/>
-                    <!-- 安全联锁 -->
-                    <StackPanel Grid.Column="8" Orientation="Horizontal" Spacing="8">
-                        <fa:PackIconFontAwesome Kind="{x:Static fa:PackIconFontAwesomeKind.ShieldHalvedSolid}" Width="16" Height="16" Foreground="#2BA471" VerticalAlignment="Center"/>
-                        <TextBlock Text="联锁:" FontSize="15" Foreground="#86909C" VerticalAlignment="Center"/>
-                        <TextBlock Text="{Binding InterlockStatus}" FontSize="15" FontWeight="SemiBold" VerticalAlignment="Center"/>
-                    </StackPanel>
-                </Grid>
-            </Border>
-
             <!-- 仪表盘组 (8个: 4列×2行) -->
             <UniformGrid Columns="4" RowSpacing="10" ColumnSpacing="10" MinHeight="240">
                 <!-- 风速仪表盘 -->
