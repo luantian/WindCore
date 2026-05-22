@@ -40,12 +40,4 @@ public partial class BladePitchPageViewModel : ObservableObject
         // 下发目标角度至桨距角测量系统（3桨独立）
         // TODO: 通过 TCP 发送目标角度
     }
-
-    [RelayCommand]
-    private void SetAllSame()
-    {
-        // 三桨设为同一角度
-        TargetPitch2 = TargetPitch1;
-        TargetPitch3 = TargetPitch1;
-    }
 }
