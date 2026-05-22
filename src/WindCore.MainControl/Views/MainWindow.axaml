@@ -22,6 +22,16 @@
         <!-- 主页面 (登录后显示) -->
         <DockPanel IsVisible="{Binding IsLoggedIn}">
 
+            <!-- 顶部菜单栏 -->
+            <Menu DockPanel.Dock="Top">
+                <MenuItem Header="文件">
+                    <MenuItem Header="退出" InputGesture="Ctrl+Q"/>
+                </MenuItem>
+                <MenuItem Header="帮助">
+                    <MenuItem Header="关于" InputGesture="F1"/>
+                </MenuItem>
+            </Menu>
+
             <!-- 主体区域: 侧边栏 + 内容 -->
             <Grid ColumnDefinitions="200,*">
 
