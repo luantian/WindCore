@@ -217,19 +217,19 @@
                         <StackPanel Margin="14,12" Spacing="10">
                             <Grid ColumnDefinitions="Auto,*">
                                 <TextBlock Text="电机状态" FontSize="14" Foreground="#86909C"/>
-                                <TextBlock Text="{Binding MotorStatus}" Grid.Column="1" HorizontalAlignment="Right" FontSize="14" FontWeight="Bold" Foreground="#2BA471"/>
+                                <TextBlock Text="{Binding MotorStatus}" Grid.Column="1" HorizontalAlignment="Right" FontSize="16" FontWeight="Bold" Foreground="#2BA471"/>
                             </Grid>
                             <Grid ColumnDefinitions="Auto,*">
                                 <TextBlock Text="绕组温度" FontSize="14" Foreground="#86909C"/>
-                                <TextBlock Text="{Binding MotorWindingTemp, StringFormat={}{0:F0} °C}" Grid.Column="1" HorizontalAlignment="Right" FontSize="14" FontFamily="Consolas" Foreground="#ED7B2F"/>
+                                <TextBlock Text="{Binding MotorWindingTemp, StringFormat={}{0:F0} °C}" Grid.Column="1" HorizontalAlignment="Right" FontSize="18" FontFamily="Consolas" Foreground="#ED7B2F"/>
                             </Grid>
                             <Grid ColumnDefinitions="Auto,*">
                                 <TextBlock Text="电机电流" FontSize="14" Foreground="#86909C"/>
-                                <TextBlock Text="{Binding MotorCurrent, StringFormat={}{0:F1} A}" Grid.Column="1" HorizontalAlignment="Right" FontSize="14" FontFamily="Consolas" Foreground="#1D2129"/>
+                                <TextBlock Text="{Binding MotorCurrent, StringFormat={}{0:F1} A}" Grid.Column="1" HorizontalAlignment="Right" FontSize="18" FontFamily="Consolas" Foreground="#1D2129"/>
                             </Grid>
                             <Grid ColumnDefinitions="Auto,*">
                                 <TextBlock Text="变频器状态" FontSize="14" Foreground="#86909C"/>
-                                <TextBlock Text="{Binding InverterStatus}" Grid.Column="1" HorizontalAlignment="Right" FontSize="14" Foreground="#2BA471"/>
+                                <TextBlock Text="{Binding InverterStatus}" Grid.Column="1" HorizontalAlignment="Right" FontSize="16" Foreground="#2BA471"/>
                             </Grid>
                             <Separator Margin="0,4" Opacity="0.3"/>
                             <!-- 操作区 -->
@@ -257,19 +257,19 @@
                         <StackPanel Margin="14,12" Spacing="10">
                             <Grid ColumnDefinitions="Auto,*">
                                 <TextBlock Text="出水温度" FontSize="14" Foreground="#86909C"/>
-                                <TextBlock Text="{Binding CoolingOutTemp, StringFormat={}{0:F1} °C}" Grid.Column="1" HorizontalAlignment="Right" FontSize="14" FontFamily="Consolas" Foreground="#1D2129"/>
+                                <TextBlock Text="{Binding CoolingOutTemp, StringFormat={}{0:F1} °C}" Grid.Column="1" HorizontalAlignment="Right" FontSize="18" FontFamily="Consolas" Foreground="#1D2129"/>
                             </Grid>
                             <Grid ColumnDefinitions="Auto,*">
                                 <TextBlock Text="回水温度" FontSize="14" Foreground="#86909C"/>
-                                <TextBlock Text="{Binding CoolingReturnTemp, StringFormat={}{0:F1} °C}" Grid.Column="1" HorizontalAlignment="Right" FontSize="14" FontFamily="Consolas" Foreground="#1D2129"/>
+                                <TextBlock Text="{Binding CoolingReturnTemp, StringFormat={}{0:F1} °C}" Grid.Column="1" HorizontalAlignment="Right" FontSize="18" FontFamily="Consolas" Foreground="#1D2129"/>
                             </Grid>
                             <Grid ColumnDefinitions="Auto,*">
                                 <TextBlock Text="管路压力" FontSize="14" Foreground="#86909C"/>
-                                <TextBlock Text="{Binding CoolingPressure, StringFormat={}{0:F1} MPa}" Grid.Column="1" HorizontalAlignment="Right" FontSize="14" FontFamily="Consolas" Foreground="#ED7B2F"/>
+                                <TextBlock Text="{Binding CoolingPressure, StringFormat={}{0:F1} MPa}" Grid.Column="1" HorizontalAlignment="Right" FontSize="18" FontFamily="Consolas" Foreground="#ED7B2F"/>
                             </Grid>
                             <Grid ColumnDefinitions="Auto,*">
                                 <TextBlock Text="水泵状态" FontSize="14" Foreground="#86909C"/>
-                                <TextBlock Text="{Binding PumpStatus}" Grid.Column="1" HorizontalAlignment="Right" FontSize="14" Foreground="#2BA471"/>
+                                <TextBlock Text="{Binding PumpStatus}" Grid.Column="1" HorizontalAlignment="Right" FontSize="16" Foreground="#2BA471"/>
                             </Grid>
                             <Separator Margin="0,4" Opacity="0.3"/>
                             <!-- 操作区 -->
@@ -297,19 +297,19 @@
                         <StackPanel Margin="14,12" Spacing="10">
                             <Grid ColumnDefinitions="Auto,*">
                                 <TextBlock Text="俯仰角 目标/实际" FontSize="14" Foreground="#86909C"/>
-                                <TextBlock Text="{Binding PitchSetpoint, StringFormat={}{0:F1}°} / {Binding PitchActual, StringFormat={}{0:F1}°}" Grid.Column="1" HorizontalAlignment="Right" FontSize="14" FontFamily="Consolas" Foreground="#1D2129"/>
+                                <TextBlock Text="{Binding PitchSetpoint, StringFormat={}{0:F1}°} / {Binding PitchActual, StringFormat={}{0:F1}°}" Grid.Column="1" HorizontalAlignment="Right" FontSize="18" FontFamily="Consolas" Foreground="#1D2129"/>
                             </Grid>
                             <Grid ColumnDefinitions="Auto,*">
                                 <TextBlock Text="侧滑角 目标/实际" FontSize="14" Foreground="#86909C"/>
-                                <TextBlock Text="{Binding YawSetpoint, StringFormat={}{0:F1}°} / {Binding YawActualVal, StringFormat={}{0:F1}°}" Grid.Column="1" HorizontalAlignment="Right" FontSize="14" FontFamily="Consolas" Foreground="#1D2129"/>
+                                <TextBlock Text="{Binding YawSetpoint, StringFormat={}{0:F1}°} / {Binding YawActualVal, StringFormat={}{0:F1}°}" Grid.Column="1" HorizontalAlignment="Right" FontSize="18" FontFamily="Consolas" Foreground="#1D2129"/>
                             </Grid>
                             <Grid ColumnDefinitions="Auto,*">
                                 <TextBlock Text="俯仰偏差" FontSize="14" Foreground="#86909C"/>
-                                <TextBlock Text="{Binding PitchDeviation, StringFormat={}{0:F1}°}" Grid.Column="1" HorizontalAlignment="Right" FontSize="14" FontFamily="Consolas" Foreground="#2BA471"/>
+                                <TextBlock Text="{Binding PitchDeviation, StringFormat={}{0:F1}°}" Grid.Column="1" HorizontalAlignment="Right" FontSize="18" FontFamily="Consolas" Foreground="#2BA471"/>
                             </Grid>
                             <Grid ColumnDefinitions="Auto,*">
                                 <TextBlock Text="侧滑偏差" FontSize="14" Foreground="#86909C"/>
-                                <TextBlock Text="{Binding YawDeviation, StringFormat={}{0:F1}°}" Grid.Column="1" HorizontalAlignment="Right" FontSize="14" FontFamily="Consolas" Foreground="#2BA471"/>
+                                <TextBlock Text="{Binding YawDeviation, StringFormat={}{0:F1}°}" Grid.Column="1" HorizontalAlignment="Right" FontSize="18" FontFamily="Consolas" Foreground="#2BA471"/>
                             </Grid>
                             <Separator Margin="0,4" Opacity="0.3"/>
                             <!-- 操作区 -->
@@ -354,19 +354,19 @@
                             <!-- 状态显示 -->
                             <Grid ColumnDefinitions="Auto,*">
                                 <TextBlock Text="推力" FontSize="14" Foreground="#86909C"/>
-                                <TextBlock Text="{Binding RatThrust, StringFormat={}{0:F0} N}" Grid.Column="1" HorizontalAlignment="Right" FontSize="14" FontFamily="Consolas" Foreground="#0052D9"/>
+                                <TextBlock Text="{Binding RatThrust, StringFormat={}{0:F0} N}" Grid.Column="1" HorizontalAlignment="Right" FontSize="18" FontFamily="Consolas" Foreground="#0052D9"/>
                             </Grid>
                             <Grid ColumnDefinitions="Auto,*">
                                 <TextBlock Text="转速" FontSize="14" Foreground="#86909C"/>
-                                <TextBlock Text="{Binding RatRpm, StringFormat={}{0:F0} r/min}" Grid.Column="1" HorizontalAlignment="Right" FontSize="14" FontFamily="Consolas" Foreground="#2BA471"/>
+                                <TextBlock Text="{Binding RatRpm, StringFormat={}{0:F0} r/min}" Grid.Column="1" HorizontalAlignment="Right" FontSize="18" FontFamily="Consolas" Foreground="#2BA471"/>
                             </Grid>
                             <Grid ColumnDefinitions="Auto,*">
                                 <TextBlock Text="扭矩" FontSize="14" Foreground="#86909C"/>
-                                <TextBlock Text="{Binding RatTorque, StringFormat={}{0:F1} N·m}" Grid.Column="1" HorizontalAlignment="Right" FontSize="14" FontFamily="Consolas" Foreground="#ED7B2F"/>
+                                <TextBlock Text="{Binding RatTorque, StringFormat={}{0:F1} N·m}" Grid.Column="1" HorizontalAlignment="Right" FontSize="18" FontFamily="Consolas" Foreground="#ED7B2F"/>
                             </Grid>
                             <Grid ColumnDefinitions="Auto,*">
                                 <TextBlock Text="传感器" FontSize="14" Foreground="#86909C"/>
-                                <TextBlock Text="{Binding SensorStatus}" Grid.Column="1" HorizontalAlignment="Right" FontSize="14" Foreground="#2BA471"/>
+                                <TextBlock Text="{Binding SensorStatus}" Grid.Column="1" HorizontalAlignment="Right" FontSize="16" Foreground="#2BA471"/>
                             </Grid>
                             <Separator Margin="0,4" Opacity="0.3"/>
                             <!-- 目标参数控制 -->
@@ -411,17 +411,17 @@
                             <TextBlock Text="实际位置" FontSize="13" Foreground="#86909C" FontWeight="SemiBold"/>
                             <Grid ColumnDefinitions="Auto,*,Auto">
                                 <TextBlock Text="X:" FontSize="13" Foreground="#86909C"/>
-                                <TextBlock Text="{Binding GantryX, StringFormat={}{0:F1} mm}" Grid.Column="1" HorizontalAlignment="Center" FontSize="14" FontFamily="Consolas" Foreground="#0052D9"/>
+                                <TextBlock Text="{Binding GantryX, StringFormat={}{0:F1} mm}" Grid.Column="1" HorizontalAlignment="Center" FontSize="18" FontFamily="Consolas" Foreground="#0052D9"/>
                                 <TextBlock Text="{Binding GantrySpeedX, StringFormat={}{0:F1} mm/s}" Grid.Column="2" HorizontalAlignment="Right" FontSize="12" FontFamily="Consolas" Foreground="#4E5969"/>
                             </Grid>
                             <Grid ColumnDefinitions="Auto,*,Auto">
                                 <TextBlock Text="Y:" FontSize="13" Foreground="#86909C"/>
-                                <TextBlock Text="{Binding GantryY, StringFormat={}{0:F1} mm}" Grid.Column="1" HorizontalAlignment="Center" FontSize="14" FontFamily="Consolas" Foreground="#2BA471"/>
+                                <TextBlock Text="{Binding GantryY, StringFormat={}{0:F1} mm}" Grid.Column="1" HorizontalAlignment="Center" FontSize="18" FontFamily="Consolas" Foreground="#2BA471"/>
                                 <TextBlock Text="{Binding GantrySpeedY, StringFormat={}{0:F1} mm/s}" Grid.Column="2" HorizontalAlignment="Right" FontSize="12" FontFamily="Consolas" Foreground="#4E5969"/>
                             </Grid>
                             <Grid ColumnDefinitions="Auto,*,Auto">
                                 <TextBlock Text="Z:" FontSize="13" Foreground="#86909C"/>
-                                <TextBlock Text="{Binding GantryZ, StringFormat={}{0:F1} mm}" Grid.Column="1" HorizontalAlignment="Center" FontSize="14" FontFamily="Consolas" Foreground="#ED7B2F"/>
+                                <TextBlock Text="{Binding GantryZ, StringFormat={}{0:F1} mm}" Grid.Column="1" HorizontalAlignment="Center" FontSize="18" FontFamily="Consolas" Foreground="#ED7B2F"/>
                                 <TextBlock Text="{Binding GantrySpeedZ, StringFormat={}{0:F1} mm/s}" Grid.Column="2" HorizontalAlignment="Right" FontSize="12" FontFamily="Consolas" Foreground="#4E5969"/>
                             </Grid>
                             <Separator Margin="0,4" Opacity="0.3"/>
@@ -477,20 +477,20 @@
                             <!-- 实际角度 -->
                             <Grid ColumnDefinitions="Auto,*">
                                 <TextBlock Text="桨叶 1" FontSize="14" Foreground="#86909C"/>
-                                <TextBlock Text="{Binding BladePitch1, StringFormat={}{0:F1}°}" Grid.Column="1" HorizontalAlignment="Right" FontSize="14" FontFamily="Consolas" Foreground="#0052D9"/>
+                                <TextBlock Text="{Binding BladePitch1, StringFormat={}{0:F1}°}" Grid.Column="1" HorizontalAlignment="Right" FontSize="18" FontFamily="Consolas" Foreground="#0052D9"/>
                             </Grid>
                             <Grid ColumnDefinitions="Auto,*">
                                 <TextBlock Text="桨叶 2" FontSize="14" Foreground="#86909C"/>
-                                <TextBlock Text="{Binding BladePitch2, StringFormat={}{0:F1}°}" Grid.Column="1" HorizontalAlignment="Right" FontSize="14" FontFamily="Consolas" Foreground="#2BA471"/>
+                                <TextBlock Text="{Binding BladePitch2, StringFormat={}{0:F1}°}" Grid.Column="1" HorizontalAlignment="Right" FontSize="18" FontFamily="Consolas" Foreground="#2BA471"/>
                             </Grid>
                             <Grid ColumnDefinitions="Auto,*">
                                 <TextBlock Text="桨叶 3" FontSize="14" Foreground="#86909C"/>
-                                <TextBlock Text="{Binding BladePitch3, StringFormat={}{0:F1}°}" Grid.Column="1" HorizontalAlignment="Right" FontSize="14" FontFamily="Consolas" Foreground="#ED7B2F"/>
+                                <TextBlock Text="{Binding BladePitch3, StringFormat={}{0:F1}°}" Grid.Column="1" HorizontalAlignment="Right" FontSize="18" FontFamily="Consolas" Foreground="#ED7B2F"/>
                             </Grid>
                             <Separator Margin="0,4" Opacity="0.3"/>
                             <Grid ColumnDefinitions="Auto,*">
                                 <TextBlock Text="平均值" FontSize="14" FontWeight="SemiBold" Foreground="#1D2129"/>
-                                <TextBlock Text="{Binding BladePitchAvg, StringFormat={}{0:F1}°}" Grid.Column="1" HorizontalAlignment="Right" FontSize="16" FontWeight="Bold" FontFamily="Consolas" Foreground="#0052D9"/>
+                                <TextBlock Text="{Binding BladePitchAvg, StringFormat={}{0:F1}°}" Grid.Column="1" HorizontalAlignment="Right" FontSize="18" FontWeight="Bold" FontFamily="Consolas" Foreground="#0052D9"/>
                             </Grid>
                             <Separator Margin="0,4" Opacity="0.3"/>
                             <!-- 目标角度控制 -->
